@@ -9,6 +9,12 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">SalesDemo</a>
+            <nav class="breadcrumb">
+                <div class="container">
+                    <a class="breadcrumb-item" href="#">Home</a>
+                    <span class="breadcrumb-item active">Bootstrap</span>
+                </div>
+            </nav>
         </div>
         <div id = "navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav" id="menuApp">
@@ -52,7 +58,8 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right" id="userApp">
-                <li class="text-center" style="max-width:300px">
+                <!--<li class="text-center" style="max-width:300px">-->
+                <li class="text-center">
                     <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" style="line-height:0.9; padding-top:12px; padding-bottom:12px;">
                         <user-profile-status>
                         <span>
@@ -78,4 +85,5 @@
         </div>
     </div>
 </nav>
+
 <router-outlet [routes]="routes.all"></router-outlet>

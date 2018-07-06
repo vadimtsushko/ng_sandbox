@@ -1,0 +1,76 @@
+/*breadcrumb*/
+nav.breadcrumb {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0.5em 1em;
+    -webkit-box-shadow: inset 0px 0px 50px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 50px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 50px 0px rgba(0,0,0,0.75);
+}
+
+nav.breadcrumb a {
+    margin-right: 1em;
+    color: #9d9d9d;
+}
+
+nav.breadcrumb .active{
+    color: white;
+}
+
+@media  (min-width:	767px){
+    nav.breadcrumb{
+        display: flex;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        background: #292929;
+        padding: 0.5em 1em;
+        -webkit-box-shadow: inset 0px 0px 50px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: inset 0px 0px 50px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: inset 0px 0px 50px 0px rgba(0, 0, 0, 0.75);
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 45px;
+        z-index: 999;
+    }
+}
+
+@media  (max-width:	767px){
+    nav.breadcrumb .container {
+        margin: 0;
+        padding: 0;
+    }
+
+    nav.breadcrumb{
+        display: flex;
+    }
+}
+/*breadcrumb*/
+
+
+
+/*fix*/
+.navbar-fixed-top .navbar-collapse {
+    max-height: calc(100vh - 6em);
+}
+
+.navbar-inverse .navbar-nav > li > a {
+   text-align: left;
+}
+
+.nav>li>a {
+    padding: 15px 8px !important;
+}
+
+@media  (min-width:	767px) and (max-width: 990px){
+
+    #userApp{
+        display: none;
+    }
+
+}
+/*fix*/

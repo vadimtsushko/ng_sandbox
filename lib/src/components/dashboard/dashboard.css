@@ -1,3 +1,15 @@
+/*fix*/
+.content {
+    margin-top: 4em;
+}
+
+@media  (min-width:	767px){
+    .content {
+        margin-top: 2em;
+    }
+}
+/*fix*/
+
 [class*='col-'] {
     float: left;
     padding-right: 20px;
