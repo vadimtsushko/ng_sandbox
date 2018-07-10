@@ -21,6 +21,9 @@ class DashboardComponent implements OnInit {
   Tab tab;
   List<Tab> data = Data;
 
+//  String url = '';
+
+
   List menuOptionSelect = [];
   List menuOption = ['Не выбрано', 'Дата', 'Неделя', 'Месяц', 'Квартал',
   'Год', 'День нед.', 'Классификатор товаров','Категория', 'Группа', 'Подгруппа',
@@ -39,8 +42,8 @@ class DashboardComponent implements OnInit {
   List menuTimeInterval = ['Не выбрано', 'Дата', 'Неделя', 'Месяц', 'Квартал',
   'Год', 'День нед.'];
 
-  List  selectedString = [];
-  List  selectedCol = [];
+  List selectedString = [];
+  List selectedCol = [];
 
   DashboardComponent();
 
@@ -86,7 +89,17 @@ class DashboardComponent implements OnInit {
 
   }
 
-  Future<void> ngOnInit() async {}
+  Future<void> ngOnInit() async {
+//    Location loc = window.location;
+//    print(window.location.pathname);
+
+//    var querystring = window.location.search.replaceFirst("?", "");
+//    this.url = window.location.toString().split("#")[1];
+//    List<String> list = querystring.split("&").forEach((e) => e.split("="));
+//    print(querystring); // [[paramA, 1], [parmB, 2]]
+//    print(Uri.base);
+//    print(Uri.base.toString());
+  }
 
 }
 
