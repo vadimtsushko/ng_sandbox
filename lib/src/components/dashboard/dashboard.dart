@@ -21,7 +21,8 @@ class DashboardComponent implements OnInit {
   Tab tab;
   List<Tab> data = Data;
 
-//  String url = '';
+  String titleMeasurement = 'Показать измерения';
+
 
 
   List menuOptionSelect = [];
@@ -46,6 +47,14 @@ class DashboardComponent implements OnInit {
   List selectedCol = [];
 
   DashboardComponent();
+
+  void measurementToggle() {
+    if(this.titleMeasurement == 'Показать измерения'){
+      this.titleMeasurement = 'Скрыть измерения';
+    } else {
+      this.titleMeasurement = 'Показать измерения';
+    }
+  }
 
   void toggle(MouseEvent e) {
 

@@ -1,22 +1,33 @@
 <div class="container-fluid content">
     <div class="row">
-        <div class="col-md-12 ">
+
+        <div class="col-md-12">
             <h3> Dashboard </h3>
         </div>
-        <div class="col-md-8">
-            <h4>Измерения</h4>
-            <button class="btn btn-control" (click)="toggle($event)" *ngFor="let el of menuOption">{{el}}</button>
+
+        <div class="col-md-12">
+        <div class="collapse multi-collapse" id="collapseMeasurement">
+            <div class="col-md-8">
+                <h4>Измерения</h4>
+                <button class="btn btn-control" (click)="toggle($event)" *ngFor="let el of menuOption">{{el}}</button>
+            </div>
+            <div class="col-md-4">
+                <h4>Выбранные измерения</h4>
+                <div class="col-md-12" *ngIf="selectedString.length > 0">
+                    <h5>Строки</h5>
+                    <button class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedString">{{el}}</button>
+                </div>
+                <div class="col-md-12" *ngIf="selectedCol.length > 0">
+                    <h5>Колонки</h5>
+                    <button class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedCol">{{el}}</button>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h4>Выбранные измерения</h4>
-            <div class="col-md-12" *ngIf="selectedString.length > 0">
-                <h5>Строки</h5>
-                <button class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedString">{{el}}</button>
-            </div>
-            <div class="col-md-12" *ngIf="selectedCol.length > 0">
-                <h5>Колонки</h5>
-                <button class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedCol">{{el}}</button>
-            </div>
+
+        </div>
+        <div class="col-md-12 text-center measurementBtnBlock">
+            <hr>
+            <button class="btn" type="button" data-toggle="collapse" data-target="#collapseMeasurement" (click)="measurementToggle()">{{titleMeasurement}}</button>
         </div>
     </div>
 </div>

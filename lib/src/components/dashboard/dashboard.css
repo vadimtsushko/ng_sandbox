@@ -98,3 +98,13 @@ button.btn.btn-control.rmSelect:after{
     margin: 1px;
     background: #e0e0e0;
 }
+
+.measurementBtnBlock{
+    padding: 1em;
+}
+
+.measurementBtnBlock button{
+    position: absolute;
+    top: 1.2em;
+    border-radius: 0;
+}
