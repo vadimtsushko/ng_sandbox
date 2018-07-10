@@ -22,7 +22,8 @@ class DashboardComponent implements OnInit {
   List<Tab> data = Data;
 
   List menuOptionSelect = [];
-  List menuOption = ['Классификатор товаров','Категория', 'Группа', 'Подгруппа',
+  List menuOption = ['Не выбрано', 'Дата', 'Неделя', 'Месяц', 'Квартал',
+  'Год', 'День нед.', 'Классификатор товаров','Категория', 'Группа', 'Подгруппа',
   'ПодПодгруппа', 'Номенклатура' , 'Регион', 'Магазин', 'Менеджер', 'ТМ',
   'Поставщик', 'Поставщик, или группа поставщиков с одинаковым ИНН, или контрагент из бухгалтерии',
   'Страна происхождения товара', 'Тип товара', 'Опт/Розн', 'Вид номенклатуры',
@@ -38,54 +39,54 @@ class DashboardComponent implements OnInit {
   List menuTimeInterval = ['Не выбрано', 'Дата', 'Неделя', 'Месяц', 'Квартал',
   'Год', 'День нед.'];
 
+  List  selectedString = [];
+  List  selectedCol = [];
+
   DashboardComponent();
 
-  void toggle(MouseEvent e, type) {
+  void toggle(MouseEvent e) {
 
     HtmlElement elem = e.target;
+
     elem.classes.toggle('active');
 
-    if(type == 'date') {
-      if(!this.menuTimeIntervalSelect.contains(elem.text)){
-        this.menuTimeIntervalSelect.add(elem.text);
+    var isActive = elem.classes.contains('active');
+
+    if(e.ctrlKey == false) {
+      if(isActive){
+        this.selectedString.add(elem.text);
       } else {
-        this.menuTimeIntervalSelect.remove(elem.text);
+        this.selectedString.remove(elem.text);
+        this.selectedCol.remove(elem.text);
       }
     } else {
-      if(!this.menuOptionSelect.contains(elem.text)){
-        this.menuOptionSelect.add(elem.text);
+      if(isActive){
+        this.selectedCol.add(elem.text);
       } else {
-        this.menuOptionSelect.remove(elem.text);
+        this.selectedString.remove(elem.text);
+        this.selectedCol.remove(elem.text);
       }
     }
 
   }
 
-  void toggleRm(MouseEvent e, type) {
+  void toggleRm(MouseEvent e) {
 
     HtmlElement elem = e.target;
 
-    if(type == 'date') {
-      this.menuTimeIntervalSelect.remove(elem.text);
-    } else {
-      this.menuOptionSelect.remove(elem.text);
-    }
+    this.selectedString.remove(elem.text);
+    this.selectedCol.remove(elem.text);
 
     var element1 = document.querySelectorAll('button');
     for(var i = 0; i < element1.length; i++){
-      print(element1[i].text);
       if(element1[i].text == elem.text) {
-//        print(element1[i].text);
         element1[i].classes.remove('active');
       }
     }
 
-
-
   }
 
-  Future<void> ngOnInit() async {
-
-  }
+  Future<void> ngOnInit() async {}
 
 }
+

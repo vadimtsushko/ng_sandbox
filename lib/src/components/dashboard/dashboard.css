@@ -3,11 +3,11 @@
     margin-top: 6em;
 }
 
-@media  (min-width:	1400px){
-    .content {
-        margin-top: 2em;
-    }
-}
+/*@media  (min-width:	1400px){*/
+    /*.content {*/
+        /*margin-top: 2em;*/
+    /*}*/
+/*}*/
 /*fix*/
 
 /*[class*='col-'] {*/
