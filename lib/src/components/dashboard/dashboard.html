@@ -8,7 +8,7 @@
             <button class="btn btn-control" (click)="toggle($event)" *ngFor="let el of menuOption">{{el}}</button>
         </div>
         <div class="col-md-4">
-            <h4>Фильтры</h4>
+            <h4>Выбранные измерения</h4>
             <div class="col-md-12" *ngIf="selectedString.length > 0">
                 <h5>Строки</h5>
                 <button class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedString">{{el}}</button>
