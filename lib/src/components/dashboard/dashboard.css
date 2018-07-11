@@ -74,7 +74,7 @@
 
 
 
-button.btn.btn-control.active {
+.dndBtn.active {
     background: #52cc52 ;
 }
 button.btn.btn-control.rmSelect{
@@ -108,3 +108,14 @@ button.btn.btn-control.rmSelect:after{
     top: 1.2em;
     border-radius: 0;
 }
+
+.strMeasurementBlock, .colMeasurementBlock{
+    background: #e0e0e0;
+    min-width: 100%;
+    min-height: 230px;
+    margin-bottom: 1em;
+}
+
+
+
+

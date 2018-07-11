@@ -4,6 +4,10 @@ import 'dart:async';
 import 'package:angular_forms/angular_forms.dart';
 import 'dart:html';
 
+import 'package:assortment/assortment.dart';
+import 'package:dnd/dnd.dart';
+
+
 //import 'hero.dart';
 //import 'mock_heroes.dart';
 import 'tab.dart';
@@ -23,9 +27,6 @@ class DashboardComponent implements OnInit {
 
   String titleMeasurement = 'Показать измерения';
 
-
-
-  List menuOptionSelect = [];
   List menuOption = ['Не выбрано', 'Дата', 'Неделя', 'Месяц', 'Квартал',
   'Год', 'День нед.', 'Классификатор товаров','Категория', 'Группа', 'Подгруппа',
   'ПодПодгруппа', 'Номенклатура' , 'Регион', 'Магазин', 'Менеджер', 'ТМ',
@@ -38,12 +39,8 @@ class DashboardComponent implements OnInit {
   'Матрица магазина', 'Номенклатура', 'Код номенклатуры', 'Артикул',
   'Вид номенклатуры', 'Новинка', 'Срок хранения', 'Страна происхождения товара',
   'Единица измерения', 'Супервайзер', 'Опт/Розн'];
-
-  List menuTimeIntervalSelect = [];
-  List menuTimeInterval = ['Не выбрано', 'Дата', 'Неделя', 'Месяц', 'Квартал',
-  'Год', 'День нед.'];
-
-  List selectedString = [];
+  
+  List selectedStr = [];
   List selectedCol = [];
 
   DashboardComponent();
@@ -54,42 +51,46 @@ class DashboardComponent implements OnInit {
     } else {
       this.titleMeasurement = 'Показать измерения';
     }
+    this.dragEvents();
   }
 
   void toggle(MouseEvent e) {
 
     HtmlElement elem = e.target;
 
+    this.toggleAction(elem, e.ctrlKey);
+
+  }
+  void toggleAction(HtmlElement elem, isCtr){
     elem.classes.toggle('active');
 
     var isActive = elem.classes.contains('active');
 
-    if(e.ctrlKey == false) {
+    if(isCtr == false) {
       if(isActive){
-        this.selectedString.add(elem.text);
+        this.selectedStr.add(elem.text);
       } else {
-        this.selectedString.remove(elem.text);
+        this.selectedStr.remove(elem.text);
         this.selectedCol.remove(elem.text);
       }
     } else {
       if(isActive){
         this.selectedCol.add(elem.text);
       } else {
-        this.selectedString.remove(elem.text);
+        this.selectedStr.remove(elem.text);
         this.selectedCol.remove(elem.text);
       }
     }
-
   }
 
   void toggleRm(MouseEvent e) {
 
     HtmlElement elem = e.target;
 
-    this.selectedString.remove(elem.text);
+    this.selectedStr.remove(elem.text);
     this.selectedCol.remove(elem.text);
 
-    var element1 = document.querySelectorAll('button');
+    var element1 = document.querySelectorAll('.dndBtn');
     for(var i = 0; i < element1.length; i++){
       if(element1[i].text == elem.text) {
         element1[i].classes.remove('active');
@@ -98,17 +99,28 @@ class DashboardComponent implements OnInit {
 
   }
 
-  Future<void> ngOnInit() async {
-//    Location loc = window.location;
-//    print(window.location.pathname);
+  dragEvents(){
+    new Draggable(querySelectorAll('.dndBtn'),
+        avatarHandler: new AvatarHandler.clone());
 
-//    var querystring = window.location.search.replaceFirst("?", "");
-//    this.url = window.location.toString().split("#")[1];
-//    List<String> list = querystring.split("&").forEach((e) => e.split("="));
-//    print(querystring); // [[paramA, 1], [parmB, 2]]
-//    print(Uri.base);
-//    print(Uri.base.toString());
+    Dropzone dropzoneStr = new Dropzone(querySelector('.strMeasurementBlock'));
+    dropzoneStr.onDrop.listen((DropzoneEvent event) {
+      this.toggleAction(event.draggableElement, false);
+    });
+
+    Dropzone dropzoneCol = new Dropzone(querySelector('.colMeasurementBlock'));
+    dropzoneCol.onDrop.listen((DropzoneEvent event) {
+      this.toggleAction(event.draggableElement, true);
+    });
+
   }
+
+
+
+
+
+
+  Future<void> ngOnInit() async {}
 
 }
 
