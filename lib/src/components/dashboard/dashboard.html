@@ -19,12 +19,12 @@
                     <!--<div class="col-md-12" *ngIf="selectedStr.length > 0">-->
                     <div class="col-md-12 strMeasurementBlock">
                         <h5>Строки</h5>
-                        <button class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedStr">{{el}}</button>
+                        <div class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedStr">{{el}}</div>
                     </div>
                     <!--<div class="col-md-12" *ngIf="selectedCol.length > 0">-->
                     <div class="col-md-12 colMeasurementBlock">
                         <h5>Колонки</h5>
-                        <button class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedCol">{{el}}</button>
+                        <div class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedCol">{{el}}</div>
                     </div>
                 </div>
             </div>

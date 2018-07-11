@@ -66,21 +66,21 @@ class DashboardComponent implements OnInit {
 
     var isActive = elem.classes.contains('active');
 
+    this.selectedStr.remove(elem.text);
+    this.selectedCol.remove(elem.text);
+
     if(isCtr == false) {
       if(isActive){
         this.selectedStr.add(elem.text);
-      } else {
-        this.selectedStr.remove(elem.text);
-        this.selectedCol.remove(elem.text);
       }
     } else {
       if(isActive){
         this.selectedCol.add(elem.text);
-      } else {
-        this.selectedStr.remove(elem.text);
-        this.selectedCol.remove(elem.text);
       }
     }
+//    const oneSec = const Duration(seconds:1);
+    new Timer.periodic(Duration(seconds:1), (Timer t) => this.dragEventsSelected());
+
   }
 
   void toggleRm(MouseEvent e) {
@@ -102,22 +102,33 @@ class DashboardComponent implements OnInit {
   var isDragEvents = false;
   dragEvents(){
     if(!this.isDragEvents){
+
       new Draggable(querySelectorAll('.dndBtn'),
           avatarHandler: new AvatarHandler.clone());
 
       Dropzone dropzoneStr = new Dropzone(querySelector('.strMeasurementBlock'));
       dropzoneStr.onDrop.listen((DropzoneEvent event) {
+//        event.draggableElement.remove();
         this.toggleAction(event.draggableElement, false);
       });
 
       Dropzone dropzoneCol = new Dropzone(querySelector('.colMeasurementBlock'));
       dropzoneCol.onDrop.listen((DropzoneEvent event) {
+        event.draggableElement.remove();
         this.toggleAction(event.draggableElement, true);
       });
+
       this.isDragEvents = true;
     }
   }
 
+  dragEventsSelected(){
+//    print(querySelectorAll('.btn.btn-control.rmSelect'));
+    new Draggable(querySelectorAll('.rmSelect'),
+        avatarHandler: new AvatarHandler.clone());
+
+
+  }
 
 
 

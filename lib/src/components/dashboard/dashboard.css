@@ -76,12 +76,13 @@
 
 .dndBtn.active {
     background: #52cc52 ;
+    display: none;
 }
-button.btn.btn-control.rmSelect{
+.btn.btn-control.rmSelect{
     background: rgb(244, 67, 54);
     position: relative;
 }
-button.btn.btn-control.rmSelect:after{
+.btn.btn-control.rmSelect:after{
     content: '×';
     position: absolute;
     right: 8px;
