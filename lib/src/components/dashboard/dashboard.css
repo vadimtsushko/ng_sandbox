@@ -81,6 +81,14 @@
 .btn.btn-control.rmSelect{
     background: rgb(244, 67, 54);
     position: relative;
+
+}
+.btn.btn-control.rmSelect:hover{
+    background: rgba(255, 255, 0, 0.75);
+    transition: 0.5s;
+}
+.btn.btn-control.rmSelect:active{
+    background: firebrick;
 }
 .btn.btn-control.rmSelect:after{
     content: '×';

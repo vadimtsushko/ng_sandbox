@@ -10,18 +10,14 @@
             <div class="collapse multi-collapse" id="collapseMeasurement">
                 <div class="col-md-8">
                     <h4>Измерения</h4>
-                    <!--<button draggable="true" class="btn btn-control" (click)="toggle($event)" *ngFor="let el of menuOption">{{el}}</button>-->
-                    <!--<button class="btn btn-control btnOption" (click)="toggle($event)" *ngFor="let el of menuOption">{{el}}</button>-->
                     <div class="dndBtn btn btn-control" (click)="toggle($event)" *ngFor="let el of menuOption">{{el}}</div>
                 </div>
                 <div class="col-md-4">
                     <h4>Выбранные измерения</h4>
-                    <!--<div class="col-md-12" *ngIf="selectedStr.length > 0">-->
-                    <div class="col-md-12 strMeasurementBlock">
+                    <div class="col-md-12 strMeasurementBlock" dropzone="copy">
                         <h5>Строки</h5>
                         <div class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedStr">{{el}}</div>
                     </div>
-                    <!--<div class="col-md-12" *ngIf="selectedCol.length > 0">-->
                     <div class="col-md-12 colMeasurementBlock">
                         <h5>Колонки</h5>
                         <div class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedCol">{{el}}</div>
@@ -32,7 +28,7 @@
 
         <div class="col-md-12 text-center measurementBtnBlock">
             <hr>
-            <button draggable="true" class="btn" type="button" data-toggle="collapse" data-target="#collapseMeasurement" (click)="measurementToggle()">{{titleMeasurement}}</button>
+            <button class="btn" type="button" data-toggle="collapse" data-target="#collapseMeasurement" (click)="measurementToggle()">{{titleMeasurement}}</button>
         </div>
 
     </div>

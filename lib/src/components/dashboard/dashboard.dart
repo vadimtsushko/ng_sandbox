@@ -66,9 +66,6 @@ class DashboardComponent implements OnInit {
 
     var isActive = elem.classes.contains('active');
 
-    this.selectedStr.remove(elem.text);
-    this.selectedCol.remove(elem.text);
-
     if(isCtr == false) {
       if(isActive){
         this.selectedStr.add(elem.text);
@@ -78,8 +75,8 @@ class DashboardComponent implements OnInit {
         this.selectedCol.add(elem.text);
       }
     }
-//    const oneSec = const Duration(seconds:1);
-    new Timer.periodic(Duration(seconds:1), (Timer t) => this.dragEventsSelected());
+
+    this.dragEventsSelected();
 
   }
 
@@ -108,25 +105,90 @@ class DashboardComponent implements OnInit {
 
       Dropzone dropzoneStr = new Dropzone(querySelector('.strMeasurementBlock'));
       dropzoneStr.onDrop.listen((DropzoneEvent event) {
-//        event.draggableElement.remove();
         this.toggleAction(event.draggableElement, false);
+        this.rmDuplicate();
+        this.rmDuplicateFromAnotherList('str');
       });
 
       Dropzone dropzoneCol = new Dropzone(querySelector('.colMeasurementBlock'));
       dropzoneCol.onDrop.listen((DropzoneEvent event) {
-        event.draggableElement.remove();
         this.toggleAction(event.draggableElement, true);
+        this.rmDuplicate();
+        this.rmDuplicateFromAnotherList('col');
       });
 
       this.isDragEvents = true;
     }
   }
 
-  dragEventsSelected(){
-//    print(querySelectorAll('.btn.btn-control.rmSelect'));
-    new Draggable(querySelectorAll('.rmSelect'),
-        avatarHandler: new AvatarHandler.clone());
+  dragSelectedSort(dropzoneText, elementText){
 
+    List newListS = [];
+    for(int i = 0; i < this.selectedStr.length; i++) {
+        if(this.selectedStr[i].toString() == dropzoneText.toString()) {
+          newListS.add(elementText);
+
+        } else if (this.selectedStr[i].toString() == elementText.toString()){
+          newListS.add(dropzoneText);
+        } else {
+          newListS.add(this.selectedStr[i]);
+        }
+    }
+    this.selectedStr = newListS;
+
+
+    List newListC = [];
+    for(int i = 0; i < this.selectedCol.length; i++) {
+      if(this.selectedCol[i].toString() == dropzoneText.toString()) {
+        newListC.add(elementText);
+      } else if (this.selectedCol[i].toString() == elementText.toString()){
+        newListC.add(dropzoneText);
+      } else {
+        newListC.add(this.selectedCol[i]);
+      }
+    }
+    this.selectedCol = newListC;
+
+  }
+
+  rmDuplicateFromAnotherList(type){
+    var activeList = type == 'col' ? this.selectedStr : this.selectedCol;
+    var notActiveList = type != 'col' ? this.selectedStr : this.selectedCol;
+
+    for(int i = 0; i < activeList.length; i++) {
+      if(notActiveList.contains(activeList[i].toString())){
+        activeList.remove(activeList[i].toString());
+      }
+    }
+  }
+
+  rmDuplicate(){
+
+    List newListS = [];
+    for(int i = 0; i < this.selectedStr.length; i++) {
+      if(!newListS.contains(this.selectedStr[i].toString())){
+        newListS.add(this.selectedStr[i]);
+      }
+    }
+    this.selectedStr = newListS;
+
+    List newListC = [];
+    for(int i = 0; i < this.selectedCol.length; i++) {
+      if(!newListC.contains(this.selectedCol[i].toString())){
+        newListC.add(this.selectedCol[i]);
+      }
+    }
+    this.selectedCol = newListC;
+
+  }
+
+  dragEventsSelected(){
+
+    new Draggable(querySelectorAll('.rmSelect'), avatarHandler: new AvatarHandler.clone());
+    Dropzone rmSelect = new Dropzone(querySelectorAll('.rmSelect'));
+    rmSelect.onDrop.listen((DropzoneEvent event) {
+      this.dragSelectedSort( event.draggableElement.text, event.dropzoneElement.text);
+    });
 
   }
 
