@@ -13,9 +13,9 @@ import 'package:dnd/dnd.dart';
 import 'tab.dart';
 
 @Component(
-  selector: 'my-dashboard',
-  templateUrl: 'dashboard.html',
-  styleUrls: ['dashboard.css'],
+  selector: 'my-z',
+  templateUrl: 'z.html',
+  styleUrls: ['z.css'],
   directives: [coreDirectives,  routerDirectives, formDirectives],
 )
 
@@ -99,23 +99,20 @@ class DashboardComponent implements OnInit {
 
   }
 
-  var isDragEvents = false;
   dragEvents(){
-    if(!this.isDragEvents){
-      new Draggable(querySelectorAll('.dndBtn'),
-          avatarHandler: new AvatarHandler.clone());
+    new Draggable(querySelectorAll('.dndBtn'),
+        avatarHandler: new AvatarHandler.clone());
 
-      Dropzone dropzoneStr = new Dropzone(querySelector('.strMeasurementBlock'));
-      dropzoneStr.onDrop.listen((DropzoneEvent event) {
-        this.toggleAction(event.draggableElement, false);
-      });
+    Dropzone dropzoneStr = new Dropzone(querySelector('.strMeasurementBlock'));
+    dropzoneStr.onDrop.listen((DropzoneEvent event) {
+      this.toggleAction(event.draggableElement, false);
+    });
 
-      Dropzone dropzoneCol = new Dropzone(querySelector('.colMeasurementBlock'));
-      dropzoneCol.onDrop.listen((DropzoneEvent event) {
-        this.toggleAction(event.draggableElement, true);
-      });
-      this.isDragEvents = true;
-    }
+    Dropzone dropzoneCol = new Dropzone(querySelector('.colMeasurementBlock'));
+    dropzoneCol.onDrop.listen((DropzoneEvent event) {
+      this.toggleAction(event.draggableElement, true);
+    });
+
   }
 
 

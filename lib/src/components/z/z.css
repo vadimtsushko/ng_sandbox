@@ -1,0 +1,121 @@
+/*fix*/
+.content {
+    margin-top: 6em;
+}
+
+/*@media  (min-width:	1400px){*/
+    /*.content {*/
+        /*margin-top: 2em;*/
+    /*}*/
+/*}*/
+/*fix*/
+
+/*[class*='col-'] {*/
+    /*!*float: left;*!*/
+    /*padding-right: 20px;*/
+    /*padding-bottom: 20px;*/
+/*}*/
+/*[class*='col-']:last-of-type {*/
+    /*padding-right: 0;*/
+/*}*/
+/*a {*/
+    /*text-decoration: none;*/
+/*}*/
+/**, *:after, *:before {*/
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
+/*}*/
+/*h3 {*/
+    /*text-align: center; margin-bottom: 0;*/
+/*}*/
+/*h4 {*/
+    /*position: relative;*/
+/*}*/
+/*.grid {*/
+    /*margin: 0;*/
+/*}*/
+/*.col-1-4 {*/
+    /*width: 25%;*/
+/*}*/
+/*.module {*/
+    /*padding: 20px;*/
+    /*text-align: center;*/
+    /*color: #eee;*/
+    /*max-height: 120px;*/
+    /*min-width: 120px;*/
+    /*background-color: #607D8B;*/
+    /*border-radius: 2px;*/
+/*}*/
+/*.module:hover {*/
+    /*background-color: #EEE;*/
+    /*cursor: pointer;*/
+    /*color: #607d8b;*/
+/*}*/
+/*.grid-pad {*/
+    /*padding: 10px 0;*/
+/*}*/
+/*.grid-pad > [class*='col-']:last-of-type {*/
+    /*padding-right: 20px;*/
+/*}*/
+/*@media (max-width: 600px) {*/
+    /*.module {*/
+        /*font-size: 10px;*/
+        /*max-height: 75px; }*/
+/*}*/
+/*@media (max-width: 1024px) {*/
+    /*.grid {*/
+        /*margin: 0;*/
+    /*}*/
+    /*.module {*/
+        /*min-width: 60px;*/
+    /*}*/
+/*}*/
+
+
+
+.dndBtn.active {
+    background: #52cc52 ;
+}
+button.btn.btn-control.rmSelect{
+    background: rgb(244, 67, 54);
+    position: relative;
+}
+button.btn.btn-control.rmSelect:after{
+    content: '×';
+    position: absolute;
+    right: 8px;
+    top: 5px;
+}
+
+.btn-control {
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px 18px;
+    text-overflow: ellipsis;
+    width: 148px;
+    border-radius: 0;
+    margin: 1px;
+    background: #e0e0e0;
+}
+
+.measurementBtnBlock{
+    padding: 1em;
+}
+
+.measurementBtnBlock button{
+    position: absolute;
+    top: 1.2em;
+    border-radius: 0;
+}
+
+.strMeasurementBlock, .colMeasurementBlock{
+    background: #e0e0e0;
+    min-width: 100%;
+    min-height: 230px;
+    margin-bottom: 1em;
+}
+
+
+
+
