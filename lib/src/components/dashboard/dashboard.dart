@@ -7,9 +7,6 @@ import 'dart:html';
 import 'package:assortment/assortment.dart';
 import 'package:dnd/dnd.dart';
 
-
-//import 'hero.dart';
-//import 'mock_heroes.dart';
 import 'tab.dart';
 
 @Component(
@@ -76,10 +73,7 @@ class DashboardComponent implements OnInit {
       }
     }
 
-//    this.dragEventsSelected();
-
     new Timer(const Duration(milliseconds:20), () => this.dragEventsSelected() );
-
 
 }
 
@@ -112,6 +106,10 @@ class DashboardComponent implements OnInit {
         this.rmDuplicate();
         this.rmDuplicateFromAnotherList('str');
       });
+//      dropzoneStr.onDragLeave.listen((DropzoneEvent event) {
+//        this.selectedStr.remove(event.draggableElement.text);
+//      });
+
 
       Dropzone dropzoneCol = new Dropzone(querySelector('.colMeasurementBlock'));
       dropzoneCol.onDrop.listen((DropzoneEvent event) {
@@ -129,10 +127,11 @@ class DashboardComponent implements OnInit {
     List newListS = [];
     for(int i = 0; i < this.selectedStr.length; i++) {
         if(this.selectedStr[i].toString() == dropzoneText.toString()) {
-          newListS.add(elementText);
+//          newListS.add(elementText);
 
         } else if (this.selectedStr[i].toString() == elementText.toString()){
           newListS.add(dropzoneText);
+          newListS.add(elementText);
         } else {
           newListS.add(this.selectedStr[i]);
         }
@@ -142,9 +141,10 @@ class DashboardComponent implements OnInit {
     List newListC = [];
     for(int i = 0; i < this.selectedCol.length; i++) {
       if(this.selectedCol[i].toString() == dropzoneText.toString()) {
-        newListC.add(elementText);
+//        newListC.add(elementText);
       } else if (this.selectedCol[i].toString() == elementText.toString()){
         newListC.add(dropzoneText);
+        newListC.add(elementText);
       } else {
         newListC.add(this.selectedCol[i]);
       }
@@ -190,12 +190,12 @@ class DashboardComponent implements OnInit {
     Dropzone rmSelect = new Dropzone(querySelectorAll('.rmSelect'));
     rmSelect.onDrop.listen((DropzoneEvent event) {
       this.dragSelectedSort( event.draggableElement.text, event.dropzoneElement.text);
+//      print(event.dropzoneElement.text);
     });
-    print(querySelectorAll('.rmSelect'));
+
+
 
   }
-
-
 
 
 
