@@ -76,9 +76,12 @@ class DashboardComponent implements OnInit {
       }
     }
 
-    this.dragEventsSelected();
+//    this.dragEventsSelected();
 
-  }
+    new Timer(const Duration(milliseconds:20), () => this.dragEventsSelected() );
+
+
+}
 
   void toggleRm(MouseEvent e) {
 
@@ -136,7 +139,6 @@ class DashboardComponent implements OnInit {
     }
     this.selectedStr = newListS;
 
-
     List newListC = [];
     for(int i = 0; i < this.selectedCol.length; i++) {
       if(this.selectedCol[i].toString() == dropzoneText.toString()) {
@@ -189,6 +191,7 @@ class DashboardComponent implements OnInit {
     rmSelect.onDrop.listen((DropzoneEvent event) {
       this.dragSelectedSort( event.draggableElement.text, event.dropzoneElement.text);
     });
+    print(querySelectorAll('.rmSelect'));
 
   }
 
