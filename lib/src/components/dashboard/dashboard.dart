@@ -7,7 +7,7 @@ import 'dart:html';
 import 'package:assortment/assortment.dart';
 import 'package:dnd/dnd.dart';
 
-import 'tab.dart';
+//import 'tab.dart';
 
 @Component(
   selector: 'my-dashboard',
@@ -19,8 +19,8 @@ import 'tab.dart';
 
 class DashboardComponent implements OnInit {
 
-  Tab tab;
-  List<Tab> data = Data;
+//  Tab tab;
+//  List<Tab> data = Data;
 
   String titleMeasurement = 'Показать измерения';
 
@@ -191,6 +191,14 @@ class DashboardComponent implements OnInit {
     rmSelect.onDrop.listen((DropzoneEvent event) {
       this.dragSelectedSort( event.draggableElement.text, event.dropzoneElement.text);
 //      print(event.dropzoneElement.text);
+    });
+    rmSelect.onDragLeave.listen((DropzoneEvent event) {
+      event.dropzoneElement.style.margin = "1px";
+    });
+    rmSelect.onDragEnter.listen((DropzoneEvent event) {
+//      this.dragSelectedSort( event.draggableElement.text, event.dropzoneElement.text);
+      print(event.dropzoneElement.text);
+      event.dropzoneElement.style.marginLeft = "25px";
     });
 
 
