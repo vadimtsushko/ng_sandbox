@@ -8,16 +8,16 @@ import 'package:dnd/dnd.dart';
 
 
 @Component(
-  selector: 'my-measurement',
-  templateUrl: 'measurement.html',
-  styleUrls: ['measurement.css'],
+  selector: 'my-dimensions',
+  templateUrl: 'dimensions.html',
+  styleUrls: ['dimensions.css'],
   directives: [coreDirectives,  routerDirectives, formDirectives],
 )
 
 
-class MeasurementComponent implements OnInit {
+class DimensionsComponent implements OnInit {
 
-  String titleMeasurement = 'Показать измерения';
+  String titleDimensions = 'Показать измерения';
 
 
   List menuOption = ['Не выбрано', 'Дата', 'Неделя', 'Месяц', 'Квартал',
@@ -36,14 +36,14 @@ class MeasurementComponent implements OnInit {
   List selectedStr = [];
   List selectedCol = [];
 
-  MeasurementComponent();
+  DimensionsComponent();
 
 
-  void measurementToggle() {
-    if(this.titleMeasurement == 'Показать измерения'){
-      this.titleMeasurement = 'Скрыть измерения';
+  void dimensionsToggle() {
+    if(this.titleDimensions == 'Показать измерения'){
+      this.titleDimensions = 'Скрыть измерения';
     } else {
-      this.titleMeasurement = 'Показать измерения';
+      this.titleDimensions = 'Показать измерения';
     }
     this.dragEvents();
   }
@@ -97,14 +97,14 @@ class MeasurementComponent implements OnInit {
       new Draggable(querySelectorAll('.dndBtn'),
           avatarHandler: new AvatarHandler.clone());
 
-      Dropzone dropzoneStr = new Dropzone(querySelector('.strMeasurementBlock'));
+      Dropzone dropzoneStr = new Dropzone(querySelector('.strDimensionsBlock'));
       dropzoneStr.onDrop.listen((DropzoneEvent event) {
         this.toggleAction(event.draggableElement, false);
         this.rmDuplicate();
         this.rmDuplicateFromAnotherList('str');
       });
 
-      Dropzone dropzoneCol = new Dropzone(querySelector('.colMeasurementBlock'));
+      Dropzone dropzoneCol = new Dropzone(querySelector('.colDimensionsBlock'));
       dropzoneCol.onDrop.listen((DropzoneEvent event) {
         this.toggleAction(event.draggableElement, true);
         this.rmDuplicate();
