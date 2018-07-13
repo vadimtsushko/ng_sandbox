@@ -27,13 +27,13 @@
     content: '×';
     position: absolute;
     right: 8px;
-    top: 5px;
+    top: 0px;
 }
 
 .btn-control {
     white-space: nowrap;
     overflow: hidden;
-    padding: 5px 18px;
+    padding: 0px 18px;
     text-overflow: ellipsis;
     width: 148px;
     border-radius: 0;
@@ -47,12 +47,13 @@
 
 .measurementBtnBlock button{
     position: absolute;
-    top: 1.2em;
+    top: 1.6em;
     border-radius: 0;
     margin: auto;
     left: 0;
     right: 0;
     width: 180px;
+    padding: 1px;
 }
 
 .strMeasurementBlock, .colMeasurementBlock{

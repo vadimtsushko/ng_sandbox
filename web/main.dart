@@ -12,6 +12,8 @@ import 'main.template.dart' as self;
 //    ClassProvider(BrowserClient),]
 
 final InjectorFactory injector = self.injector$Injector;
+
+//var aaa = 'Показать измерения';
 void main() {
   runApp(ng.AppComponentNgFactory, createInjector: injector);
 }

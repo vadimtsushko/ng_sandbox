@@ -24,6 +24,7 @@ class DashboardComponent implements OnInit {
 
   String titleMeasurement = 'Показать измерения';
 
+
   List menuOption = ['Не выбрано', 'Дата', 'Неделя', 'Месяц', 'Квартал',
   'Год', 'День нед.', 'Классификатор товаров','Категория', 'Группа', 'Подгруппа',
   'ПодПодгруппа', 'Номенклатура' , 'Регион', 'Магазин', 'Менеджер', 'ТМ',
@@ -41,6 +42,7 @@ class DashboardComponent implements OnInit {
   List selectedCol = [];
 
   DashboardComponent();
+
 
   void measurementToggle() {
     if(this.titleMeasurement == 'Показать измерения'){
