@@ -1,0 +1,27 @@
+
+
+        <div class="col-md-12">
+            <div class="collapse multi-collapse" id="collapseMeasurement">
+                <div class="col-md-7">
+                    <h4>Измерения</h4>
+                    <div class="dndBtn btn btn-control" (click)="toggle($event)" *ngFor="let el of menuOption">{{el}}</div>
+                </div>
+                <div class="col-md-5">
+                    <h4>Выбранные измерения</h4>
+                    <div class="col-md-12 strMeasurementBlock" dropzone="copy">
+                        <h5>Строки</h5>
+                        <div class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedStr">{{el}}</div>
+                    </div>
+                    <div class="col-md-12 colMeasurementBlock">
+                        <h5>Колонки</h5>
+                        <div class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of selectedCol">{{el}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-center measurementBtnBlock">
+            <hr>
+            <button class="btn" type="button" data-toggle="collapse" data-target="#collapseMeasurement" (click)="measurementToggle()">{{titleMeasurement}}</button>
+        </div>
+
