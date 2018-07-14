@@ -4,6 +4,9 @@ import 'dart:async';
 import 'package:angular_forms/angular_forms.dart';
 import 'dart:html';
 
+import 'package:angular_tour_of_heroes/src/app_controller/dimension_selector.dart';
+
+
 import 'package:dnd/dnd.dart';
 
 
@@ -19,25 +22,7 @@ class DimensionsComponent implements OnInit {
 
   String titleDimensions = 'Показать измерения';
 
-
-  List menuOption = ['Не выбрано', 'Дата', 'Неделя', 'Месяц', 'Квартал',
-  'Год', 'День нед.', 'Классификатор товаров','Категория', 'Группа', 'Подгруппа',
-  'ПодПодгруппа', 'Номенклатура' , 'Регион', 'Магазин', 'Менеджер', 'ТМ',
-  'Поставщик', 'Поставщик, или группа поставщиков с одинаковым ИНН, или контрагент из бухгалтерии',
-  'Страна происхождения товара', 'Тип товара', 'Опт/Розн', 'Вид номенклатуры',
-  'Срок хранения', 'Супервайзер', 'Формат магазина', 'Матрица магазина',
-  'Метка склада', 'Акция', 'Вид акции', 'Вся компания', 'Не выбрано', 'Магазин', 'Формат магазина', 'Регион', 'Адрес',
-  'Менеджер', 'Категория', 'Группа', 'Подгруппа', 'ПодПодгруппа', 'ТМ',
-  'Поставщик', 'Поставщик, или группа поставщиков с одинаковым ИНН, или контрагент из бухгалтерии',
-  'Матрица магазина', 'Номенклатура', 'Код номенклатуры', 'Артикул',
-  'Вид номенклатуры', 'Новинка', 'Срок хранения', 'Страна происхождения товара',
-  'Единица измерения', 'Супервайзер', 'Опт/Розн'];
-
-  List selectedStr = [];
-  List selectedCol = [];
-
   DimensionsComponent();
-
 
   void dimensionsToggle() {
     if(this.titleDimensions == 'Показать измерения'){
@@ -62,11 +47,11 @@ class DimensionsComponent implements OnInit {
 
     if(isCtr == false) {
       if(isActive){
-        this.selectedStr.add(elem.text);
+        DS.selectedStr.add(elem.text);
       }
     } else {
       if(isActive){
-        this.selectedCol.add(elem.text);
+        DS.selectedCol.add(elem.text);
       }
     }
 
@@ -75,19 +60,10 @@ class DimensionsComponent implements OnInit {
   }
 
   void toggleRm(MouseEvent e) {
-
     HtmlElement elem = e.target;
 
-    this.selectedStr.remove(elem.text);
-    this.selectedCol.remove(elem.text);
-
-    var element1 = document.querySelectorAll('.dndBtn');
-    for(var i = 0; i < element1.length; i++){
-      if(element1[i].text == elem.text) {
-        element1[i].classes.remove('active');
-      }
-    }
-
+    DS.selectedStr.remove(elem.text);
+    DS.selectedCol.remove(elem.text);
   }
 
   var isDragEvents = false;
@@ -100,89 +76,26 @@ class DimensionsComponent implements OnInit {
       Dropzone dropzoneStr = new Dropzone(querySelector('.strDimensionsBlock'));
       dropzoneStr.onDrop.listen((DropzoneEvent event) {
         this.toggleAction(event.draggableElement, false);
-        this.rmDuplicate();
-        this.rmDuplicateFromAnotherList('str');
+        DS.rmDuplicate();
+        DS.rmDuplicateFromAnotherList('str');
       });
 
       Dropzone dropzoneCol = new Dropzone(querySelector('.colDimensionsBlock'));
       dropzoneCol.onDrop.listen((DropzoneEvent event) {
         this.toggleAction(event.draggableElement, true);
-        this.rmDuplicate();
-        this.rmDuplicateFromAnotherList('col');
+        DS.rmDuplicate();
+        DS.rmDuplicateFromAnotherList('col');
       });
 
       this.isDragEvents = true;
     }
   }
 
-  dragSelectedSort(dropzoneText, elementText){
-
-    List newListS = [];
-    for(int i = 0; i < this.selectedStr.length; i++) {
-      if(this.selectedStr[i].toString() == dropzoneText.toString()) {
-//          newListS.add(elementText);
-
-      } else if (this.selectedStr[i].toString() == elementText.toString()){
-        newListS.add(dropzoneText);
-        newListS.add(elementText);
-      } else {
-        newListS.add(this.selectedStr[i]);
-      }
-    }
-    this.selectedStr = newListS;
-
-    List newListC = [];
-    for(int i = 0; i < this.selectedCol.length; i++) {
-      if(this.selectedCol[i].toString() == dropzoneText.toString()) {
-//        newListC.add(elementText);
-      } else if (this.selectedCol[i].toString() == elementText.toString()){
-        newListC.add(dropzoneText);
-        newListC.add(elementText);
-      } else {
-        newListC.add(this.selectedCol[i]);
-      }
-    }
-    this.selectedCol = newListC;
-
-  }
-
-  rmDuplicateFromAnotherList(type){
-    var activeList = type == 'col' ? this.selectedStr : this.selectedCol;
-    var notActiveList = type != 'col' ? this.selectedStr : this.selectedCol;
-
-    for(int i = 0; i < activeList.length; i++) {
-      if(notActiveList.contains(activeList[i].toString())){
-        activeList.remove(activeList[i].toString());
-      }
-    }
-  }
-
-  rmDuplicate(){
-
-    List newListS = [];
-    for(int i = 0; i < this.selectedStr.length; i++) {
-      if(!newListS.contains(this.selectedStr[i].toString())){
-        newListS.add(this.selectedStr[i]);
-      }
-    }
-    this.selectedStr = newListS;
-
-    List newListC = [];
-    for(int i = 0; i < this.selectedCol.length; i++) {
-      if(!newListC.contains(this.selectedCol[i].toString())){
-        newListC.add(this.selectedCol[i]);
-      }
-    }
-    this.selectedCol = newListC;
-
-  }
-
   dragEventsSelected(){
-
     new Draggable(querySelectorAll('.rmSelect'), avatarHandler: new AvatarHandler.clone());
     Dropzone rmSelect = new Dropzone(querySelectorAll('.rmSelect'));
     rmSelect.onDrop.listen((DropzoneEvent event) {
-      this.dragSelectedSort( event.draggableElement.text, event.dropzoneElement.text);
+      DS.dragSelectedSort( event.draggableElement.text, event.dropzoneElement.text);
     });
     rmSelect.onDragLeave.listen((DropzoneEvent event) {
       event.dropzoneElement.style.margin = "1px";
@@ -190,10 +103,14 @@ class DimensionsComponent implements OnInit {
     rmSelect.onDragEnter.listen((DropzoneEvent event) {
       event.dropzoneElement.style.marginLeft = "25px";
     });
-
   }
 
-  Future<void> ngOnInit() async {}
+  DimensionSelector DS = new DimensionSelector();
+  Future<void> ngOnInit() async {
+    DS.init();
+  }
+
+  bool isActive(String text) => DS.selectedStr.contains(text) || DS.selectedCol.contains(text);
 
 }
 
