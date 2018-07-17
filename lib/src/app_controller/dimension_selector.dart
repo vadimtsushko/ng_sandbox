@@ -64,7 +64,6 @@ class DimensionSelector {
     availableDims = List.from(list);
   }
 
-  DimensionSelector();
 }
 
 
