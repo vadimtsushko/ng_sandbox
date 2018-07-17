@@ -22,8 +22,6 @@ class DimensionsComponent implements OnInit {
 
   String titleDimensions = 'Показать измерения';
 
-  DimensionsComponent();
-
   void dimensionsToggle() {
     if(this.titleDimensions == 'Показать измерения'){
       this.titleDimensions = 'Скрыть измерения';
@@ -37,33 +35,26 @@ class DimensionsComponent implements OnInit {
 
     HtmlElement elem = e.target;
 
-    this.toggleAction(elem, e.ctrlKey);
+    elem.classes.toggle('active');
+    var isActive = elem.classes.contains('active');
+
+    this.toggleAction(elem, e.ctrlKey, isActive);
 
   }
-  void toggleAction(HtmlElement elem, isCtr){
-    elem.classes.toggle('active');
-
-    var isActive = elem.classes.contains('active');
+  void toggleAction(HtmlElement elem, isCtr, isActive){
 
     if(isCtr == false) {
       if(isActive){
-        DS.selectedStr.add(elem.text);
+        DS.moveFromTo('col', 'str', elem.text);
       }
     } else {
       if(isActive){
-        DS.selectedCol.add(elem.text);
+        DS.moveFromTo('str', 'col', elem.text);
       }
     }
 
     new Timer(const Duration(milliseconds:20), () => this.dragEventsSelected() );
 
-  }
-
-  void toggleRm(MouseEvent e) {
-    HtmlElement elem = e.target;
-
-    DS.selectedStr.remove(elem.text);
-    DS.selectedCol.remove(elem.text);
   }
 
   var isDragEvents = false;
@@ -75,16 +66,15 @@ class DimensionsComponent implements OnInit {
 
       Dropzone dropzoneStr = new Dropzone(querySelector('.strDimensionsBlock'));
       dropzoneStr.onDrop.listen((DropzoneEvent event) {
-        this.toggleAction(event.draggableElement, false);
-        DS.rmDuplicate();
-        DS.rmDuplicateFromAnotherList('str');
+        DS.moveFromTo('col', 'str', event.draggableElement.text);
+        new Timer(const Duration(milliseconds:20), () => this.dragEventsSelected() );
       });
 
       Dropzone dropzoneCol = new Dropzone(querySelector('.colDimensionsBlock'));
       dropzoneCol.onDrop.listen((DropzoneEvent event) {
-        this.toggleAction(event.draggableElement, true);
-        DS.rmDuplicate();
-        DS.rmDuplicateFromAnotherList('col');
+        DS.moveFromTo('str', 'col', event.draggableElement.text);
+        new Timer(const Duration(milliseconds:20), () => this.dragEventsSelected() );
+
       });
 
       this.isDragEvents = true;
@@ -95,7 +85,7 @@ class DimensionsComponent implements OnInit {
     new Draggable(querySelectorAll('.rmSelect'), avatarHandler: new AvatarHandler.clone());
     Dropzone rmSelect = new Dropzone(querySelectorAll('.rmSelect'));
     rmSelect.onDrop.listen((DropzoneEvent event) {
-      DS.dragSelectedSort( event.draggableElement.text, event.dropzoneElement.text);
+      DS.sort(event.draggableElement.text, event.dropzoneElement.text);
     });
     rmSelect.onDragLeave.listen((DropzoneEvent event) {
       event.dropzoneElement.style.margin = "1px";
@@ -105,12 +95,18 @@ class DimensionsComponent implements OnInit {
     });
   }
 
-  DimensionSelector DS = new DimensionSelector();
-  Future<void> ngOnInit() async {
-    DS.init();
+  bool isActive(String text) => DS.selectedStr.contains(text) || DS.selectedCol.contains(text);
+
+  void rmFromAll(MouseEvent e) {
+    HtmlElement elem = e.target;
+    DS.moveFromTo(null, null, elem.text);
   }
 
-  bool isActive(String text) => DS.selectedStr.contains(text) || DS.selectedCol.contains(text);
+  DimensionSelector DS = new DimensionSelector()..init();
+
+  Future<void> ngOnInit() async {}
+
+  DimensionsComponent();
 
 }
 

@@ -10,11 +10,11 @@
                     <h4>Выбранные измерения</h4>
                     <div class="col-md-12 strDimensionsBlock" dropzone="copy">
                         <h5>Строки</h5>
-                        <div class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of DS.selectedStr">{{el}}</div>
+                        <div class="btn btn-control rmSelect" (click)="rmFromAll($event)" *ngFor="let el of DS.selectedStr">{{el}}</div>
                     </div>
                     <div class="col-md-12 colDimensionsBlock">
                         <h5>Колонки</h5>
-                        <div class="btn btn-control rmSelect" (click)="toggleRm($event)" *ngFor="let el of DS.selectedCol">{{el}}</div>
+                        <div class="btn btn-control rmSelect" (click)="rmFromAll($event)" *ngFor="let el of DS.selectedCol">{{el}}</div>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,10 @@
 class DimensionSelector {
+
   List<dynamic> selectedStr = [];
   List<dynamic> selectedCol = [];
   List<dynamic> availableDims = [];
 
-  dragSelectedSort(dropzoneText, elementText){
+  sort(dropzoneText, elementText){
     List newListS = [];
     for(int i = 0; i < selectedStr.length; i++) {
       if(selectedStr[i].toString() == dropzoneText.toString()) {
@@ -31,7 +32,37 @@ class DimensionSelector {
     selectedCol = newListC;
   }
 
-  rmDuplicate(){
+  void moveFromTo(String from, String top, String title){
+    if(from == 'col' && top == 'str'){
+      _addToStr(title);
+      _rmFromCol(title);
+    } else if (from == 'str' && top == 'col') {
+      _addToCol(title);
+      _rmFromStr(title);
+    } else {
+      _rmFromCol(title);
+      _rmFromStr(title);
+    }
+    _rmDuplicate();
+  }
+
+  _addToCol(title){
+    selectedCol.add(title);
+  }
+
+  _rmFromCol(title){
+    selectedCol.remove(title);
+  }
+
+  _addToStr(title){
+    selectedStr.add(title);
+  }
+
+  _rmFromStr(title){
+    selectedStr.remove(title);
+  }
+
+  _rmDuplicate(){
     List newListS = [];
     for(int i = 0; i < selectedStr.length; i++) {
       if(!newListS.contains(selectedStr[i].toString())){
@@ -49,23 +80,17 @@ class DimensionSelector {
     selectedCol = newListC;
   }
 
-  rmDuplicateFromAnotherList(type){
-    var activeList = type == 'col' ? selectedStr : selectedCol;
-    var notActiveList = type != 'col' ? selectedStr : selectedCol;
-
-    for(int i = 0; i < activeList.length; i++) {
-      if(notActiveList.contains(activeList[i].toString())){
-        activeList.remove(activeList[i].toString());
-      }
+  init({List<dynamic> list = menuOption, str = null, col = null}) {
+    availableDims = List.from(list);
+    if(str != null){
+      selectedStr = str;
+    }
+    if(col != null){
+      selectedCol = col;
     }
   }
 
-  init({List<dynamic> list = menuOption}) {
-    availableDims = List.from(list);
-  }
-
 }
-
 
 const menuOption = ['Не выбрано', 'Дата', 'Неделя', 'Месяц', 'Квартал',
 'Год', 'День нед.', 'Классификатор товаров','Категория', 'Группа', 'Подгруппа',
