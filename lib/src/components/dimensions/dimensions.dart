@@ -6,24 +6,19 @@ import 'dart:html';
 
 import 'package:angular_tour_of_heroes/src/app_controller/dimension_selector.dart';
 
-
 import 'package:dnd/dnd.dart';
-
 
 @Component(
   selector: 'my-dimensions',
   templateUrl: 'dimensions.html',
   styleUrls: ['dimensions.css'],
-  directives: [coreDirectives,  routerDirectives, formDirectives],
+  directives: [coreDirectives, routerDirectives, formDirectives],
 )
-
-
 class DimensionsComponent implements OnInit {
-
   String titleDimensions = 'Показать измерения';
 
   void dimensionsToggle() {
-    if(this.titleDimensions == 'Показать измерения'){
+    if (this.titleDimensions == 'Показать измерения') {
       this.titleDimensions = 'Скрыть измерения';
     } else {
       this.titleDimensions = 'Показать измерения';
@@ -32,57 +27,50 @@ class DimensionsComponent implements OnInit {
   }
 
   void toggle(MouseEvent e) {
-
     HtmlElement elem = e.target;
-
     elem.classes.toggle('active');
     var isActive = elem.classes.contains('active');
-
     this.toggleAction(elem, e.ctrlKey, isActive);
-
   }
-  void toggleAction(HtmlElement elem, isCtr, isActive){
 
-    if(isCtr == false) {
-      if(isActive){
-        DS.moveFromTo('col', 'str', elem.text);
+  void toggleAction(HtmlElement elem, isCtr, isActive) {
+    if (isCtr == false) {
+      if (isActive) {
+        DS.moveTo('str', elem.text);
       }
     } else {
-      if(isActive){
-        DS.moveFromTo('str', 'col', elem.text);
+      if (isActive) {
+        DS.moveTo('col', elem.text);
       }
     }
-
-    new Timer(const Duration(milliseconds:20), () => this.dragEventsSelected() );
-
+    new Timer(
+        const Duration(milliseconds: 20), () => this.dragEventsSelected());
   }
 
   var isDragEvents = false;
-  dragEvents(){
-    if(!this.isDragEvents){
-
+  dragEvents() {
+    if (!this.isDragEvents) {
       new Draggable(querySelectorAll('.dndBtn'),
           avatarHandler: new AvatarHandler.clone());
-
       Dropzone dropzoneStr = new Dropzone(querySelector('.strDimensionsBlock'));
       dropzoneStr.onDrop.listen((DropzoneEvent event) {
-        DS.moveFromTo('col', 'str', event.draggableElement.text);
-        new Timer(const Duration(milliseconds:20), () => this.dragEventsSelected() );
+        DS.moveTo('str', event.draggableElement.text);
+        new Timer(
+            const Duration(milliseconds: 20), () => this.dragEventsSelected());
       });
-
       Dropzone dropzoneCol = new Dropzone(querySelector('.colDimensionsBlock'));
       dropzoneCol.onDrop.listen((DropzoneEvent event) {
-        DS.moveFromTo('str', 'col', event.draggableElement.text);
-        new Timer(const Duration(milliseconds:20), () => this.dragEventsSelected() );
-
+        DS.moveTo('col', event.draggableElement.text);
+        new Timer(
+            const Duration(milliseconds: 20), () => this.dragEventsSelected());
       });
-
       this.isDragEvents = true;
     }
   }
 
-  dragEventsSelected(){
-    new Draggable(querySelectorAll('.rmSelect'), avatarHandler: new AvatarHandler.clone());
+  dragEventsSelected() {
+    new Draggable(querySelectorAll('.rmSelect'),
+        avatarHandler: new AvatarHandler.clone());
     Dropzone rmSelect = new Dropzone(querySelectorAll('.rmSelect'));
     rmSelect.onDrop.listen((DropzoneEvent event) {
       DS.sort(event.draggableElement.text, event.dropzoneElement.text);
@@ -95,11 +83,12 @@ class DimensionsComponent implements OnInit {
     });
   }
 
-  bool isActive(String text) => DS.selectedStr.contains(text) || DS.selectedCol.contains(text);
+  bool isActive(String text) =>
+      DS.selectedStr.contains(text) || DS.selectedCol.contains(text);
 
   void rmFromAll(MouseEvent e) {
     HtmlElement elem = e.target;
-    DS.moveFromTo(null, null, elem.text);
+    DS.moveTo(null, elem.text);
   }
 
   DimensionSelector DS = new DimensionSelector()..init();
@@ -107,6 +96,4 @@ class DimensionsComponent implements OnInit {
   Future<void> ngOnInit() async {}
 
   DimensionsComponent();
-
 }
-

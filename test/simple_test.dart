@@ -5,25 +5,32 @@ main () {
   var selector;
 
   setUp(() {
-    selector = new DimensionSelector();
-     selector.init(col: ["1","2", "3"], str: ["1","2"]);
+    selector = new DimensionSelector()..init();
+    selector.moveTo('str', 'Дата');
+    selector.moveTo('str', 'Неделя');
+    selector.moveTo('col', 'Номенклатура');
+    selector.moveTo('col', 'Акция');
+
   });
 
   test('Initialisation', () {
     expect(selector.availableDims, isNotEmpty);
     expect(selector.availableDims.length, 55);
+    expect(selector.selectedStr.length, 2);
+    expect(selector.selectedCol.length, 2);
   });
 
   test('sort', () {
-    selector.sort("2","1");
-    expect(selector.selectedStr, ["2","1"]);
-    expect(selector.selectedCol, ["2","1", "3"]);
+    selector.sort("Дата","Неделя");
+    selector.sort("Акция","Номенклатура");
+    expect(selector.selectedStr, ["Дата","Неделя"]);
+    expect(selector.selectedCol, ["Акция","Номенклатура"]);
   });
 
-  test('moveFromTo', () {
-    selector.moveFromTo('col', 'str', '3');
-    expect(selector.selectedCol, ["1","2"]);
-    expect(selector.selectedStr, ["1","2", "3"]);
+  test('moveTo', () {
+    selector.moveTo('str', 'Номенклатура');
+    expect(selector.selectedCol, ["Акция"]);
+    expect(selector.selectedStr, ["Дата","Неделя", "Номенклатура"]);
   });
 
 }
