@@ -33,7 +33,7 @@ class DimensionSelector {
         }
         selectedCol = newListC;
       } else {
-        throw ("${dropzoneText} or ${elementText} not in availableDims");
+        throw ("Error: ${dropzoneText} or ${elementText} not in availableDims");
       }
     } catch (e) {
       print(e);
@@ -55,7 +55,7 @@ class DimensionSelector {
         }
         _rmDuplicate();
       } else {
-        throw ("${to} not in availableDims!");
+        throw ("Error: ${to} not in availableDims!");
       }
     } catch (e) {
       print(e);
@@ -98,6 +98,7 @@ class DimensionSelector {
 
   init({List<String> list = testDims}) {
     availableDims = List.from(list);
+
   }
 }
 
