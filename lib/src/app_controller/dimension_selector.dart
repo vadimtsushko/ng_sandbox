@@ -1,7 +1,3 @@
-class AmtException implements Exception {
-  String errMsg() => 'Amount should be greater than zero';
-}
-
 class DimensionSelector {
   List<String> selectedStr = [];
   List<String> selectedCol = [];
@@ -102,7 +98,6 @@ class DimensionSelector {
 
   init({List<String> list = testDims}) {
     availableDims = List.from(list);
-//    throw new AmtException();
   }
 }
 
