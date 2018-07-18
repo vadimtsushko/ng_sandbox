@@ -10,6 +10,7 @@ main () {
     selector.moveTo('str', 'Неделя');
     selector.moveTo('col', 'Номенклатура');
     selector.moveTo('col', 'Акция');
+    selector.moveTo('col', 'Акция1');
 
   });
 

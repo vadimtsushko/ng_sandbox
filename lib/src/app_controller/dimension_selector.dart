@@ -1,56 +1,68 @@
+class AmtException implements Exception {
+  String errMsg() => 'Amount should be greater than zero';
+}
+
 class DimensionSelector {
   List<String> selectedStr = [];
   List<String> selectedCol = [];
   List<String> availableDims = [];
 
   sort(dropzoneText, elementText) {
-    if (availableDims.contains(dropzoneText) &&
-        availableDims.contains(elementText)) {
-      List<String> newListS = [];
-      for (int i = 0; i < selectedStr.length; i++) {
-        if (selectedStr[i].toString() == dropzoneText.toString()) {
+    try {
+      if (availableDims.contains(dropzoneText) &&
+          availableDims.contains(elementText)) {
+        List<String> newListS = [];
+        for (int i = 0; i < selectedStr.length; i++) {
+          if (selectedStr[i].toString() == dropzoneText.toString()) {
 //          newListS.add(elementText);
-        } else if (selectedStr[i].toString() == elementText.toString()) {
-          newListS.add(dropzoneText);
-          newListS.add(elementText);
-        } else {
-          newListS.add(selectedStr[i]);
+          } else if (selectedStr[i].toString() == elementText.toString()) {
+            newListS.add(dropzoneText);
+            newListS.add(elementText);
+          } else {
+            newListS.add(selectedStr[i]);
+          }
         }
-      }
-      selectedStr = newListS;
+        selectedStr = newListS;
 
-      var newListC = <String>[];
-      for (int i = 0; i < selectedCol.length; i++) {
-        if (selectedCol[i].toString() == dropzoneText.toString()) {
+        var newListC = <String>[];
+        for (int i = 0; i < selectedCol.length; i++) {
+          if (selectedCol[i].toString() == dropzoneText.toString()) {
 //        newListC.add(elementText);
-        } else if (selectedCol[i].toString() == elementText.toString()) {
-          newListC.add(dropzoneText);
-          newListC.add(elementText);
-        } else {
-          newListC.add(selectedCol[i]);
+          } else if (selectedCol[i].toString() == elementText.toString()) {
+            newListC.add(dropzoneText);
+            newListC.add(elementText);
+          } else {
+            newListC.add(selectedCol[i]);
+          }
         }
+        selectedCol = newListC;
+      } else {
+        throw ("${dropzoneText} or ${elementText} not in availableDims");
       }
-      selectedCol = newListC;
-    } else {
-      throw("${dropzoneText} or ${elementText} not in availableDims");
+    } catch (e) {
+      print(e);
     }
   }
 
   void moveTo(String to, String title) {
-    if (availableDims.contains(title)) {
-      if (to == 'str') {
-        _addToStr(title);
-        _rmFromCol(title);
-      } else if (to == 'col') {
-        _addToCol(title);
-        _rmFromStr(title);
+    try {
+      if (availableDims.contains(title)) {
+        if (to == 'str') {
+          _addToStr(title);
+          _rmFromCol(title);
+        } else if (to == 'col') {
+          _addToCol(title);
+          _rmFromStr(title);
+        } else {
+          _rmFromCol(title);
+          _rmFromStr(title);
+        }
+        _rmDuplicate();
       } else {
-        _rmFromCol(title);
-        _rmFromStr(title);
+        throw ("${to} not in availableDims!");
       }
-      _rmDuplicate();
-    } else {
-      throw("${to} not in availableDims");
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -90,6 +102,7 @@ class DimensionSelector {
 
   init({List<String> list = testDims}) {
     availableDims = List.from(list);
+//    throw new AmtException();
   }
 }
 
