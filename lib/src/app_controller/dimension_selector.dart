@@ -1,11 +1,11 @@
 class DimensionSelector {
 
-  List<dynamic> selectedStr = [];
-  List<dynamic> selectedCol = [];
-  List<dynamic> availableDims = [];
+  List<String> selectedStr = [];
+  List<String> selectedCol = [];
+  List<String> availableDims = [];
 
   sort(dropzoneText, elementText){
-    List newListS = [];
+    List<String> newListS = [];
     for(int i = 0; i < selectedStr.length; i++) {
       if(selectedStr[i].toString() == dropzoneText.toString()) {
 //          newListS.add(elementText);
@@ -18,7 +18,7 @@ class DimensionSelector {
     }
     selectedStr = newListS;
 
-    List newListC = [];
+    var newListC = <String>[];
     for(int i = 0; i < selectedCol.length; i++) {
       if(selectedCol[i].toString() == dropzoneText.toString()) {
 //        newListC.add(elementText);
@@ -63,7 +63,7 @@ class DimensionSelector {
   }
 
   _rmDuplicate(){
-    List newListS = [];
+    var newListS = <String>[];
     for(int i = 0; i < selectedStr.length; i++) {
       if(!newListS.contains(selectedStr[i].toString())){
         newListS.add(selectedStr[i]);
@@ -71,7 +71,7 @@ class DimensionSelector {
     }
     selectedStr = newListS;
 
-    List newListC = [];
+    var newListC = <String>[];
     for(int i = 0; i < selectedCol.length; i++) {
       if(!newListC.contains(selectedCol[i].toString())){
         newListC.add(selectedCol[i]);
@@ -80,7 +80,7 @@ class DimensionSelector {
     selectedCol = newListC;
   }
 
-  init({List<dynamic> list = menuOption, str = null, col = null}) {
+  init({List<String> list = menuOption, str = null, col = null}) {
     availableDims = List.from(list);
     if(str != null){
       selectedStr = str;
