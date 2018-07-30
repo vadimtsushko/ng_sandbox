@@ -1,11 +1,11 @@
-class AvailException implements Exception {
-  final String msg;
-
-  const AvailException([this.msg]);
-
-  @override
-  String toString() => msg ?? 'AvailException';
-}
+//class AvailException implements Exception {
+//  final String msg;
+//
+//  const AvailException([this.msg]);
+//
+//  @override
+//  String toString() => msg ?? 'AvailException';
+//}
 
 class FilterSelector {
 
@@ -39,7 +39,13 @@ class FilterSelector {
   }
 
   void rmOneFilter(List text){
+    print('---------');
+    print(text);
+    print('---------');
     filter.remove(text);
+    print('---------');
+    print(filter);
+    print('---------');
     filterOut();
   }
 
@@ -64,6 +70,7 @@ class FilterSelector {
       }
     }
     dataOut = out;
+//    print(dataOut);
   }
 
   int _getColPosition(String colText) {
@@ -86,6 +93,6 @@ const List<List> testData = [
   [4, 1, 4, 10]
 ];
 const List<List> testFilter = [
-  ['col1', '==', 3],
+  ['Количество продано, шт', '>=', 3],
 //  ['col1', '>', 2],
 ];

@@ -1,8 +1,11 @@
 import 'package:test/test.dart';
 import 'package:angular_tour_of_heroes/src/app_controller/dimension_selector.dart';
+import 'package:angular_tour_of_heroes/src/app_controller/filter_selector.dart';
+
+
 
 main() {
-  var selector;
+  var selector, filterSelector;
 
   setUp(() {
     selector = new DimensionSelector()..init();
@@ -10,6 +13,8 @@ main() {
     selector.moveTo('str', 'Неделя');
     selector.moveTo('col', 'Номенклатура');
     selector.moveTo('col', 'Акция');
+
+    filterSelector = new FilterSelector()..init();
   });
 
   test('Initialisation', () {
@@ -17,6 +22,12 @@ main() {
     expect(selector.availableDims.length, 55);
     expect(selector.selectedStr.length, 2);
     expect(selector.selectedCol.length, 2);
+
+    expect(filterSelector.headers.length, 4);
+    expect(filterSelector.dataIn.length, 4);
+    expect(filterSelector.dataOut.length, 2);
+    expect(filterSelector.operators.length, 5);
+    expect(filterSelector.filter.length, 1);
   });
 
   test('Field availability check', () {
@@ -44,4 +55,27 @@ main() {
     expect(selector.selectedCol, ["Акция"]);
     expect(selector.selectedStr, ["Дата", "Неделя", "Номенклатура"]);
   });
+
+  test('filterOut', () {
+    filterSelector.filter.add([['Количество продано, шт', '==', 3]]);
+    expect(filterSelector.dataOut, [[3, 2, 3, 4], [4, 1, 4, 10]]);
+    filterSelector.reset();
+  });
+
+  test('reset', () {
+    filterSelector.reset();
+    expect(filterSelector.filter.length, 0);
+  });
+
+  // TODO: Как удалить?
+  test('rmOneFilter', () {
+    // [Количество продано, шт, >=, 3]
+    List list = ["Количество продано, шт", ">=", 3];
+//    List list =[["Количество продано, шт", ">=", 3]];
+    filterSelector.rmOneFilter(list);
+//    expect(filterSelector.filter, 0);
+  });
+
+  // TODO: Как вызвать add?
+
 }
