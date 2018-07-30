@@ -1,0 +1,69 @@
+<div class="container-fluid content">
+    <div class="row">
+
+        <div class="col-md-4">
+            <h3> data in </h3>
+            <table class="table">
+                <thead *ngIf="headers != null">
+                <tr>
+                    <th *ngFor="let el of headers">{{el}}</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="dataIn != null">
+                <tr *ngFor="let elTr of dataIn">
+                    <td *ngFor="let elTd of elTr">{{elTd}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <h3> filter </h3>
+            <table class="table">
+                <tbody *ngIf="filter != null">
+                <tr *ngFor="let elTr of filter">
+                    <td *ngFor="let elTd of elTr">{{elTd}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="col-xs-4">
+                <select  *ngIf="headers != null" class="form-control" id="column">
+                    <option *ngFor="let el of headers">{{el}}</option>
+                </select>
+            </div>
+            <div class="col-xs-4">
+                <select  *ngIf="operators != null" class="form-control" id="operators">
+                    <option *ngFor="let el of operators">{{el}}</option>
+                </select>
+            </div>
+            <div class="col-xs-4">
+                <input type="number" class="form-control" placeholder="value" id="value">
+            </div>
+            <br>
+            <br>
+            <br>
+            <button (click)="add()" type="button" class="btn btn-primary">add</button>
+            <button (click)="reset()" type="button" class="btn btn-danger">reset</button>
+        </div>
+
+        <div class="col-md-4">
+            <h3> input out </h3>
+            <table class="table">
+                <thead *ngIf="headers != null">
+                <tr>
+                    <th *ngFor="let el of headers">{{el}}</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="dataOut != null">
+                <tr *ngFor="let elTr of dataOut">
+                    <td *ngFor="let elTd of elTr">{{elTd}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+

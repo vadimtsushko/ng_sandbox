@@ -5,6 +5,7 @@ import 'package:angular_tour_of_heroes/src/routes/route_paths.dart' as paths;
 //import 'hero_list_component.template.dart' as hlct;
 import '../components/dashboard/dashboard.template.dart' as dashboard_template;
 import '../components/builder/builder.template.dart' as builder_template;
+import '../components/filter/filter.template.dart' as filter_template;
 //import 'hero_component.template.dart' as hct;
 
 @Injectable()
@@ -19,6 +20,10 @@ class Routes {
     RouteDefinition(
       path: paths.builder.path,
       component: builder_template.BuilderComponentNgFactory,
+    ),
+    RouteDefinition(
+      path: paths.filter.path,
+      component: filter_template.FilterComponentNgFactory,
     ),
     RouteDefinition.redirect(path: '', redirectTo: paths.dashboard.toUrl()),
   ];
