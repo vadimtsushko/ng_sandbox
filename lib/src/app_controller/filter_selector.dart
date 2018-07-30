@@ -38,14 +38,13 @@ class FilterSelector {
     return res;
   }
 
-  void rmOneFilter(List text){
-    print('---------');
-    print(text);
-    print('---------');
-    filter.remove(text);
-    print('---------');
-    print(filter);
-    print('---------');
+  void rmOneFilter(String type, String op, int val){
+    for(int i = 0; i < filter.length; i++){
+      if(type == filter[i][0] && op == filter[i][1] && val == filter[i][2]){
+//        print(filter[i]);
+        filter.removeAt(i);
+      }
+    }
     filterOut();
   }
 

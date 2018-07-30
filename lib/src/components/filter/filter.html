@@ -31,8 +31,8 @@
                 </thead>
                 <tbody *ngIf="FS.filter != null">
                 <tr *ngFor="let elTr of FS.filter" class="selectedFilterBlock">
-                    <td *ngFor="let elTd of elTr">{{elTd}}</td>
-                    <button (click)="FS.rmOneFilter(elTr)" type="button" class="btn btn-danger rm">x</button>
+                    <td *ngFor="let elTd of elTr" >{{elTd}}</td>
+                    <button (click)="FS.rmOneFilter(elTr[0], elTr[1], elTr[2])" type="button" class="btn btn-danger rm">x</button>
                 </tr>
                 </tbody>
             </table>

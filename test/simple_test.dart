@@ -67,13 +67,9 @@ main() {
     expect(filterSelector.filter.length, 0);
   });
 
-  // TODO: Как удалить?
   test('rmOneFilter', () {
-    // [Количество продано, шт, >=, 3]
-    List list = ["Количество продано, шт", ">=", 3];
-//    List list =[["Количество продано, шт", ">=", 3]];
-    filterSelector.rmOneFilter(list);
-//    expect(filterSelector.filter, 0);
+    filterSelector.rmOneFilter("Количество продано, шт", ">=", 3);
+    expect(filterSelector.filter.length, 0);
   });
 
   // TODO: Как вызвать add?
