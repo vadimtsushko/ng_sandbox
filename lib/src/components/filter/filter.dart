@@ -2,7 +2,6 @@ import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'dart:async';
 import 'dart:html';
-import 'dart:convert';
 
 @Component(
   selector: 'my-filter',
@@ -10,6 +9,7 @@ import 'dart:convert';
   styleUrls: ['filter.css'],
   directives: [coreDirectives, routerDirectives],
 )
+
 class FilterComponent implements OnInit, OnChanges {
   List<String> headers;
   List<List> dataIn;
@@ -20,9 +20,9 @@ class FilterComponent implements OnInit, OnChanges {
   Future<void> ngOnInit() async {
     this.init();
   }
-
+//TODO: Почему не отрабатывает?
   Future<void> ngOnChanges(Map<String, SimpleChange> changes) async {
-//    print('ngOnChanges');
+    print('ngOnChanges');
   }
 
   init({headers = testHeaders, data = testData, filter = testFilter}) {
@@ -65,38 +65,16 @@ class FilterComponent implements OnInit, OnChanges {
   filterOut() {
     List<List> out = [];
     for (int i = 0; i < dataIn.length; i++) {
-//    var col1 = dataIn[i][0];
-//    var col2 = dataIn[i][1];
-//    var col3 = dataIn[i][2];
-
-//    print(col1);
       var isAdd = true;
       for (int j = 0; j < filter.length; j++) {
-//      print(filter[j][0]);
-//        int position = _getColPosition(filter[j][0]);
-        int position = 0;
+        int position = _getColPosition(filter[j][0]);
+//        int position = 0;
         int valData = dataIn[i][position];
         var valOpr = filter[j][1];
-//        int filterData = filter[j][2];
         int filterData = filter[j][2];
-
-//        int filterData = int.parse(filterVar);
-//        int filterData = filterVar as int;
-//        print('${filter[j]} - ${filter[j][2]}');
-
-//        print("---${filterVar}---${filterVar as int}");
-
-
         isAdd = isCanAdd(valData, valOpr, filterData);
-
-//      print(valData);
-//      print("${valData}-${valOpr}-${filterData} ");
-
-//    }
-
       }
       if (isAdd) {
-//        print('- ${dataIn[i]}');
         out.add(dataIn[i]);
       }
     }
@@ -126,7 +104,7 @@ class FilterComponent implements OnInit, OnChanges {
     } else if (operator == '==') {
       res = (valData == filterData);
     }
-    print("isCanAdd ${valData} ${operator} ${filterData} ${res}");
+//    print("isCanAdd ${valData} ${operator} ${filterData} ${res}");
     return res;
   }
 }
