@@ -2,15 +2,16 @@
     <div class="row">
 
         <div class="col-md-4">
-            <h3> data in </h3>
+            <h3> Входящие данные </h3>
+            <hr>
             <table class="table">
-                <thead *ngIf="headers != null">
+                <thead *ngIf="FS.headers != null">
                 <tr>
-                    <th *ngFor="let el of headers">{{el}}</th>
+                    <th *ngFor="let el of FS.headers">{{el}}</th>
                 </tr>
                 </thead>
-                <tbody *ngIf="dataIn != null">
-                <tr *ngFor="let elTr of dataIn">
+                <tbody *ngIf="FS.dataIn != null">
+                <tr *ngFor="let elTr of FS.dataIn">
                     <td *ngFor="let elTd of elTr">{{elTd}}</td>
                 </tr>
                 </tbody>
@@ -18,45 +19,58 @@
         </div>
 
         <div class="col-md-4">
-            <h3> filter </h3>
+            <h3> Фильтры </h3>
+            <hr>
             <table class="table">
-                <tbody *ngIf="filter != null">
-                <tr *ngFor="let elTr of filter">
+                <thead *ngIf="FS.filter != null">
+                <tr>
+                    <th>Тип</th>
+                    <th>Знак</th>
+                    <th>Число</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="FS.filter != null">
+                <tr *ngFor="let elTr of FS.filter" class="selectedFilterBlock">
                     <td *ngFor="let elTd of elTr">{{elTd}}</td>
+                    <button (click)="FS.rmOneFilter(elTr)" type="button" class="btn btn-danger rm">x</button>
                 </tr>
                 </tbody>
             </table>
 
-            <div class="col-xs-4">
-                <select  *ngIf="headers != null" class="form-control" id="column">
-                    <option *ngFor="let el of headers">{{el}}</option>
+            <h3> Добавить фильтр </h3>
+            <hr>
+
+            <div class="col-sm-6">
+                <select  *ngIf="FS.headers != null" class="form-control" id="column">
+                    <option *ngFor="let el of FS.headers">{{el}}</option>
                 </select>
             </div>
-            <div class="col-xs-4">
-                <select  *ngIf="operators != null" class="form-control" id="operators">
-                    <option *ngFor="let el of operators">{{el}}</option>
+            <div class="col-sm-3">
+                <select  *ngIf="FS.operators != null" class="form-control" id="operators">
+                    <option *ngFor="let el of FS.operators">{{el}}</option>
                 </select>
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-3">
                 <input type="number" class="form-control" placeholder="value" id="value">
             </div>
             <br>
             <br>
             <br>
-            <button (click)="add()" type="button" class="btn btn-primary">add</button>
-            <button (click)="reset()" type="button" class="btn btn-danger">reset</button>
+            <button (click)="add()" type="button" class="btn btn-success">Добавить фильтр</button>
+            <button (click)="FS.reset()" type="button" class="btn btn-danger">Удачить все фильтры</button>
         </div>
 
         <div class="col-md-4">
-            <h3> input out </h3>
+            <h3> Исходящие данные </h3>
+            <hr>
             <table class="table">
-                <thead *ngIf="headers != null">
+                <thead *ngIf="FS.headers != null">
                 <tr>
-                    <th *ngFor="let el of headers">{{el}}</th>
+                    <th *ngFor="let el of FS.headers">{{el}}</th>
                 </tr>
                 </thead>
-                <tbody *ngIf="dataOut != null">
-                <tr *ngFor="let elTr of dataOut">
+                <tbody *ngIf="FS.dataOut != null">
+                <tr *ngFor="let elTr of FS.dataOut">
                     <td *ngFor="let elTd of elTr">{{elTd}}</td>
                 </tr>
                 </tbody>

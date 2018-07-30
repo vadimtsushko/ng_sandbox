@@ -3,3 +3,27 @@
     margin-top: 6em;
 }
 
+.rm{
+    position: absolute;
+    right: 10px;
+    border-radius: 50% !important;
+    width: 15px;
+    height: 15px;
+    padding: 0 !important;
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+.btn{
+    padding: 0 20px;
+    border-radius: 0;
+    border: 0;
+}
+
+.selectedFilterBlock{
+    position: relative;
+}
+
+select, input{
+    background: #f3f1dc;
+}
