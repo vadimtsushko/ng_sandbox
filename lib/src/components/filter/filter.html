@@ -7,7 +7,7 @@
             <table class="table">
                 <thead *ngIf="FS.headers != null">
                 <tr>
-                    <th *ngFor="let el of FS.headers">{{el}}</th>
+                    <th height="60" *ngFor="let el of FS.headers">{{el}}</th>
                 </tr>
                 </thead>
                 <tbody *ngIf="FS.dataIn != null">
@@ -24,9 +24,9 @@
             <table class="table">
                 <thead *ngIf="FS.filter != null">
                 <tr>
-                    <th>Тип</th>
-                    <th>Знак</th>
-                    <th>Число</th>
+                    <th height="60">Тип</th>
+                    <th height="60">Знак</th>
+                    <th height="60">Число</th>
                 </tr>
                 </thead>
                 <tbody *ngIf="FS.filter != null">
@@ -39,6 +39,7 @@
 
             <h3> Добавить фильтр </h3>
             <hr>
+            <br>
 
             <div class="col-sm-6">
                 <select  *ngIf="FS.headers != null" class="form-control" id="column">
@@ -63,10 +64,11 @@
         <div class="col-md-4">
             <h3> Исходящие данные </h3>
             <hr>
+
             <table class="table">
                 <thead *ngIf="FS.headers != null">
                 <tr>
-                    <th *ngFor="let el of FS.headers">{{el}}</th>
+                    <th height="60" *ngFor="let el of FS.headers">{{el}}</th>
                 </tr>
                 </thead>
                 <tbody *ngIf="FS.dataOut != null">
