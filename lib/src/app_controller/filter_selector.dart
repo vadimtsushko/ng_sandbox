@@ -1,11 +1,11 @@
-//class AvailException implements Exception {
-//  final String msg;
-//
-//  const AvailException([this.msg]);
-//
-//  @override
-//  String toString() => msg ?? 'AvailException';
-//}
+class NonExistentOperator implements Exception {
+  final String msg;
+
+  const NonExistentOperator([this.msg]);
+
+  @override
+  String toString() => msg ?? 'NonExistentOperator';
+}
 
 class FilterSelector {
 
@@ -34,14 +34,15 @@ class FilterSelector {
       res = valData >= filterData;
     } else if (operator == '==') {
       res = (valData == filterData);
+    } else {
+      throw NonExistentOperator();
     }
     return res;
   }
 
-  void rmOneFilter(String type, String op, int val){
+  void rm(String type, String op, int val){
     for(int i = 0; i < filter.length; i++){
       if(type == filter[i][0] && op == filter[i][1] && val == filter[i][2]){
-//        print(filter[i]);
         filter.removeAt(i);
       }
     }
@@ -81,6 +82,14 @@ class FilterSelector {
     }
     return position;
   }
+
+  void add(String columnText, String operatorsText, int valueText) {
+    if(valueText != null){
+      filter.add([columnText, operatorsText, valueText]);
+      filterOut();
+    }
+  }
+
 }
 
 

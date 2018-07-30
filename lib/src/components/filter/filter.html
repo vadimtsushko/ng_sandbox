@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-md-4">
-            <h3> Фильтры </h3>
+            <h3> Фильтры {{columnText}}</h3>
             <hr>
             <table class="table">
                 <thead *ngIf="FS.filter != null">
@@ -32,32 +32,32 @@
                 <tbody *ngIf="FS.filter != null">
                 <tr *ngFor="let elTr of FS.filter" class="selectedFilterBlock">
                     <td *ngFor="let elTd of elTr" >{{elTd}}</td>
-                    <button (click)="FS.rmOneFilter(elTr[0], elTr[1], elTr[2])" type="button" class="btn btn-danger rm">x</button>
+                    <button (click)="FS.rm(elTr[0], elTr[1], elTr[2])" type="button" class="btn btn-danger rm">x</button>
                 </tr>
                 </tbody>
             </table>
 
-            <h3> Добавить фильтр </h3>
+            <h3> Добавить фильтр</h3>
             <hr>
             <br>
 
             <div class="col-sm-6">
-                <select  *ngIf="FS.headers != null" class="form-control" id="column">
+                <select [(ngModel)]="columnText" *ngIf="FS.headers != null" class="form-control" id="column">
                     <option *ngFor="let el of FS.headers">{{el}}</option>
                 </select>
             </div>
             <div class="col-sm-3">
-                <select  *ngIf="FS.operators != null" class="form-control" id="operators">
+                <select [(ngModel)]="operatorsText" *ngIf="FS.operators != null" class="form-control" id="operators">
                     <option *ngFor="let el of FS.operators">{{el}}</option>
                 </select>
             </div>
             <div class="col-sm-3">
-                <input type="number" class="form-control" placeholder="value" id="value">
+                <input [(ngModel)]="valueText" type="number" class="form-control" placeholder="value" id="value">
             </div>
             <br>
             <br>
             <br>
-            <button (click)="add()" type="button" class="btn btn-success">Добавить фильтр</button>
+            <button (click)="FS.add(columnText, operatorsText, valueText)" type="button" class="btn btn-success">Добавить фильтр</button>
             <button (click)="FS.reset()" type="button" class="btn btn-danger">Удачить все фильтры</button>
         </div>
 

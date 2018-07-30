@@ -56,22 +56,29 @@ main() {
     expect(selector.selectedStr, ["Дата", "Неделя", "Номенклатура"]);
   });
 
-  test('filterOut', () {
-    filterSelector.filter.add([['Количество продано, шт', '==', 3]]);
-    expect(filterSelector.dataOut, [[3, 2, 3, 4], [4, 1, 4, 10]]);
-    filterSelector.reset();
-  });
 
-  test('reset', () {
+  test('filter reset', () {
     filterSelector.reset();
     expect(filterSelector.filter.length, 0);
   });
 
-  test('rmOneFilter', () {
-    filterSelector.rmOneFilter("Количество продано, шт", ">=", 3);
+  test('filter rm', () {
+    filterSelector.rm("Количество продано, шт", ">=", 3);
     expect(filterSelector.filter.length, 0);
   });
 
-  // TODO: Как вызвать add?
+  test('filter add', () {
+    filterSelector.reset();
+    filterSelector.add("Количество продано, шт", ">=", 3);
+    expect(filterSelector.filter.length, 1);
+  });
+
+  test('filter NonExistentArgument', () {
+    try {
+      filterSelector.isCanAdd(0,'!!',0);
+    } on NonExistentOperator {
+      print('Error: NonExistentOperator');
+    }
+  });
 
 }
