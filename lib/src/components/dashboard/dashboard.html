@@ -5,8 +5,9 @@
             <h3> Dashboard </h3>
         </div>
 
-        <my-dimensions></my-dimensions>
+        <my-dimensions (innerList)="outerList = $event;"></my-dimensions>
 
+        <div>{{outerList}}</div>
     </div>
 </div>
 
