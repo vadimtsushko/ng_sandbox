@@ -19,7 +19,6 @@ class FilterModalComponent extends FilterComponent {
 
   void openFMC(){
     FS.reset();
-    print('---');
 
     var value = (querySelector('#value') as InputElement);
     value.value = "";

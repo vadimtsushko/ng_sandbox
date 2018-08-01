@@ -8,11 +8,8 @@ class NonExistentOperator implements Exception {
 }
 
 class Data{
-
   String type;
-
   List params;
-
   Data(this.type, this.params);
 }
 
@@ -20,7 +17,7 @@ class FilterSelector {
 
   List<String> headers;
   List<List<int>> dataIn;
-  List<List> dataOut;
+  List<List<int>> dataOut;
   List<List> filter;
   List<String> operators = ['<', '>', '<=', '>=', '=='];
 
@@ -64,7 +61,7 @@ class FilterSelector {
   }
 
   void filterOut() {
-    List<List> out = [];
+    List<List<int>> out = [];
     for (int i = 0; i < dataIn.length; i++) {
       var isAdd = true;
       for (int j = 0; j < filter.length; j++) {
@@ -110,6 +107,6 @@ const List<List<int>> testData = [
   [4, 1, 4, 10]
 ];
 const List<List> testFilter = [
-  ['Количество продано, шт', '>=', 3],
+//  ['Количество продано, шт', '>=', 3],
 //  ['col1', '>', 2],
 ];
