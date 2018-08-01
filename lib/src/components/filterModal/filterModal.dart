@@ -16,8 +16,9 @@ import 'package:angular_tour_of_heroes/src/components/filter/filter.dart';
 
 class FilterModalComponent extends FilterComponent {
 
+  String xxx;
   void openFMC(){
-    print('-----');
+    print(xxx);
   }
 
   void resetFMC(){
@@ -37,6 +38,13 @@ class FilterModalComponent extends FilterComponent {
 
   void applyFMC(){
     streamEventProcessing(new Data('apply', FS.filter));
+  }
+
+  @Input()
+  Stream get streamEventProcessing_eI => _innerListController_streamEventProcessingI.stream;
+  final _innerListController_streamEventProcessingI = StreamController();
+  void streamEventProcessingI(e){
+    print(e);
   }
 
   @Output()

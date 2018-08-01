@@ -22,12 +22,22 @@ class FilterComponent implements OnInit {
   String operatorsText;
   int valueText;
 
+  String sss = "1";
+
+//  @Output()
+//  Stream get streamEventProcessing_eO => _innerListController_streamEventProcessingO.stream;
+//  final _innerListController_streamEventProcessingO = StreamController();
+//  void streamEventProcessingO(){
+//    _innerListController_streamEventProcessingO.add(1);
+//  }
+
   Future<void> ngOnInit() async {
     columnText  = FS.headers[0] ?? '';
     operatorsText = FS.operators[0] ?? '';
   }
 
   streamEventProcessing(Data e){
+//    sss(1);
     if(e.type == 'rm'){
       FS.rm(e.params[0], e.params[1], e.params[2]);
     } else if( e.type == 'add'){
