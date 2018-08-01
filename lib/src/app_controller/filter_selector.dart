@@ -103,7 +103,7 @@ class FilterSelector {
 
 
 const List<String> testHeaders = ['Сумма продаж тыс.руб', 'Наценка, тыс. руб', 'Остатки, тыс руб', 'Количество продано, шт'];
-const List<List> testData = [
+const List<List<int>> testData = [
   [1, 4, 1, 0],
   [2, 3, 2,  1],
   [3, 2, 3, 4],
