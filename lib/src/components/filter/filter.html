@@ -17,15 +17,14 @@
             </table>
 
             <my-filterModal
+                    (streamEventProcessing_e)="streamEventProcessing($event);"
                     (valueText_e)="valueText = $event;"
                     (operatorsText_e)="operatorsText = $event;"
                     (columnText_e)="columnText = $event;"
                     (rmVal_e)="rmVal = $event;"
                     (rmType_e)="rmType = $event;"
                     (rmOp_e)="rmOp = $event;"
-                    (reset_e)="reset()"
-                    (add_e)="add()"
-                    (rm_e)="rm()"></my-filterModal>
+                    (reset_e)="reset()"></my-filterModal>
         </div>
 
         <div class="col-md-6">

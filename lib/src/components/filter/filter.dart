@@ -25,9 +25,9 @@ class FilterComponent implements OnInit, OnChanges {
   String rmType;
   String rmOp;
   int rmVal;
-  rm(){
-    FS.rm(rmType, rmOp, rmVal);
-  }
+//  rm(){
+//    FS.rm(rmType, rmOp, rmVal);
+//  }
 
   String columnText;
   String operatorsText;
@@ -46,4 +46,22 @@ class FilterComponent implements OnInit, OnChanges {
     print('ngOnChanges');
   }
 
+
+  streamEventProcessing(Data e){
+    print('---');
+    print(e.type);
+    if(e.type == 'rm'){
+      FS.rm(e.params[0], e.params[1], e.params[2]);
+    } else if( e.type == 'add'){
+      FS.add(e.params[0], e.params[1], e.params[2]);
+    } else if( e.type == 'reset'){
+      FS.reset();
+    }
+
+    print('---');
+  }
+
+
+
 }
+

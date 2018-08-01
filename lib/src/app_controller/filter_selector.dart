@@ -7,6 +7,15 @@ class NonExistentOperator implements Exception {
   String toString() => msg ?? 'NonExistentOperator';
 }
 
+class Data{
+
+  String type;
+
+  List params;
+
+  Data(this.type, this.params);
+}
+
 class FilterSelector {
 
   List<String> headers;
