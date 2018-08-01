@@ -19,12 +19,12 @@ class Data{
 class FilterSelector {
 
   List<String> headers;
-  List<List> dataIn;
+  List<List<int>> dataIn;
   List<List> dataOut;
   List<List> filter;
   List<String> operators = ['<', '>', '<=', '>=', '=='];
 
-  init({List<String> headers = testHeaders, List<List> data = testData, List<List> filter = testFilter}) {
+  init({List<String> headers = testHeaders, List<List<int>> data = testData, List<List> filter = testFilter}) {
     this.headers = List.from(headers);
     this.dataIn = List.from(data);
     this.filter = List.from(filter);
