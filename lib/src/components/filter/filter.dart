@@ -14,42 +14,20 @@ import 'package:angular_tour_of_heroes/src/components/filterModal/filterModal.da
   directives: [coreDirectives, routerDirectives, formDirectives, FilterModalComponent],
 )
 
-class FilterComponent implements OnInit, OnChanges {
+class FilterComponent implements OnInit {
 
   FilterSelector FS = new FilterSelector()..init();
-
-  reset(){
-    FS.reset();
-  }
-
-  String rmType;
-  String rmOp;
-  int rmVal;
-//  rm(){
-//    FS.rm(rmType, rmOp, rmVal);
-//  }
 
   String columnText;
   String operatorsText;
   int valueText;
-  add(){
-    FS.add(columnText, operatorsText, valueText);
-  }
-
+  
   Future<void> ngOnInit() async {
     columnText  = FS.headers[0] ?? '';
     operatorsText = FS.operators[0] ?? '';
   }
 
-//TODO: Почему не отрабатывает?
-  Future<void> ngOnChanges(Map<String, SimpleChange> changes) async {
-    print('ngOnChanges');
-  }
-
-
   streamEventProcessing(Data e){
-    print('---');
-    print(e.type);
     if(e.type == 'rm'){
       FS.rm(e.params[0], e.params[1], e.params[2]);
     } else if( e.type == 'add'){
@@ -60,8 +38,6 @@ class FilterComponent implements OnInit, OnChanges {
       FS.filter = e.params;
       FS.filterOut();
     }
-
-    print('---');
   }
 
 
