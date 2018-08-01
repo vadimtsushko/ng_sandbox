@@ -8,7 +8,6 @@
     </button>
 </div>
 
-
 <!-- Modal -->
 <div class="modal fade" id="filterModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -25,19 +24,21 @@
                     <div class="col-sm-12">
                         <h5><strong>Добавит фильтр</strong></h5>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <select [(ngModel)]="columnText" *ngIf="FS.headers != null" class="form-control" id="column">
+                            <!--<option>Выберете столбик</option>-->
                             <option *ngFor="let el of FS.headers">{{el}}</option>
                         </select>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <select [(ngModel)]="operatorsText" *ngIf="FS.operators != null" class="form-control"
                                 id="operators">
+                            <!--<option>Выберете знак</option>-->
                             <option *ngFor="let el of FS.operators">{{el}}</option>
                         </select>
                     </div>
-                    <div class="col-sm-3">
-                        <input [(ngModel)]="valueText" type="number" class="form-control" placeholder="value"
+                    <div class="col-sm-4">
+                        <input [(ngModel)]="valueText" type="number" class="form-control" placeholder="Укажите значение"
                                id="value">
                     </div>
                     <div class="col-md-12 text-right">
