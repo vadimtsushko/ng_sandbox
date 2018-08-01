@@ -3,12 +3,10 @@
 
 <div class="col-md-12">
     <!-- Button trigger modal -->
-    <button type="button"  class="btn btn-default" data-toggle="modal" data-target="#filterModal">
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#filterModal">
         Открыть фильтры
     </button>
 </div>
-
-
 
 
 <!-- Modal -->
@@ -16,45 +14,75 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title">Фильтры</h4>
             </div>
             <div class="modal-body">
-                <table class="table">
-                    <thead *ngIf="FS.filter.length > 0">
-                    <tr>
-                        <th>Тип</th>
-                        <th>Знак</th>
-                        <th>Число</th>
-                    </tr>
-                    </thead>
-                    <tbody *ngIf="FS.filter != null">
-                    <tr *ngFor="let elTr of FS.filter" class="selectedFilterBlock">
-                        <td *ngFor="let elTd of elTr" >{{elTd}}</td>
-                        <button (click)="rmFMC(elTr[0], elTr[1], elTr[2])" type="button" class="btn btn-danger rm">x</button>
-                    </tr>
-                    </tbody>
-                </table>
 
+                <!--add filter-->
                 <div class="row">
+                    <div class="col-sm-12">
+                        <h5><strong>Добавит фильтр</strong></h5>
+                    </div>
                     <div class="col-sm-6">
                         <select [(ngModel)]="columnText" *ngIf="FS.headers != null" class="form-control" id="column">
                             <option *ngFor="let el of FS.headers">{{el}}</option>
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <select [(ngModel)]="operatorsText" *ngIf="FS.operators != null" class="form-control" id="operators">
+                        <select [(ngModel)]="operatorsText" *ngIf="FS.operators != null" class="form-control"
+                                id="operators">
                             <option *ngFor="let el of FS.operators">{{el}}</option>
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <input [(ngModel)]="valueText" type="number" class="form-control" placeholder="value" id="value">
+                        <input [(ngModel)]="valueText" type="number" class="form-control" placeholder="value"
+                               id="value">
+                    </div>
+                    <div class="col-md-12 text-right">
+                        <br>
+                        <button (click)="addFMC(columnText, operatorsText, valueText)" type="button" class="btn btn-success">
+                            Добавить фильтр
+                        </button>
                     </div>
                 </div>
+                <!--add filter-->
+
+                <!--filters-->
+                <div class="row"  *ngIf="FS.filter.length > 0">
+                    <div class="col-sm-12">
+                        <br>
+                        <br>
+                        <h5> <strong>Выбранные фильры</strong> </h5>
+                    </div>
+                    <div class="col-sm-12">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Тип</th>
+                                <th>Знак</th>
+                                <th>Число</th>
+                            </tr>
+                            </thead>
+                            <tbody *ngIf="FS.filter != null">
+                            <tr *ngFor="let elTr of FS.filter" class="selectedFilterBlock">
+                                <td *ngFor="let elTd of elTr">{{elTd}}</td>
+                                <button (click)="rmFMC(elTr[0], elTr[1], elTr[2])" type="button" class="btn btn-danger rm">x
+                                </button>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12 text-right">
+                        <button (click)="resetFMC()" type="button" class="btn btn-danger">Удачить все фильтры</button>
+                    </div>
+                </div>
+                <!--filters-->
+
             </div>
             <div class="modal-footer">
-                <button (click)="addFMC(columnText, operatorsText, valueText)" type="button" class="btn btn-success">Добавить фильтр</button>
-                <button (click)="resetFMC()" type="button" class="btn btn-danger">Удачить все фильтры</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Применить фильтры</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
             </div>
         </div>
