@@ -16,10 +16,9 @@ import 'package:dnd/dnd.dart';
 )
 class DimensionsComponent implements OnInit {
   String titleDimensions = 'Показать измерения';
-  final _innerListController = StreamController<List<String>>();
-  final _innerList = <String>[];
-  @Output()
-  Stream<List<String>> get innerList => _innerListController.stream;
+
+
+
   void dimensionsToggle() {
     if (this.titleDimensions == 'Показать измерения') {
       this.titleDimensions = 'Скрыть измерения';
@@ -97,9 +96,25 @@ class DimensionsComponent implements OnInit {
   DimensionSelector DS = new DimensionSelector()..init();
 
   Future<void> ngOnInit() async {}
+
+  final _innerList = <String>[];
+//  final intV = <int>;
+//  int intV = 0;
+  final _innerListController = StreamController<List<String>>();
+  final _innerListControllerInt = StreamController<int>();
+  @Output()
+  Stream<List<String>> get innerList => _innerListController.stream;
+
+  @Output()
+  Stream<int> get intV => _innerListControllerInt.stream;
   void changeList() {
     _innerList.add(_innerList.length.toString());
     _innerListController.add(List<String>.from(_innerList));
+
+    _innerListControllerInt.add(10);
+    print(intV);
+
   }
+
   DimensionsComponent();
 }

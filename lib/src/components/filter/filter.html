@@ -1,6 +1,5 @@
 <div class="container-fluid content">
     <div class="row">
-
         <div class="col-md-6">
             <h3> Входящие данные </h3>
             <hr>
@@ -16,6 +15,17 @@
                 </tr>
                 </tbody>
             </table>
+
+            <my-filterModal
+                    (valueText_e)="valueText = $event;"
+                    (operatorsText_e)="operatorsText = $event;"
+                    (columnText_e)="columnText = $event;"
+                    (rmVal_e)="rmVal = $event;"
+                    (rmType_e)="rmType = $event;"
+                    (rmOp_e)="rmOp = $event;"
+                    (reset_e)="reset()"
+                    (add_e)="add()"
+                    (rm_e)="rm()"></my-filterModal>
         </div>
 
         <div class="col-md-6">
@@ -36,61 +46,6 @@
             </table>
         </div>
 
-        <div class="col-md-12">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#filterModal">
-                Открыть фильтры
-            </button>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="filterModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Фильтры</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table">
-                            <thead *ngIf="FS.filter.length > 0">
-                            <tr>
-                                <th>Тип</th>
-                                <th>Знак</th>
-                                <th>Число</th>
-                            </tr>
-                            </thead>
-                            <tbody *ngIf="FS.filter != null">
-                            <tr *ngFor="let elTr of FS.filter" class="selectedFilterBlock">
-                                <td *ngFor="let elTd of elTr" >{{elTd}}</td>
-                                <button (click)="FS.rm(elTr[0], elTr[1], elTr[2])" type="button" class="btn btn-danger rm">x</button>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <select [(ngModel)]="columnText" *ngIf="FS.headers != null" class="form-control" id="column">
-                                    <option *ngFor="let el of FS.headers">{{el}}</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <select [(ngModel)]="operatorsText" *ngIf="FS.operators != null" class="form-control" id="operators">
-                                    <option *ngFor="let el of FS.operators">{{el}}</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <input [(ngModel)]="valueText" type="number" class="form-control" placeholder="value" id="value">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button (click)="FS.add(columnText, operatorsText, valueText)" type="button" class="btn btn-success">Добавить фильтр</button>
-                        <button (click)="FS.reset()" type="button" class="btn btn-danger">Удачить все фильтры</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 </div>

@@ -14,6 +14,7 @@ import 'package:angular_tour_of_heroes/src/components/dimensions/dimensions.dart
 
 class DashboardComponent {
   List<String> outerList;
+  int intV = 0;
   DashboardComponent();
 
 }
