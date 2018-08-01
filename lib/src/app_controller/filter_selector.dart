@@ -13,6 +13,13 @@ class Data{
   Data(this.type, this.params);
 }
 
+class ActionTypes {
+  static const ADD = 'ADD';
+  static const RM = 'RM';
+  static const RESER = 'RESET';
+  static const APPLY = 'APPLY';
+}
+
 class FilterSelector {
 
   List<String> headers;
@@ -114,7 +121,12 @@ class DataFilter{
   const DataFilter(this.column, this.operator, this.value);
 }
 
-const List<DataFilter> testFilter =  [  DataFilter('sdf','>=',5),  DataFilter('dfgdfg','<=',3)];
+//const List<DataFilter> testFilter =  [  DataFilter('sdf','>=',5),  DataFilter('dfgdfg','<=',3)];
+const testFilter =  [
+  DataFilter('sdf', '>=', 5),
+  DataFilter('dfgdfg', '<=', 3)
+];
+
 //const List<List> testFilter = [
 ////  ['Количество продано, шт', '>=', 3],
 ////  ['col1', '>', 2],

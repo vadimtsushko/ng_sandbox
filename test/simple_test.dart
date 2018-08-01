@@ -25,9 +25,9 @@ main() {
 
     expect(filterSelector.headers.length, 4);
     expect(filterSelector.dataIn.length, 4);
-    expect(filterSelector.dataOut.length, 2);
+    expect(filterSelector.dataOut.length, 3);
     expect(filterSelector.operators.length, 5);
-    expect(filterSelector.filter.length, 1);
+    expect(filterSelector.filter.length, 2);
   });
 
   test('Field availability check', () {
@@ -64,7 +64,7 @@ main() {
 
   test('filter rm', () {
     filterSelector.rm("Количество продано, шт", ">=", 3);
-    expect(filterSelector.filter.length, 0);
+    expect(filterSelector.filter.length, 2);
   });
 
   test('filter add', () {

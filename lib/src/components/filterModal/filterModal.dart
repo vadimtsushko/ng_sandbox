@@ -26,15 +26,9 @@ class FilterModalComponent {
 
   void openFMC(){
     FS.reset();
-
-    var value = (querySelector('#value') as InputElement);
-    value.value = "";
-
-    var operators = (querySelector('#operators') as SelectElement);
-    operators.value = "";
-
-    var column = (querySelector('#column') as SelectElement);
-    column.value = "";
+    columnText = '';
+    operatorsText = '';
+    valueText = null;
   }
 
   void resetFMC(){
@@ -53,7 +47,7 @@ class FilterModalComponent {
   }
 
   void applyFMC(){
-    streamEventProcessing(new Data('apply', FS.filter));
+    streamEventProcessing(new Data(ActionTypes.APPLY, FS.filter));
   }
 
   @Output()

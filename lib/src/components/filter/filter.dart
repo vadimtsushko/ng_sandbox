@@ -28,13 +28,13 @@ class FilterComponent implements OnInit {
   }
 
   streamEventProcessing(Data e){
-    if(e.type == 'rm'){
+    if(e.type == ActionTypes.RM){
       FS.rm(e.params[0], e.params[1], e.params[2]);
-    } else if( e.type == 'add'){
+    } else if( e.type == ActionTypes.ADD){
       FS.add(e.params[0], e.params[1], e.params[2]);
-    } else if( e.type == 'reset'){
+    } else if( e.type == ActionTypes.RESER){
       FS.reset();
-    } else if( e.type == 'apply'){
+    } else if( e.type == ActionTypes.APPLY){
       FS.filter = e.params;
       FS.filterOut();
     }
