@@ -56,6 +56,9 @@ class FilterComponent implements OnInit, OnChanges {
       FS.add(e.params[0], e.params[1], e.params[2]);
     } else if( e.type == 'reset'){
       FS.reset();
+    } else if( e.type == 'apply'){
+      FS.filter = e.params;
+      FS.filterOut();
     }
 
     print('---');

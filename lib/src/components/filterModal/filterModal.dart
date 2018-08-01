@@ -29,8 +29,12 @@ class FilterModalComponent extends FilterComponent {
   void addFMC(String columnText, String operatorsText, int valueText){
     if(valueText != null){
       FS.add(columnText, operatorsText, valueText);
-      streamEventProcessing(new Data('add', [columnText, operatorsText, valueText]));
+//      streamEventProcessing(new Data('add', [columnText, operatorsText, valueText]));
     }
+  }
+
+  void applyFMC(){
+    streamEventProcessing(new Data('apply', FS.filter));
   }
 
   @Output()
