@@ -21,7 +21,7 @@ class FilterComponent implements OnInit {
   String columnText;
   String operatorsText;
   int valueText;
-  
+
   Future<void> ngOnInit() async {
     columnText  = FS.headers[0] ?? '';
     operatorsText = FS.operators[0] ?? '';

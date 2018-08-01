@@ -16,6 +16,10 @@ import 'package:angular_tour_of_heroes/src/components/filter/filter.dart';
 
 class FilterModalComponent extends FilterComponent {
 
+  void openFMC(){
+    print('-----');
+  }
+
   void resetFMC(){
     FS.reset();
     streamEventProcessing(new Data('reset', []));
@@ -23,13 +27,11 @@ class FilterModalComponent extends FilterComponent {
 
   void rmFMC(String type, String op, int val){
     FS.rm(type, op, val);
-    streamEventProcessing(new Data('rm', [type, op, val]));
   }
 
   void addFMC(String columnText, String operatorsText, int valueText){
     if(valueText != null){
       FS.add(columnText, operatorsText, valueText);
-//      streamEventProcessing(new Data('add', [columnText, operatorsText, valueText]));
     }
   }
 
