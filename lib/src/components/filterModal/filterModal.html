@@ -4,6 +4,7 @@
 <div class="col-md-12">
     <!-- Button trigger modal -->
     <button type="button" (click)="openFMC()" class="btn btn-default" data-toggle="modal" data-target="#filterModal">
+    <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#filterModal">-->
         Открыть фильтры
     </button>
 </div>
@@ -68,9 +69,12 @@
                             </thead>
                             <tbody *ngIf="FS.filter != null">
                             <tr *ngFor="let elTr of FS.filter" class="selectedFilterBlock">
-                                <td *ngFor="let elTd of elTr">{{elTd}}</td>
-                                <button (click)="rmFMC(elTr[0], elTr[1], elTr[2])" type="button" class="btn btn-danger rm">x
-                                </button>
+                                <td>{{elTr.column}}</td>
+                                <td>{{elTr.operator}}</td>
+                                <td>{{elTr.value}}</td>
+                                <!--<td *ngFor="let elTd of elTr">{{elTd}}</td>-->
+                                <button (click)="rmFMC(elTr.column, elTr.operator, elTr.value)" type="button" class="btn btn-danger rm">x</button>
+
                             </tr>
                             </tbody>
                         </table>

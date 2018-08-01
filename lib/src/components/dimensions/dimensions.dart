@@ -112,7 +112,6 @@ class DimensionsComponent implements OnInit {
     _innerListController.add(List<String>.from(_innerList));
 
     _innerListControllerInt.add(10);
-    print(intV);
 
   }
 

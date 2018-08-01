@@ -48,16 +48,12 @@ class FilterModalComponent extends FilterComponent {
   void applyFMC(){
     streamEventProcessing(new Data('apply', FS.filter));
   }
-
-
-
+  
   @Output()
   Stream get streamEventProcessing_e => _innerListController_streamEventProcessing.stream;
   final _innerListController_streamEventProcessing = StreamController();
   void streamEventProcessing(Data e){
     _innerListController_streamEventProcessing.add(e);
   }
-
-
 
 }

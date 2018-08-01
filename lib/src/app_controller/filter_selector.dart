@@ -18,10 +18,10 @@ class FilterSelector {
   List<String> headers;
   List<List<int>> dataIn;
   List<List<int>> dataOut;
-  List<List> filter;
+  List<DataFilter>  filter;
   List<String> operators = ['<', '>', '<=', '>=', '=='];
 
-  init({List<String> headers = testHeaders, List<List<int>> data = testData, List<List> filter = testFilter}) {
+  init({List<String> headers = testHeaders, List<List<int>> data = testData, List<DataFilter> filter = testFilter}) {
     this.headers = List.from(headers);
     this.dataIn = List.from(data);
     this.filter = List.from(filter);
@@ -48,7 +48,7 @@ class FilterSelector {
 
   void rm(String type, String op, int val){
     for(int i = 0; i < filter.length; i++){
-      if(type == filter[i][0] && op == filter[i][1] && val == filter[i][2]){
+      if(type == filter[i].column && op == filter[i].operator && val == filter[i].value){
         filter.removeAt(i);
       }
     }
@@ -65,10 +65,10 @@ class FilterSelector {
     for (int i = 0; i < dataIn.length; i++) {
       var isAdd = true;
       for (int j = 0; j < filter.length; j++) {
-        int position = _getColPosition(filter[j][0]);
+        int position = _getColPosition(filter[j].column);
         int valData = dataIn[i][position];
-        var valOpr = filter[j][1];
-        int filterData = filter[j][2];
+        var valOpr = filter[j].operator;
+        int filterData = filter[j].value;
         isAdd = isCanAdd(valData, valOpr, filterData);
       }
       if (isAdd) {
@@ -91,7 +91,7 @@ class FilterSelector {
 
   void add(String columnText, String operatorsText, int valueText) {
     if(valueText != null){
-      filter.add([columnText, operatorsText, valueText]);
+      filter.add( DataFilter(columnText,operatorsText,valueText));
       filterOut();
     }
   }
@@ -106,7 +106,16 @@ const List<List<int>> testData = [
   [3, 2, 3, 4],
   [4, 1, 4, 10]
 ];
-const List<List> testFilter = [
-//  ['Количество продано, шт', '>=', 3],
-//  ['col1', '>', 2],
-];
+
+class DataFilter{
+  final String column;
+  final String operator;
+  final int value;
+  const DataFilter(this.column, this.operator, this.value);
+}
+
+const List<DataFilter> testFilter =  [  DataFilter('sdf','>=',5),  DataFilter('dfgdfg','<=',3)];
+//const List<List> testFilter = [
+////  ['Количество продано, шт', '>=', 3],
+////  ['col1', '>', 2],
+//];

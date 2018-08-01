@@ -40,7 +40,5 @@ class FilterComponent implements OnInit {
     }
   }
 
-
-
 }
 
