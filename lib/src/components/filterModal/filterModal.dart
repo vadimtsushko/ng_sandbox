@@ -12,10 +12,17 @@ import 'package:angular_tour_of_heroes/src/components/filter/filter.dart';
   selector: 'my-filterModal',
   templateUrl: 'filterModal.html',
   styleUrls: ['filterModal.css'],
-  directives: [coreDirectives, routerDirectives, formDirectives,  FilterComponent],
+  directives: [coreDirectives, routerDirectives, formDirectives],
 )
 
-class FilterModalComponent extends FilterComponent {
+//class FilterModalComponent extends FilterComponent {
+class FilterModalComponent {
+
+  FilterSelector FS = new FilterSelector()..init();
+
+  String columnText;
+  String operatorsText;
+  int valueText;
 
   void openFMC(){
     FS.reset();
@@ -48,7 +55,7 @@ class FilterModalComponent extends FilterComponent {
   void applyFMC(){
     streamEventProcessing(new Data('apply', FS.filter));
   }
-  
+
   @Output()
   Stream get streamEventProcessing_e => _innerListController_streamEventProcessing.stream;
   final _innerListController_streamEventProcessing = StreamController();
