@@ -6,7 +6,6 @@ import 'dart:async';
 import 'package:angular_tour_of_heroes/src/app_controller/filter_selector.dart';
 import 'package:angular_tour_of_heroes/src/components/filterModal/filterModal.dart';
 
-
 @Component(
   selector: 'my-filter',
   templateUrl: 'filter.html',
