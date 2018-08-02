@@ -16,7 +16,7 @@ class Data{
 class ActionTypes {
   static const ADD = 'ADD';
   static const RM = 'RM';
-  static const RESER = 'RESET';
+  static const RESET = 'RESET';
   static const APPLY = 'APPLY';
 }
 

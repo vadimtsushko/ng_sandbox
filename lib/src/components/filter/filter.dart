@@ -32,7 +32,7 @@ class FilterComponent implements OnInit {
       FS.rm(e.params[0], e.params[1], e.params[2]);
     } else if( e.type == ActionTypes.ADD){
       FS.add(e.params[0], e.params[1], e.params[2]);
-    } else if( e.type == ActionTypes.RESER){
+    } else if( e.type == ActionTypes.RESET){
       FS.reset();
     } else if( e.type == ActionTypes.APPLY){
       FS.filter = e.params;
