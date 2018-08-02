@@ -3,10 +3,8 @@ import 'package:angular_tour_of_heroes/src/app_controller/dimension_selector.dar
 import 'package:angular_tour_of_heroes/src/app_controller/filter_selector.dart';
 
 
-
 main() {
   var selector, filterSelector;
-
   setUp(() {
     selector = new DimensionSelector()..init();
     selector.moveTo('str', 'Дата');

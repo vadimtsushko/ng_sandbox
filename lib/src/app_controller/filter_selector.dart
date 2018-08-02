@@ -1,3 +1,8 @@
+import 'package:model/model.dart';
+
+part 'filter_test_data.dart';
+
+
 class NonExistentOperator implements Exception {
   final String msg;
 
@@ -8,19 +13,27 @@ class NonExistentOperator implements Exception {
 }
 
 class Data{
-  String type;
+  ActionType type;
   List params;
   Data(this.type, this.params);
 }
 
-class ActionTypes {
-  static const ADD = 'ADD';
-  static const RM = 'RM';
-  static const RESET = 'RESET';
-  static const APPLY = 'APPLY';
+enum ActionType {
+  add,
+  remove,
+  reset,
+  apply
 }
+//class ActionTypes {
+//  static const ADD = 'ADD';
+//  static const RM = 'RM';
+//  static const RESET = 'RESET';
+//  static const APPLY = 'APPLY';
+//}
 
 class FilterSelector {
+  List<IvMasterExpression> measures;
+  List<IvMasterDimension> dimensions;
 
   List<String> headers;
   List<List<int>> dataIn;
@@ -32,6 +45,9 @@ class FilterSelector {
     this.headers = List.from(headers);
     this.dataIn = List.from(data);
     this.filter = List.from(filter);
+    measures = testMeasures.map((map)=>fromJson<IvMasterExpression>(IvMasterExpression, map)).toList();
+    dimensions = testDimensions.map((map)=>fromJson<IvMasterDimension>(IvMasterDimension, map)).toList();
+    print(dimensions);
     filterOut();
   }
 

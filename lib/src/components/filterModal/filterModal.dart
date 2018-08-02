@@ -42,7 +42,7 @@ class FilterModalComponent {
   }
 
   void applyFMC(){
-    streamEventProcessing(new Data(ActionTypes.APPLY, FS.filter));
+    streamEventProcessing(new Data(ActionType.apply, FS.filter));
   }
 
   @Output()
