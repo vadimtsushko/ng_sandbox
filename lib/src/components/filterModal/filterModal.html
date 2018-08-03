@@ -21,8 +21,8 @@
                 <!--dimensions-->
                 <div class="form-group">
                     <label for="dimensions">Выбрать измерение</label>
-                    <select  [(ngModel)]="dimensions" class="form-control" style="overflow: hidden;" id="dimensions">
-                        <option *ngFor="let d of FS.dimensions">{{d.title}}</option>
+                    <select  [(ngModel)]="selector.dimension" class="form-control" style="overflow: hidden;" id="dimensions">
+                        <option *ngFor="let d of selector.dimensions">{{d.title}}</option>
                     </select>
                 </div>
                 <!--dimensions-->
@@ -35,22 +35,22 @@
                     <!--title-->
                     <!--measures-->
                     <div class="col-sm-4">
-                        <!--<select (change)="canAdd()" (ngModelChange)="aaa()" [(ngModel)]="measures" *ngIf="FS.measures != null" class="form-control" id="column">-->
-                        <select  (change)="canAdd()"  [(ngModel)]="measures"  *ngIf="FS.measures != null" class="form-control" id="column">
-                            <option *ngFor="let d of FS.measures">{{d.label}}</option>
+                        <!--<select (change)="canAdd()" (ngModelChange)="aaa()" [(ngModel)]="measures" *ngIf="selector.measures != null" class="form-control" id="column">-->
+                        <select  (change)="selector.canAdd"  [(ngModel)]="selector.measure"  *ngIf="selector.measures != null" class="form-control" id="column">
+                            <option *ngFor="let d of selector.measures">{{d.label}}</option>
                         </select>
                     </div>
                     <!--measures-->
                     <!--operators-->
                     <div class="col-sm-4">
-                        <select (change)="canAdd()" [(ngModel)]="operator" *ngIf="FS.operators != null" class="form-control" id="operators">
-                            <option *ngFor="let el of FS.operators">{{el}}</option>
+                        <select (change)="selector.canAdd" [(ngModel)]="selector.operator" *ngIf="selector.operators != null" class="form-control" id="operators">
+                            <option *ngFor="let el of selector.operators">{{el}}</option>
                         </select>
                     </div>
                     <!--operators-->
                     <!--value-->
                     <div class="col-sm-4">
-                        <input [(ngModel)]="value" type="number" class="form-control" placeholder="Значение" id="value">
+                        <input [(ngModel)]="selector.value" type="number" class="form-control" placeholder="Значение" id="value">
                     </div>
                     <!--value-->
                     <!--addFMC-->
@@ -63,7 +63,13 @@
                         <!--<button  [disabled]="{{points.toString()}}" (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success">-->
                             <!--Добавить фильтр {{points}}-->
                         <!--</button>-->
-                        <button (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success" id="addFilter">
+                        <button (click)="addFMC(selector.measure, selector.dimension, selector.operator, selector.value)" type="button" class="btn btn-success" id="addFilter">
+                            Добавить фильтр
+                        </button>
+                        <button [disabled]="isUnchanged" (click)="addFMC(selector.measure, selector.dimension, selector.operator, selector.value)" type="button" class="btn btn-success" id="addFilter1">
+                            Добавить фильтр
+                        </button>
+                        <button (click)="isUnchanged = !isUnchanged" type="button" class="btn btn-success" id="addFilter2">
                             Добавить фильтр
                         </button>
                     </div>
@@ -89,8 +95,8 @@
                                 <th>Значение</th>
                             </tr>
                             </thead>
-                            <tbody *ngIf="FS.filter != null">
-                            <tr *ngFor="let f of FS.filter" class="selectedFilterBlock">
+                            <tbody *ngIf="selector.filter != null">
+                            <tr *ngFor="let f of selector.filter" class="selectedFilterBlock">
                                 <td>{{f.measures}}</td>
                                 <td>{{f.operator}}</td>
                                 <td>{{f.value}}</td>

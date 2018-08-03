@@ -16,65 +16,58 @@ import 'package:angular_tour_of_heroes/src/app_controller/filter_selector.dart';
 
 class FilterModalComponent {
 
-  FilterSelector FS = new FilterSelector()..init();
+  FilterSelector selector = new FilterSelector()..init();
 
-  String operator;
-  String measures;
-  String dimensions;
-  int value;
   int filterLength = 0;
   bool btnDisabled = true;
 
   bool points = false;
 
-
+  bool isUnchanged = false;
   @Input('myHighlight')
   String highlightColor;
   setUppercaseName(sss){
 //    print('---');
 //    print(sss);
   }
-  canAdd(){
-    //11111
-    print('${dimensions} - ${measures}');
+//  canAdd(){
+//    //11111
+//    print('${dimensions} - ${measures}');
+////
+//////    bool res = false;
+////    if(dimensions == '' || measures == ''){
+////      res = false;
+////    } else {
+////      print(FS.filter);
+////    }
 //
-////    bool res = false;
-//    if(dimensions == '' || measures == ''){
-//      res = false;
-//    } else {
-//      print(FS.filter);
-//    }
-
-//    var el = (querySelector('#addFilter') as ButtonElement);
-//    el.disabled = res;
-  }
+////    var el = (querySelector('#addFilter') as ButtonElement);
+////    el.disabled = res;
+//  }
 
   void openFMC(){
-    FS.reset();
-    dimensions = '';
-    operator = '';
-    measures = '';
+    selector.reset();
   }
 
   void resetFMC(){
-    FS.reset();
+    selector.reset();
     filterLength = 0;
   }
 
   void rmFMC(String measures, String dimensions, String operator, int value){
-    FS.rm(measures, dimensions, operator, value);
+    selector.rm(measures, dimensions, operator, value);
     filterLength--;
   }
 
   void addFMC(String measures, String dimensions, String operator, int value){
     if(measures != null && dimensions != null && operator != null && value != null ){
-      FS.add(measures, dimensions, operator, value);
+      selector.add(measures, dimensions, operator, value);
       filterLength++;
     }
   }
 
   void applyFMC(){
-    streamEventProcessing(new Data(ActionType.apply, FS.filter));
+    streamEventProcessing(new Data(ActionType.apply, selector.filter));
   }
 
   @Output()

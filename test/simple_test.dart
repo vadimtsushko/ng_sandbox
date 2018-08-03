@@ -70,7 +70,7 @@ main() {
 
   test('filter NonExistentArgument', () {
     try {
-      filterSelector.isCanAdd(0,'!!',0);
+      filterSelector.canAdd(0,'!!',0);
     } on NonExistentOperator {
       print('Error: NonExistentOperator');
     }

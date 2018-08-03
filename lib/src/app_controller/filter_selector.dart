@@ -26,23 +26,32 @@ enum ActionType {
 }
 
 class FilterSelector {
+  String _operator;
+  String get operator => _operator;
+  set operator(String value) {
+    _operator = value;
+    print('Set operator $_operator');
+  }
+  String measure;
+  String dimension;
+  int value;
+  bool canAdd = false;
   List<IvMasterExpression> measures;
   List<IvMasterDimension> dimensions;
 
   List<String> headers;
   List<List<int>> dataOut;
-  List<DataFilter>  filter;
+  List<DataFilter>  filter = [];
   List<String> operators = ['<', '>', '<=', '>=', '=='];
 
-
+  int get filterLenght => filter.length;
 
   init({List<String> headers = testHeaders, List<List<int>> data = testData}) {
     this.headers = List.from(headers);
     measures = testMeasures.map((map)=>fromJson<IvMasterExpression>(IvMasterExpression, map)).toList();
     dimensions = testDimensions.map((map)=>fromJson<IvMasterDimension>(IvMasterDimension, map)).toList();
   }
-
-  canAdd(){
+  bool checkCanAdd() {
 
   }
 
@@ -73,6 +82,9 @@ class FilterSelector {
   }
 
   void reset() {
+    dimension = '';
+    operator = '';
+    measure = '';
     filter = [];
     filterOut();
   }
