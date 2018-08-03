@@ -2,6 +2,8 @@ import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'dart:async';
+import 'dart:html';
+
 
 import 'package:angular_tour_of_heroes/src/app_controller/filter_selector.dart';
 
@@ -21,6 +23,30 @@ class FilterModalComponent {
   String dimensions;
   int value;
   int filterLength = 0;
+  bool btnDisabled = true;
+
+  bool points = false;
+
+
+  @Input('myHighlight')
+  String highlightColor;
+  setUppercaseName(sss){
+//    print('---');
+//    print(sss);
+  }
+  canAdd(){
+    print('${dimensions} - ${measures}');
+//
+////    bool res = false;
+//    if(dimensions == '' || measures == ''){
+//      res = false;
+//    } else {
+//      print(FS.filter);
+//    }
+
+//    var el = (querySelector('#addFilter') as ButtonElement);
+//    el.disabled = res;
+  }
 
   void openFMC(){
     FS.reset();

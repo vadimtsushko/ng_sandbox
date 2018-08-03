@@ -34,10 +34,16 @@ class FilterSelector {
   List<DataFilter>  filter;
   List<String> operators = ['<', '>', '<=', '>=', '=='];
 
+
+
   init({List<String> headers = testHeaders, List<List<int>> data = testData}) {
     this.headers = List.from(headers);
     measures = testMeasures.map((map)=>fromJson<IvMasterExpression>(IvMasterExpression, map)).toList();
     dimensions = testDimensions.map((map)=>fromJson<IvMasterDimension>(IvMasterDimension, map)).toList();
+  }
+
+  canAdd(){
+
   }
 
   bool isCanAdd(int valData,String operator,int filterData) {

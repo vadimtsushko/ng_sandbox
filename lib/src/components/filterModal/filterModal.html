@@ -35,14 +35,15 @@
                     <!--title-->
                     <!--measures-->
                     <div class="col-sm-4">
-                        <select [(ngModel)]="measures" *ngIf="FS.measures != null" class="form-control" id="column">
+                        <!--<select (change)="canAdd()" (ngModelChange)="aaa()" [(ngModel)]="measures" *ngIf="FS.measures != null" class="form-control" id="column">-->
+                        <select  (change)="canAdd()"  [(ngModel)]="measures"  *ngIf="FS.measures != null" class="form-control" id="column">
                             <option *ngFor="let d of FS.measures">{{d.label}}</option>
                         </select>
                     </div>
                     <!--measures-->
                     <!--operators-->
                     <div class="col-sm-4">
-                        <select [(ngModel)]="operator" *ngIf="FS.operators != null" class="form-control" id="operators">
+                        <select (change)="canAdd()" [(ngModel)]="operator" *ngIf="FS.operators != null" class="form-control" id="operators">
                             <option *ngFor="let el of FS.operators">{{el}}</option>
                         </select>
                     </div>
@@ -55,7 +56,14 @@
                     <!--addFMC-->
                     <div class="col-md-12 text-right">
                         <br>
-                        <button (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success">
+                        <!--<button [disabled]="{{btnDisabled}}" (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success">-->
+                        <!--<button  {{strS}} (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success">-->
+                            <!--Добавить фильтр-->
+                        <!--</button>-->
+                        <!--<button  [disabled]="{{points.toString()}}" (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success">-->
+                            <!--Добавить фильтр {{points}}-->
+                        <!--</button>-->
+                        <button (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success" id="addFilter">
                             Добавить фильтр
                         </button>
                     </div>
