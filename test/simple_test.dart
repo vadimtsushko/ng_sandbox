@@ -20,9 +20,6 @@ main() {
     expect(selector.availableDims.length, 55);
     expect(selector.selectedStr.length, 2);
     expect(selector.selectedCol.length, 2);
-
-    expect(filterSelector.headers.length, 4);
-    expect(filterSelector.dataIn.length, 4);
     expect(filterSelector.dataOut.length, 3);
     expect(filterSelector.operators.length, 5);
     expect(filterSelector.filter.length, 2);

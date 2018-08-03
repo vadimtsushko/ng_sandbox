@@ -2,14 +2,12 @@
 
 
 <div class="col-md-12">
-    <!-- Button trigger modal -->
     <button type="button" (click)="openFMC()" class="btn btn-default" data-toggle="modal" data-target="#filterModal">
-    <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#filterModal">-->
         Открыть фильтры
     </button>
 </div>
 
-<!-- Modal -->
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
 <div class="modal fade" id="filterModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -20,67 +18,81 @@
             </div>
             <div class="modal-body">
 
+                <!--dimensions-->
+                <div class="form-group">
+                    <label for="dimensions">Выбрать измерение</label>
+                    <select  [(ngModel)]="dimensions" class="form-control" style="overflow: hidden;" id="dimensions">
+                        <option *ngFor="let d of FS.dimensions">{{d.title}}</option>
+                    </select>
+                </div>
+                <!--dimensions-->
                 <!--add filter-->
                 <div class="row">
+                    <!--title-->
                     <div class="col-sm-12">
-                        <h5><strong>Добавит фильтр</strong></h5>
+                        <h5><strong>Добавить фильтр</strong></h5>
                     </div>
+                    <!--title-->
+                    <!--measures-->
                     <div class="col-sm-4">
-                        <select [(ngModel)]="columnText" *ngIf="FS.headers != null" class="form-control" id="column">
-                            <!--<option>Выберете столбик</option>-->
-                            <option *ngFor="let el of FS.headers">{{el}}</option>
+                        <select [(ngModel)]="measures" *ngIf="FS.measures != null" class="form-control" id="column">
+                            <option *ngFor="let d of FS.measures">{{d.label}}</option>
                         </select>
                     </div>
+                    <!--measures-->
+                    <!--operators-->
                     <div class="col-sm-4">
-                        <select [(ngModel)]="operatorsText" *ngIf="FS.operators != null" class="form-control"
-                                id="operators">
-                            <!--<option>Выберете знак</option>-->
+                        <select [(ngModel)]="operator" *ngIf="FS.operators != null" class="form-control" id="operators">
                             <option *ngFor="let el of FS.operators">{{el}}</option>
                         </select>
                     </div>
+                    <!--operators-->
+                    <!--value-->
                     <div class="col-sm-4">
-                        <input [(ngModel)]="valueText" type="number" class="form-control" placeholder="Укажите значение"
-                               id="value">
+                        <input [(ngModel)]="value" type="number" class="form-control" placeholder="Значение" id="value">
                     </div>
+                    <!--value-->
+                    <!--addFMC-->
                     <div class="col-md-12 text-right">
                         <br>
-                        <button (click)="addFMC(columnText, operatorsText, valueText)" type="button" class="btn btn-success">
+                        <button (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success">
                             Добавить фильтр
                         </button>
                     </div>
+                    <!--addFMC-->
                 </div>
                 <!--add filter-->
 
                 <!--filters-->
-                <div class="row"  *ngIf="FS.filter.length > 0">
+                <div class="row"  *ngIf="filterLength != 0">
+                    <!--title-->
                     <div class="col-sm-12">
                         <br>
                         <br>
                         <h5> <strong>Выбранные фильры</strong> </h5>
                     </div>
+                    <!--title-->
                     <div class="col-sm-12">
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Тип</th>
-                                <th>Знак</th>
-                                <th>Число</th>
+                                <th>Мера</th>
+                                <th>Операция</th>
+                                <th>Значение</th>
                             </tr>
                             </thead>
                             <tbody *ngIf="FS.filter != null">
-                            <tr *ngFor="let elTr of FS.filter" class="selectedFilterBlock">
-                                <td>{{elTr.column}}</td>
-                                <td>{{elTr.operator}}</td>
-                                <td>{{elTr.value}}</td>
-                                <!--<td *ngFor="let elTd of elTr">{{elTd}}</td>-->
-                                <button (click)="rmFMC(elTr.column, elTr.operator, elTr.value)" type="button" class="btn btn-danger rm">x</button>
-
+                            <tr *ngFor="let f of FS.filter" class="selectedFilterBlock">
+                                <td>{{f.measures}}</td>
+                                <td>{{f.operator}}</td>
+                                <td>{{f.value}}</td>
+                                <button (click)="rmFMC(f.measures,f.dimensions,f.operator,f.value)" type="button" class="btn btn-danger rm">x</button>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12 text-right">
-                        <button (click)="resetFMC()" type="button" class="btn btn-danger">Удачить все фильтры</button>
+                        <div class="form-group"><button (click)="resetFMC()" type="button" class="btn btn-danger">Удачить все фильтры</button></div>
                     </div>
                 </div>
                 <!--filters-->

@@ -4,42 +4,21 @@
             <h3> Входящие данные </h3>
             <hr>
             <table class="table">
-                <thead *ngIf="FS.headers != null">
+                <thead *ngIf="FS.dimensions != null">
                 <tr>
-                    <th *ngFor="let el of FS.headers">{{el}}</th>
+                    <th>id</th>
+                    <th>title</th>
                 </tr>
                 </thead>
-                <tbody *ngIf="FS.dataIn != null">
-                <tr *ngFor="let elTr of FS.dataIn">
-                    <td *ngFor="let elTd of elTr">{{elTd}}</td>
+                <tbody *ngIf="FS.dimensions != null">
+                <tr *ngFor="let d of FS.dimensions">
+                    <td>{{d.id}}</td>
+                    <td>{{d.title}}</td>
                 </tr>
                 </tbody>
             </table>
-
-            <!--(streamEventProcessing_eO)="ssssss($event);"-->
-            <!--[sss]="streamEventProcessingI(1)"-->
             <my-filterModal (streamEventProcessing_e)="streamEventProcessing($event);"></my-filterModal>
         </div>
-
-        <div class="col-md-6">
-            <h3> Исходящие данные </h3>
-            <hr>
-
-            <table class="table">
-                <thead *ngIf="FS.headers != null">
-                <tr>
-                    <th *ngFor="let el of FS.headers">{{el}}</th>
-                </tr>
-                </thead>
-                <tbody *ngIf="FS.dataOut != null">
-                <tr *ngFor="let elTr of FS.dataOut">
-                    <td *ngFor="let elTd of elTr">{{elTd}}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-
     </div>
 </div>
 

@@ -16,28 +16,33 @@ class FilterModalComponent {
 
   FilterSelector FS = new FilterSelector()..init();
 
-  String columnText;
-  String operatorsText;
-  int valueText;
+  String operator;
+  String measures;
+  String dimensions;
+  int value;
+  int filterLength = 0;
 
   void openFMC(){
     FS.reset();
-    columnText = '';
-    operatorsText = '';
-    valueText = null;
+    dimensions = '';
+    operator = '';
+    measures = '';
   }
 
   void resetFMC(){
     FS.reset();
+    filterLength = 0;
   }
 
-  void rmFMC(String type, String op, int val){
-    FS.rm(type, op, val);
+  void rmFMC(String measures, String dimensions, String operator, int value){
+    FS.rm(measures, dimensions, operator, value);
+    filterLength--;
   }
 
-  void addFMC(String columnText, String operatorsText, int valueText){
-    if(valueText != null){
-      FS.add(columnText, operatorsText, valueText);
+  void addFMC(String measures, String dimensions, String operator, int value){
+    if(measures != null && dimensions != null && operator != null && value != null ){
+      FS.add(measures, dimensions, operator, value);
+      filterLength++;
     }
   }
 
