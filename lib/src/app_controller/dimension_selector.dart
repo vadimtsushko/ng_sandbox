@@ -12,6 +12,9 @@ class DimensionSelector {
   List<String> selectedCol = [];
   List<String> availableDims = [];
 
+
+
+
   sort(dropzoneText, elementText) {
     if (availableDims.contains(dropzoneText) &&
         availableDims.contains(elementText)) {

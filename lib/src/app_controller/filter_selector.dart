@@ -47,7 +47,7 @@ class FilterSelector {
     this.filter = List.from(filter);
     measures = testMeasures.map((map)=>fromJson<IvMasterExpression>(IvMasterExpression, map)).toList();
     dimensions = testDimensions.map((map)=>fromJson<IvMasterDimension>(IvMasterDimension, map)).toList();
-    print(dimensions);
+    print(dimensions.length);
     filterOut();
   }
 

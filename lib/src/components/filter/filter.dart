@@ -15,6 +15,10 @@ import 'package:angular_tour_of_heroes/src/components/filterModal/filterModal.da
 
 class FilterComponent implements OnInit {
 
+//  FilterComponent(){
+//    print(123);
+//  }
+
   FilterSelector FS = new FilterSelector()..init();
 
   String columnText;
