@@ -35,6 +35,7 @@ class FilterModalComponent {
 //    print(sss);
   }
   canAdd(){
+    //11111
     print('${dimensions} - ${measures}');
 //
 ////    bool res = false;
