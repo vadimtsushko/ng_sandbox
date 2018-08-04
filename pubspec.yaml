@@ -8,13 +8,15 @@ environment:
   sdk: '>=2.0.0-dev.55.0 <2.0.0'
 
 dependencies:
-  angular: ^5.0.0-alpha+13
+  angular: ^5.0.0-beta+3
   angular_forms: ^2.0.0-alpha
   angular_router: ^2.0.0-alpha
 #  assortment: ^0.1.0
   dnd: ^1.2.0
+  tuple: ^1.0.2
   model:
-    path: '../model'
+    path: ../iv_server_project_root/model
+#    path: '../model'
 #    git: https://bitbucket.org/inqlik_bi/model
 #  http: ^0.11.0
 #  stream_transform: ^0.0.6
@@ -24,8 +26,8 @@ dependencies:
 dependency_overrides:
   html: ^0.13.3
 dev_dependencies:
-  angular_test: ^2.0.0-alpha+11
-  build_runner: ^0.8.9
-  build_test: ^0.10.2
-  build_web_compilers: ^0.4.0
+  angular_test: ^2.0.0-beta+3
+  build_runner: ^0.10.0
+#  build_test: ^0.10.2
+  build_web_compilers: ^0.4.1
   test: ^0.12.38

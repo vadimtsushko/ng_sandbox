@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label for="dimensions">Выбрать измерение</label>
                     <select  [(ngModel)]="selector.dimension" class="form-control" style="overflow: hidden;" id="dimensions">
-                        <option *ngFor="let d of selector.dimensions">{{d.title}}</option>
+                        <option *ngFor="let d of selector.dimensions" value="{{d.id}}">{{d.title}}</option>
                     </select>
                 </div>
                 <!--dimensions-->
@@ -36,14 +36,14 @@
                     <!--measures-->
                     <div class="col-sm-4">
                         <!--<select (change)="canAdd()" (ngModelChange)="aaa()" [(ngModel)]="measures" *ngIf="selector.measures != null" class="form-control" id="column">-->
-                        <select  (change)="selector.canAdd"  [(ngModel)]="selector.measure"  *ngIf="selector.measures != null" class="form-control" id="column">
-                            <option *ngFor="let d of selector.measures">{{d.label}}</option>
+                        <select [(ngModel)]="selector.measure"  *ngIf="selector.measures != null" class="form-control" id="column">
+                            <option *ngFor="let measure of selector.measures" value="{{measure.name}}">{{measure.label}}</option>
                         </select>
                     </div>
                     <!--measures-->
                     <!--operators-->
                     <div class="col-sm-4">
-                        <select (change)="selector.canAdd" [(ngModel)]="selector.operator" *ngIf="selector.operators != null" class="form-control" id="operators">
+                        <select [(ngModel)]="selector.operator" *ngIf="selector.operators != null" class="form-control" id="operators">
                             <option *ngFor="let el of selector.operators">{{el}}</option>
                         </select>
                     </div>
@@ -56,7 +56,7 @@
                     <!--addFMC-->
                     <div class="col-md-12 text-right">
                         <br>
-                        <button [disabled]="selector.btnStatus" (click)="selector.add(selector.measure, selector.dimension, selector.operator, selector.value)" type="button" class="btn btn-success" id="addFilter">
+                        <button [disabled]="selector.btnStatus" (click)="selector.add()" type="button" class="btn btn-success" id="addFilter">
                             Добавить фильтр
                         </button>
                     </div>
@@ -84,10 +84,10 @@
                             </thead>
                             <tbody *ngIf="selector.filter != null">
                             <tr *ngFor="let e of selector.filter" class="selectedFilterBlock">
-                                <td>{{e.measures}}</td>
+                                <td>{{e.measure}}</td>
                                 <td>{{e.operator}}</td>
                                 <td>{{e.value}}</td>
-                                <button (click)="selector.rm(e.measures,e.operator,e.value)" type="button" class="btn btn-danger rm">x</button>
+                                <button (click)="selector.rm(e.measure,e.operator,e.value)" type="button" class="btn btn-danger rm">x</button>
                             </tr>
                             </tbody>
                         </table>
@@ -100,7 +100,7 @@
 
             </div>
             <div class="modal-footer">
-                <button (click)="selector.apply()" type="button" class="btn btn-info" data-dismiss="modal">Применить фильтры</button>
+                <button (click)="selector.apply()" [disabled]="selector.filter.isEmpty" type="button" class="btn btn-info" data-dismiss="modal">Применить фильтры</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
             </div>
         </div>

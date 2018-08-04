@@ -1,23 +1,24 @@
 <div class="container-fluid content">
     <div class="row">
         <div class="col-md-6">
-            <h3> Входящие данные </h3>
-            <hr>
-            <table class="table">
-                <thead *ngIf="selector.dimensions != null">
-                <tr>
-                    <th>id</th>
-                    <th>title</th>
-                </tr>
-                </thead>
-                <tbody *ngIf="selector.dimensions != null">
-                <tr *ngFor="let d of selector.dimensions">
-                    <td>{{d.id}}</td>
-                    <td>{{d.title}}</td>
-                </tr>
-                </tbody>
-            </table>
-            <my-filterModal></my-filterModal>
+            <!--<h3> Входящие данные </h3>-->
+            <!--<hr>-->
+            <!--<table class="table">-->
+                <!--<thead *ngIf="selector.dimensions != null">-->
+                <!--<tr>-->
+                    <!--<th>id</th>-->
+                    <!--<th>title</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody *ngIf="selector.dimensions != null">-->
+                <!--<tr *ngFor="let d of selector.dimensions">-->
+                    <!--<td>{{d.id}}</td>-->
+                    <!--<td>{{d.title}}</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+
+            <my-filterModal [measures]="measures" [dimensions]="dimensions" (onApply)="onApply($event)"></my-filterModal>
         </div>
     </div>
 </div>

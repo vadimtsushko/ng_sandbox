@@ -1,8 +1,10 @@
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:angular_forms/angular_forms.dart';
+import 'package:model/model.dart';
 
 import 'package:angular_tour_of_heroes/src/app_controller/filter_selector.dart';
+import 'package:tuple/tuple.dart';
 import 'package:angular_tour_of_heroes/src/components/filterModal/filterModal.dart';
 
 @Component(
@@ -13,8 +15,19 @@ import 'package:angular_tour_of_heroes/src/components/filterModal/filterModal.da
 )
 
 class FilterComponent {
+  List<IvMasterExpression> measures;
+  List<IvMasterDimension> dimensions;
+  FilterComponent() {
+    measures = testMeasures
+        .map((map) => fromJson<IvMasterExpression>(IvMasterExpression, map))
+        .toList();
+    dimensions = testDimensions
+        .map((map) => fromJson<IvMasterDimension>(IvMasterDimension, map))
+        .toList();
+  }
 
-  FilterSelector selector = new FilterSelector()..init();
-
+  onApply(Tuple2<String, List<FilterData>> event) {
+    print('Get new filter: $event');
+  }
 }
 

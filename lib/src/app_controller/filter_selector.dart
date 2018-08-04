@@ -1,7 +1,8 @@
 import 'package:model/model.dart';
+import 'package:tuple/tuple.dart';
+import 'dart:async';
 
 part 'filter_test_data.dart';
-
 
 class NonExistentOperator implements Exception {
   final String msg;
@@ -12,45 +13,64 @@ class NonExistentOperator implements Exception {
   String toString() => msg ?? 'NonExistentOperator';
 }
 
-class Data{
+class FilterEvent {
   ActionType type;
   List params;
-  Data(this.type, this.params);
+
+  FilterEvent(this.type, this.params);
 }
 
-enum ActionType {
-  add,
-  remove,
-  reset,
-  apply
+class FilterData {
+  final String measure;
+//  final String dimensions;
+  final String operator;
+  final num value;
+
+  @override
+  String toString() {
+    return 'FilterData{measure: $measure, operator: $operator, value: $value}';
+  }
+
+  const FilterData(this.measure, this.operator, this.value);
+
 }
+enum ActionType { add, remove, reset, apply }
 
 class FilterSelector {
-
+  final applyStreamController =
+      StreamController<Tuple2<String, List<FilterData>>>();
   String _operator;
+
   String get operator => _operator;
+
   set operator(String value) {
     _operator = value;
     setBtnStatus();
   }
 
   String _measure;
+
   String get measure => _measure;
+
   set measure(String value) {
     _measure = value;
     setBtnStatus();
   }
 
   String _dimension;
+
   String get dimension => _dimension;
+
   set dimension(String value) {
     _dimension = value;
     setBtnStatus();
   }
 
-  int _value;
-  int get value => _value;
-  set value(int value) {
+  num _value;
+
+  num get value => _value;
+
+  set value(num value) {
     _value = value;
     setBtnStatus();
   }
@@ -61,35 +81,38 @@ class FilterSelector {
 
   List<String> headers;
   List<List<int>> dataOut;
-  List<DataFilter>  filter = [];
+  List<FilterData> filter = [];
   List<String> operators = ['<', '>', '<=', '>=', '=='];
 
-  int get filterLength => filter.length;
+  num get filterLength => filter.length;
 
   bool btnStatus = false;
 
-  init({List<String> headers = testHeaders, List<List<int>> data = testData}) {
-    this.headers = List.from(headers);
-    measures = testMeasures.map((map)=>fromJson<IvMasterExpression>(IvMasterExpression, map)).toList();
-    dimensions = testDimensions.map((map)=>fromJson<IvMasterDimension>(IvMasterDimension, map)).toList();
+  init(List<IvMasterExpression> _measures, List<IvMasterDimension> _dimensions) {
+    measures = _measures;
+    dimensions = _dimensions;
   }
 
-  apply(){
-    print('apply');
+  apply() {
+    applyStreamController.add(Tuple2(dimension, filter));
   }
 
-  void setBtnStatus(){
+  close() {
+    applyStreamController.close();
+  }
+
+  void setBtnStatus() {
     btnStatus = !checkCanAdd();
   }
 
   bool checkCanAdd() {
     bool res = true;
 
-    if(measure == '' || operator == '' || dimension == '' || value == null){
+    if (measure == '' || operator == '' || dimension == '' || value == null) {
       res = false;
     } else {
-      for(int i = 0; i < filter.length; i++){
-        if(filter[i].measures == measure && filter[i].operator == operator){
+      for (int i = 0; i < filter.length; i++) {
+        if (filter[i].measure == measure && filter[i].operator == operator) {
           res = false;
         }
       }
@@ -97,7 +120,7 @@ class FilterSelector {
     return res;
   }
 
-  bool isCanAdd(int valData,String operator,int filterData) {
+  bool isCanAdd(num valData, String operator, int filterData) {
     var res = false;
     if (operator == '<') {
       res = valData < filterData;
@@ -115,10 +138,12 @@ class FilterSelector {
     return res;
   }
 
-  void rm(String m, String o, int v){
+  void rm(String m, String o, num v) {
     print('${m} - ${o} ');
-    for(int i = 0; i < filter.length; i++){
-      if(m == filter[i].measures && o == filter[i].operator && v == filter[i].value){
+    for (int i = 0; i < filter.length; i++) {
+      if (m == filter[i].measure &&
+          o == filter[i].operator &&
+          v == filter[i].value) {
         filter.removeAt(i);
       }
     }
@@ -126,39 +151,35 @@ class FilterSelector {
   }
 
   void reset() {
-    dimension = '';
+    dimension = dimensions.first.id;
     operator = '';
     measure = '';
+    value = null;
     filter = [];
     setBtnStatus();
   }
 
-
-  void add(String measures, String dimensions, String operator, int value) {
-    filter.add( DataFilter(measures,dimensions,operator,value));
+  void add() {
+    filter.add(FilterData(measure, operator, value));
     setBtnStatus();
   }
-
 }
 
-
-const List<String> testHeaders = ['Сумма продаж тыс.руб', 'Наценка, тыс. руб', 'Остатки, тыс руб', 'Количество продано, шт'];
+const List<String> testHeaders = [
+  'Сумма продаж тыс.руб',
+  'Наценка, тыс. руб',
+  'Остатки, тыс руб',
+  'Количество продано, шт'
+];
 const List<List<int>> testData = [
   [1, 4, 1, 0],
-  [2, 3, 2,  1],
+  [2, 3, 2, 1],
   [3, 2, 3, 4],
   [4, 1, 4, 10]
 ];
 
-class DataFilter{
-  final String measures;
-  final String dimensions;
-  final String operator;
-  final int value;
-  const DataFilter(this.measures, this.dimensions, this.operator, this.value);
-}
 
-const testFilter =  [
+const testFilter = [
 //  DataFilter('sdf', '>=', 5),
 //  DataFilter('dfgdfg', '<=', 3)
 ];
