@@ -121,6 +121,7 @@ class FilterSelector {
 
   void add(String measures, String dimensions, String operator, int value) {
     filter.add( DataFilter(measures,dimensions,operator,value));
+    setBtnStatus();
   }
 
 }

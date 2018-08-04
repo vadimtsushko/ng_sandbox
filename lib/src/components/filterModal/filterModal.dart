@@ -26,26 +26,6 @@ class FilterModalComponent {
   bool status =  false;
 
   bool isUnchanged = false;
-  @Input('myHighlight')
-  String highlightColor;
-  setUppercaseName(sss){
-//    print('---');
-//    print(sss);
-  }
-//  canAdd(){
-//    //11111
-//    print('${dimensions} - ${measures}');
-////
-//////    bool res = false;
-////    if(dimensions == '' || measures == ''){
-////      res = false;
-////    } else {
-////      print(FS.filter);
-////    }
-//
-////    var el = (querySelector('#addFilter') as ButtonElement);
-////    el.disabled = res;
-//  }
 
   void openFMC(){
     selector.reset();
