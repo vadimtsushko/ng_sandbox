@@ -23,6 +23,8 @@ class FilterModalComponent {
 
   bool points = false;
 
+  bool status =  false;
+
   bool isUnchanged = false;
   @Input('myHighlight')
   String highlightColor;

@@ -56,20 +56,7 @@
                     <!--addFMC-->
                     <div class="col-md-12 text-right">
                         <br>
-                        <!--<button [disabled]="{{btnDisabled}}" (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success">-->
-                        <!--<button  {{strS}} (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success">-->
-                            <!--Добавить фильтр-->
-                        <!--</button>-->
-                        <!--<button  [disabled]="{{points.toString()}}" (click)="addFMC(measures, dimensions, operator, value)" type="button" class="btn btn-success">-->
-                            <!--Добавить фильтр {{points}}-->
-                        <!--</button>-->
-                        <button (click)="addFMC(selector.measure, selector.dimension, selector.operator, selector.value)" type="button" class="btn btn-success" id="addFilter">
-                            Добавить фильтр
-                        </button>
-                        <button [disabled]="isUnchanged" (click)="addFMC(selector.measure, selector.dimension, selector.operator, selector.value)" type="button" class="btn btn-success" id="addFilter1">
-                            Добавить фильтр
-                        </button>
-                        <button (click)="isUnchanged = !isUnchanged" type="button" class="btn btn-success" id="addFilter2">
+                        <button [disabled]="selector.btnStatus"  (click)="addFMC(selector.measure, selector.dimension, selector.operator, selector.value)" type="button" class="btn btn-success" id="addFilter">
                             Добавить фильтр
                         </button>
                     </div>

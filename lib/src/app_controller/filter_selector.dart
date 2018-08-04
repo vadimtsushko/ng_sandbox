@@ -26,14 +26,23 @@ enum ActionType {
 }
 
 class FilterSelector {
+
   String _operator;
   String get operator => _operator;
   set operator(String value) {
     _operator = value;
-    print('Set operator $_operator');
+    setBtnStatus();
   }
-  String measure;
+
+  String _measure;
+  String get measure => _measure;
+  set measure(String value) {
+    _measure = value;
+    setBtnStatus();
+  }
+
   String dimension;
+
   int value;
   bool canAdd = false;
   List<IvMasterExpression> measures;
@@ -46,13 +55,31 @@ class FilterSelector {
 
   int get filterLenght => filter.length;
 
+  bool btnStatus = false;
+
   init({List<String> headers = testHeaders, List<List<int>> data = testData}) {
     this.headers = List.from(headers);
     measures = testMeasures.map((map)=>fromJson<IvMasterExpression>(IvMasterExpression, map)).toList();
     dimensions = testDimensions.map((map)=>fromJson<IvMasterDimension>(IvMasterDimension, map)).toList();
   }
-  bool checkCanAdd() {
 
+  void setBtnStatus(){
+//    print('changeBtnStatus ${checkCanAdd()}');
+    btnStatus = !checkCanAdd();
+  }
+
+  bool checkCanAdd() {
+    bool res = true;
+    if(measure == '' || operator == ''){
+      res = false;
+    } else {
+      for(int i = 0; i < filter.length; i++){
+        if(filter[i].measures == measure && filter[i].operator == operator){
+          res = false;
+        }
+      }
+    }
+    return res;
   }
 
   bool isCanAdd(int valData,String operator,int filterData) {
