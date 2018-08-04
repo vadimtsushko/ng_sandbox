@@ -4,20 +4,20 @@
             <h3> Входящие данные </h3>
             <hr>
             <table class="table">
-                <thead *ngIf="FS.dimensions != null">
+                <thead *ngIf="selector.dimensions != null">
                 <tr>
                     <th>id</th>
                     <th>title</th>
                 </tr>
                 </thead>
-                <tbody *ngIf="FS.dimensions != null">
-                <tr *ngFor="let d of FS.dimensions">
+                <tbody *ngIf="selector.dimensions != null">
+                <tr *ngFor="let d of selector.dimensions">
                     <td>{{d.id}}</td>
                     <td>{{d.title}}</td>
                 </tr>
                 </tbody>
             </table>
-            <my-filterModal (streamEventProcessing_e)="streamEventProcessing($event);"></my-filterModal>
+            <my-filterModal></my-filterModal>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
 
 
 <div class="col-md-12">
-    <button type="button" (click)="openFMC()" class="btn btn-default" data-toggle="modal" data-target="#filterModal">
+    <button type="button" (click)="selector.reset()" class="btn btn-default" data-toggle="modal" data-target="#filterModal">
         Открыть фильтры
     </button>
 </div>
@@ -56,7 +56,7 @@
                     <!--addFMC-->
                     <div class="col-md-12 text-right">
                         <br>
-                        <button [disabled]="selector.btnStatus"  (click)="addFMC(selector.measure, selector.dimension, selector.operator, selector.value)" type="button" class="btn btn-success" id="addFilter">
+                        <button [disabled]="selector.btnStatus" (click)="selector.add(selector.measure, selector.dimension, selector.operator, selector.value)" type="button" class="btn btn-success" id="addFilter">
                             Добавить фильтр
                         </button>
                     </div>
@@ -65,7 +65,7 @@
                 <!--add filter-->
 
                 <!--filters-->
-                <div class="row"  *ngIf="filterLength != 0">
+                <div class="row"  *ngIf="selector.filterLength != 0">
                     <!--title-->
                     <div class="col-sm-12">
                         <br>
@@ -83,24 +83,24 @@
                             </tr>
                             </thead>
                             <tbody *ngIf="selector.filter != null">
-                            <tr *ngFor="let f of selector.filter" class="selectedFilterBlock">
-                                <td>{{f.measures}}</td>
-                                <td>{{f.operator}}</td>
-                                <td>{{f.value}}</td>
-                                <button (click)="rmFMC(f.measures,f.dimensions,f.operator,f.value)" type="button" class="btn btn-danger rm">x</button>
+                            <tr *ngFor="let e of selector.filter" class="selectedFilterBlock">
+                                <td>{{e.measures}}</td>
+                                <td>{{e.operator}}</td>
+                                <td>{{e.value}}</td>
+                                <button (click)="selector.rm(e.measures,e.operator,e.value)" type="button" class="btn btn-danger rm">x</button>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12 text-right">
-                        <div class="form-group"><button (click)="resetFMC()" type="button" class="btn btn-danger">Удачить все фильтры</button></div>
+                        <div class="form-group"><button (click)="selector.reset()" type="button" class="btn btn-danger">Удачить все фильтры</button></div>
                     </div>
                 </div>
                 <!--filters-->
 
             </div>
             <div class="modal-footer">
-                <button (click)="applyFMC()" type="button" class="btn btn-info" data-dismiss="modal">Применить фильтры</button>
+                <button (click)="selector.apply()" type="button" class="btn btn-info" data-dismiss="modal">Применить фильтры</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
             </div>
         </div>

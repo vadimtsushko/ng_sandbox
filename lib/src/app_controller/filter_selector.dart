@@ -41,9 +41,20 @@ class FilterSelector {
     setBtnStatus();
   }
 
-  String dimension;
+  String _dimension;
+  String get dimension => _dimension;
+  set dimension(String value) {
+    _dimension = value;
+    setBtnStatus();
+  }
 
-  int value;
+  int _value;
+  int get value => _value;
+  set value(int value) {
+    _value = value;
+    setBtnStatus();
+  }
+
   bool canAdd = false;
   List<IvMasterExpression> measures;
   List<IvMasterDimension> dimensions;
@@ -53,7 +64,7 @@ class FilterSelector {
   List<DataFilter>  filter = [];
   List<String> operators = ['<', '>', '<=', '>=', '=='];
 
-  int get filterLenght => filter.length;
+  int get filterLength => filter.length;
 
   bool btnStatus = false;
 
@@ -63,14 +74,18 @@ class FilterSelector {
     dimensions = testDimensions.map((map)=>fromJson<IvMasterDimension>(IvMasterDimension, map)).toList();
   }
 
+  apply(){
+    print('apply');
+  }
+
   void setBtnStatus(){
-//    print('changeBtnStatus ${checkCanAdd()}');
     btnStatus = !checkCanAdd();
   }
 
   bool checkCanAdd() {
     bool res = true;
-    if(measure == '' || operator == ''){
+
+    if(measure == '' || operator == '' || dimension == '' || value == null){
       res = false;
     } else {
       for(int i = 0; i < filter.length; i++){
@@ -100,12 +115,14 @@ class FilterSelector {
     return res;
   }
 
-  void rm(String measures, String dimensions, String operator, int value){
+  void rm(String m, String o, int v){
+    print('${m} - ${o} ');
     for(int i = 0; i < filter.length; i++){
-      if(measures == filter[i].measures && dimensions == filter[i].dimensions && operator == filter[i].operator && value == filter[i].value){
+      if(m == filter[i].measures && o == filter[i].operator && v == filter[i].value){
         filter.removeAt(i);
       }
     }
+    setBtnStatus();
   }
 
   void reset() {
@@ -113,11 +130,9 @@ class FilterSelector {
     operator = '';
     measure = '';
     filter = [];
-    filterOut();
+    setBtnStatus();
   }
 
-  void filterOut() {
-  }
 
   void add(String measures, String dimensions, String operator, int value) {
     filter.add( DataFilter(measures,dimensions,operator,value));
