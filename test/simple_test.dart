@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:ng_sandbox/src/app_controller/dimension_selector.dart';
-import 'package:ng_sandbox/src/app_controller/filter_selector.dart';
+import 'package:ng_sandbox/src/components/filterModal/filter_selector.dart';
+import 'package:ng_sandbox/src/components/filter/filter_test_data.dart';
 import 'package:model/model.dart';
 
 main() {
@@ -14,7 +15,7 @@ main() {
     selector.moveTo('col', 'Акция');
 
     var measures = testMeasures
-        .map((map) => fromJson<IvMasterExpression>(IvMasterExpression, map))
+        .map((map) => fromJson<MeasureForFilter>(MeasureForFilter, map))
         .toList();
     var dimensions = testDimensions
         .map((map) => fromJson<IvMasterDimension>(IvMasterDimension, map))
@@ -71,9 +72,9 @@ main() {
 //
   test('filter add', () {
     filterSelector.reset();
-    filterSelector.measure = 'КоличествоПродано';
-    filterSelector.operator = '>=';
-    filterSelector.value = 3;
+    filterSelector.measure = 'УпущеннаяВПТыс';
+    filterSelector.minOperator = '>=';
+    filterSelector.minValue = 3;
     filterSelector.add();
     expect(filterSelector.filter.length, 1);
   });

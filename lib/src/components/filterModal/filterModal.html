@@ -1,13 +1,10 @@
-<!--<button  (click)="addCount()">FM</button>-->
-
 
 <div class="col-md-12">
-    <button type="button" (click)="selector.reset()" class="btn btn-default" data-toggle="modal" data-target="#filterModal">
+    <button id="filterModalOpen" type="button" class="btn btn-default" data-toggle="modal" data-target="#filterModal" style="display: none">
         Открыть фильтры
     </button>
 </div>
 
-<!--&lt;!&ndash; Modal &ndash;&gt;-->
 <div class="modal fade" id="filterModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -25,8 +22,8 @@
                         <option *ngFor="let d of selector.dimensions" value="{{d.id}}">{{d.title}}</option>
                     </select>
                 </div>
-                <!--dimensions-->
-                <!--add filter-->
+                <!--dimensions--minOperatoradd filter-->
+
                 <div class="row">
                     <!--title-->
                     <div class="col-sm-12">
@@ -37,20 +34,20 @@
                     <div class="col-sm-4">
                         <!--<select (change)="canAdd()" (ngModelChange)="aaa()" [(ngModel)]="measures" *ngIf="selector.measures != null" class="form-control" id="column">-->
                         <select [(ngModel)]="selector.measure"  *ngIf="selector.measures != null" class="form-control" id="column">
-                            <option *ngFor="let measure of selector.measures" value="{{measure.name}}">{{measure.label}}</option>
+                            <option *ngFor="let measure of selector.measures" value="{{measure.measure}}">{{measure.measureTitle}}</option>
                         </select>
                     </div>
                     <!--measures-->
                     <!--operators-->
                     <div class="col-sm-4">
-                        <select [(ngModel)]="selector.operator" *ngIf="selector.operators != null" class="form-control" id="operators">
+                        <select [(ngModel)]="selector.minOperator" *ngIf="selector.operators != null" class="form-control" id="operators">
                             <option *ngFor="let el of selector.operators">{{el}}</option>
                         </select>
                     </div>
                     <!--operators-->
                     <!--value-->
                     <div class="col-sm-4">
-                        <input [(ngModel)]="selector.value" type="number" class="form-control" placeholder="Значение" id="value">
+                        <input [(ngModel)]="selector.minValue" type="number" class="form-control" placeholder="Значение" id="value">
                     </div>
                     <!--value-->
                     <!--addFMC-->
@@ -84,10 +81,10 @@
                             </thead>
                             <tbody *ngIf="selector.filter != null">
                             <tr *ngFor="let e of selector.filter" class="selectedFilterBlock">
-                                <td>{{e.measure}}</td>
-                                <td>{{e.operator}}</td>
-                                <td>{{e.value}}</td>
-                                <button (click)="selector.rm(e.measure,e.operator,e.value)" type="button" class="btn btn-danger rm">x</button>
+                                <td>{{e.measureTitle}}</td>
+                                <td>{{e.minOperator}}</td>
+                                <td>{{e.minValue}}</td>
+                                <button (click)="selector.rm(e.measure,e.minOperator,e.minValue)" type="button" class="btn btn-danger rm">x</button>
                             </tr>
                             </tbody>
                         </table>
@@ -106,3 +103,4 @@
         </div>
     </div>
 </div>
+

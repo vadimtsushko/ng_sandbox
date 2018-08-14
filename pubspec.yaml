@@ -14,7 +14,6 @@ dependencies:
 #  assortment: ^0.1.0
   dnd:
     git: https://github.com/vadimtsushko/dart-dnd.git
-  tuple: ^1.0.2
   model:
     path: ../iv_server_project_root/model
   bootstrap:

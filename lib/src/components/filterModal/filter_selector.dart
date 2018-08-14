@@ -1,8 +1,5 @@
 import 'package:model/model.dart';
-import 'package:tuple/tuple.dart';
 import 'dart:async';
-
-part 'filter_test_data.dart';
 
 class NonExistentOperator implements Exception {
   final String msg;
@@ -20,31 +17,17 @@ class FilterEvent {
   FilterEvent(this.type, this.params);
 }
 
-class FilterData {
-  final String measure;
-//  final String dimensions;
-  final String operator;
-  final num value;
-
-  @override
-  String toString() {
-    return 'FilterData{measure: $measure, operator: $operator, value: $value}';
-  }
-
-  const FilterData(this.measure, this.operator, this.value);
-
-}
 enum ActionType { add, remove, reset, apply }
 
 class FilterSelector {
   final applyStreamController =
-      StreamController<Tuple2<String, List<FilterData>>>();
-  String _operator;
+      new StreamController<MeasureFilterEvent>();
+  String _minOperator;
 
-  String get operator => _operator;
+  String get minOperator => _minOperator;
 
-  set operator(String value) {
-    _operator = value;
+  set minOperator(String value) {
+    _minOperator = value;
     setBtnStatus();
   }
 
@@ -66,35 +49,38 @@ class FilterSelector {
     setBtnStatus();
   }
 
-  num _value;
+  num _minValue;
 
-  num get value => _value;
+  num get minValue => _minValue;
 
-  set value(num value) {
-    _value = value;
+  set minValue(num value) {
+    _minValue = value;
     setBtnStatus();
   }
 
   bool canAdd = false;
-  List<IvMasterExpression> measures;
+  List<MeasureForFilter> measures;
   List<IvMasterDimension> dimensions;
 
   List<String> headers;
   List<List<int>> dataOut;
-  List<FilterData> filter = [];
+  List<MeasureFilterItem> filter = [];
   List<String> operators = ['<', '>', '<=', '>=', '=='];
 
   num get filterLength => filter.length;
 
   bool btnStatus = false;
 
-  init(List<IvMasterExpression> _measures, List<IvMasterDimension> _dimensions) {
+  init(
+      List<MeasureForFilter> _measures, List<IvMasterDimension> _dimensions) {
     measures = _measures;
     dimensions = _dimensions;
   }
 
   apply() {
-    applyStreamController.add(Tuple2(dimension, filter));
+    applyStreamController.add(new MeasureFilterEvent((b)=> b
+    ..dimension = dimension
+    ..filterItems.addAll(filter)));
   }
 
   close() {
@@ -108,11 +94,11 @@ class FilterSelector {
   bool checkCanAdd() {
     bool res = true;
 
-    if (measure == '' || operator == '' || dimension == '' || value == null) {
+    if (measure == '' || minOperator == '' || dimension == '' || minValue == null) {
       res = false;
     } else {
       for (int i = 0; i < filter.length; i++) {
-        if (filter[i].measure == measure && filter[i].operator == operator) {
+        if (filter[i].measure == measure && filter[i].minOperator == minValue) {
           res = false;
         }
       }
@@ -133,7 +119,7 @@ class FilterSelector {
     } else if (operator == '==') {
       res = (valData == filterData);
     } else {
-      throw NonExistentOperator();
+      throw new NonExistentOperator();
     }
     return res;
   }
@@ -142,8 +128,8 @@ class FilterSelector {
     print('${m} - ${o} ');
     for (int i = 0; i < filter.length; i++) {
       if (m == filter[i].measure &&
-          o == filter[i].operator &&
-          v == filter[i].value) {
+          o == filter[i].minOperator &&
+          v == filter[i].minValue) {
         filter.removeAt(i);
       }
     }
@@ -152,34 +138,23 @@ class FilterSelector {
 
   void reset() {
     dimension = dimensions.first.id;
-    operator = '';
+    minOperator = '';
     measure = '';
-    value = null;
+    minValue = null;
     filter = [];
     setBtnStatus();
   }
 
   void add() {
-    filter.add(FilterData(measure, operator, value));
+    var selectedMeasure = measures.firstWhere((el) => el.measure == measure);
+
+    filter.add(new MeasureFilterItem((b) => b
+      ..measure = measure
+      ..measureTitle = selectedMeasure.measureTitle
+      ..minOperator =minOperator
+      ..minValue = minValue
+    ..maxOperator = null
+    ..maxValue = null));
     setBtnStatus();
   }
 }
-
-const List<String> testHeaders = [
-  'Сумма продаж тыс.руб',
-  'Наценка, тыс. руб',
-  'Остатки, тыс руб',
-  'Количество продано, шт'
-];
-const List<List<int>> testData = [
-  [1, 4, 1, 0],
-  [2, 3, 2, 1],
-  [3, 2, 3, 4],
-  [4, 1, 4, 10]
-];
-
-
-const testFilter = [
-//  DataFilter('sdf', '>=', 5),
-//  DataFilter('dfgdfg', '<=', 3)
-];

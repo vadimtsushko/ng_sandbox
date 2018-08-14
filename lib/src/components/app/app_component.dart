@@ -3,6 +3,7 @@ import 'package:angular_router/angular_router.dart';
 import 'package:ng_sandbox/src/routes/routes.dart';
 import 'dart:async';
 import 'dart:html';
+import 'package:ng_sandbox/src/app_controller/event_bus.dart';
 
 @Component(
 
@@ -10,7 +11,7 @@ import 'dart:html';
   templateUrl: 'app_component.html',
   styleUrls: ['app_component.css'],
   directives: [routerDirectives],
-  providers: [ ClassProvider(Routes),],
+  providers: [ ClassProvider(Routes),ClassProvider(EventBus)],
 )
 class AppComponent implements OnInit
 {

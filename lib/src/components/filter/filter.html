@@ -17,8 +17,8 @@
                 <!--</tr>-->
                 <!--</tbody>-->
             <!--</table>-->
-
-            <my-filterModal [measures]="measures" [dimensions]="dimensions" (onApply)="onApply($event)"></my-filterModal>
+            <button (click)="showDialog()">Open filter</button>
+            <my-filterModal (onApply)="onApply($event)"></my-filterModal>
         </div>
     </div>
 </div>
