@@ -1,4 +1,10 @@
 
+@media (min-width: 900px) {
+    .modal-dialog {
+        min-width: 900px;
+        max-width: 90%;
+    }
+}
 .content {
     margin-top: 6em;
 }

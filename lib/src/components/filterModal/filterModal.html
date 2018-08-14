@@ -31,7 +31,7 @@
                     </div>
                     <!--title-->
                     <!--measures-->
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <!--<select (change)="canAdd()" (ngModelChange)="aaa()" [(ngModel)]="measures" *ngIf="selector.measures != null" class="form-control" id="column">-->
                         <select [(ngModel)]="selector.measure"  *ngIf="selector.measures != null" class="form-control" id="column">
                             <option *ngFor="let measure of selector.measures" value="{{measure.measure}}">{{measure.measureTitle}}</option>
@@ -47,10 +47,12 @@
                     <!--operators-->
                     <!--value-->
                     <div class="col-sm-2">
-                        <input [(ngModel)]="selector.minValue" type="number" class="form-control" placeholder="до 123456" id="value">
+                        <input [(ngModel)]="selector.minValue" type="number" class="form-control" placeholder="от {{selector.minModalVal}}" id="value">
                     </div>
                     <!--value-->
-
+                    <div class="col-sm-1 text-center">
+                        и
+                    </div>
                     <!--operators-->
                     <div class="col-sm-2">
                         <select  class="form-control">
@@ -60,7 +62,7 @@
                     <!--operators-->
                     <!--value-->
                     <div class="col-sm-2">
-                        <input type="number" class="form-control" placeholder="от 123456">
+                        <input type="number" class="form-control" placeholder="до {{selector.maxModalVal}}">
                     </div>
                     <!--value-->
 

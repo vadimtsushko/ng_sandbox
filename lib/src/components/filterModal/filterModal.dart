@@ -18,6 +18,7 @@ class FilterModalComponent implements AfterViewInit {
 
   bool canApply = true;
 
+
   ElementRef elementRef;
   EventBus   eventBus;
   FilterSelector selector = new FilterSelector();
@@ -25,7 +26,10 @@ class FilterModalComponent implements AfterViewInit {
   Stream<MeasureFilterEvent> get onApply =>
       selector.applyStreamController.stream;
   @Input()
-  set measures(value) => selector.measures = value;
+  set measures(value) {
+    selector.measures = value;
+    print(1);
+  }
   @Input()
   set dimensions(value) => selector.dimensions = value;
   FilterModalComponent(this.elementRef, this.eventBus) {

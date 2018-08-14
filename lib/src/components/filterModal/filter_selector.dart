@@ -20,8 +20,11 @@ class FilterEvent {
 enum ActionType { add, remove, reset, apply }
 
 class FilterSelector {
-  final applyStreamController =
-      new StreamController<MeasureFilterEvent>();
+  final applyStreamController = new StreamController<MeasureFilterEvent>();
+
+  double minModalVal = 0.0;
+  double maxModalVal = 10000.0;
+
   String _minOperator;
 
   String get minOperator => _minOperator;
@@ -37,7 +40,7 @@ class FilterSelector {
 
   set measure(String value) {
     _measure = value;
-    setBtnStatus();
+    setMinAndMaxVal(value);
   }
 
   String _dimension;
@@ -59,7 +62,9 @@ class FilterSelector {
   }
 
   bool canAdd = false;
+
   List<MeasureForFilter> measures;
+
   List<IvMasterDimension> dimensions;
 
   List<String> headers;
@@ -71,16 +76,15 @@ class FilterSelector {
 
   bool btnStatus = false;
 
-  init(
-      List<MeasureForFilter> _measures, List<IvMasterDimension> _dimensions) {
+  init(List<MeasureForFilter> _measures, List<IvMasterDimension> _dimensions) {
     measures = _measures;
     dimensions = _dimensions;
   }
 
   apply() {
-    applyStreamController.add(new MeasureFilterEvent((b)=> b
-    ..dimension = dimension
-    ..filterItems.addAll(filter)));
+    applyStreamController.add(new MeasureFilterEvent((b) => b
+      ..dimension = dimension
+      ..filterItems.addAll(filter)));
   }
 
   close() {
@@ -91,10 +95,22 @@ class FilterSelector {
     btnStatus = !checkCanAdd();
   }
 
+  void setMinAndMaxVal(String value) {
+    measures.forEach((el) {
+      if (el.measure == value) {
+        this.minModalVal = el.minValue;
+        this.maxModalVal = el.maxValue;
+      }
+    });
+  }
+
   bool checkCanAdd() {
     bool res = true;
 
-    if (measure == '' || minOperator == '' || dimension == '' || minValue == null) {
+    if (measure == '' ||
+        minOperator == '' ||
+        dimension == '' ||
+        minValue == null) {
       res = false;
     } else {
       for (int i = 0; i < filter.length; i++) {
@@ -151,10 +167,10 @@ class FilterSelector {
     filter.add(new MeasureFilterItem((b) => b
       ..measure = measure
       ..measureTitle = selectedMeasure.measureTitle
-      ..minOperator =minOperator
+      ..minOperator = minOperator
       ..minValue = minValue
-    ..maxOperator = null
-    ..maxValue = null));
+      ..maxOperator = null
+      ..maxValue = null));
     setBtnStatus();
   }
 }
