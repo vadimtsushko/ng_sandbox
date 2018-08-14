@@ -16,12 +16,12 @@
             <div class="modal-body">
 
                 <!--dimensions-->
-                <div class="form-group">
-                    <label for="dimensions">Выбрать измерение</label>
-                    <select  [(ngModel)]="selector.dimension" class="form-control" style="overflow: hidden;" id="dimensions">
-                        <option *ngFor="let d of selector.dimensions" value="{{d.id}}">{{d.title}}</option>
-                    </select>
-                </div>
+                <!--<div class="form-group">-->
+                    <!--<label for="dimensions">Выбрать измерение</label>-->
+                    <!--<select  [(ngModel)]="selector.dimension" class="form-control" style="overflow: hidden;" id="dimensions">-->
+                        <!--<option *ngFor="let d of selector.dimensions" value="{{d.id}}">{{d.title}}</option>-->
+                    <!--</select>-->
+                <!--</div>-->
                 <!--dimensions--minOperatoradd filter-->
 
                 <div class="row">
@@ -39,65 +39,45 @@
                     </div>
                     <!--measures-->
                     <!--operators-->
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <select [(ngModel)]="selector.minOperator" *ngIf="selector.operators != null" class="form-control" id="operators">
                             <option *ngFor="let el of selector.operators">{{el}}</option>
                         </select>
                     </div>
                     <!--operators-->
                     <!--value-->
-                    <div class="col-sm-4">
-                        <input [(ngModel)]="selector.minValue" type="number" class="form-control" placeholder="Значение" id="value">
+                    <div class="col-sm-2">
+                        <input [(ngModel)]="selector.minValue" type="number" class="form-control" placeholder="до 123456" id="value">
                     </div>
                     <!--value-->
-                    <!--addFMC-->
-                    <div class="col-md-12 text-right">
-                        <br>
-                        <button [disabled]="selector.btnStatus" (click)="selector.add()" type="button" class="btn btn-success" id="addFilter">
-                            Добавить фильтр
-                        </button>
+
+                    <!--operators-->
+                    <div class="col-sm-2">
+                        <select  class="form-control">
+                            <option *ngFor="let el of selector.operators">{{el}}</option>
+                        </select>
                     </div>
+                    <!--operators-->
+                    <!--value-->
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" placeholder="от 123456">
+                    </div>
+                    <!--value-->
+
+                    <!--addFMC-->
+                    <!--<div class="col-md-12 text-right">-->
+                        <!--<br>-->
+                        <!--<button [disabled]="selector.btnStatus" (click)="selector.add()" type="button" class="btn btn-success" id="addFilter">-->
+                            <!--Добавить фильтр-->
+                        <!--</button>-->
+                    <!--</div>-->
                     <!--addFMC-->
                 </div>
                 <!--add filter-->
 
-                <!--filters-->
-                <div class="row"  *ngIf="selector.filterLength != 0">
-                    <!--title-->
-                    <div class="col-sm-12">
-                        <br>
-                        <br>
-                        <h5> <strong>Выбранные фильры</strong> </h5>
-                    </div>
-                    <!--title-->
-                    <div class="col-sm-12">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Мера</th>
-                                <th>Операция</th>
-                                <th>Значение</th>
-                            </tr>
-                            </thead>
-                            <tbody *ngIf="selector.filter != null">
-                            <tr *ngFor="let e of selector.filter" class="selectedFilterBlock">
-                                <td>{{e.measureTitle}}</td>
-                                <td>{{e.minOperator}}</td>
-                                <td>{{e.minValue}}</td>
-                                <button (click)="selector.rm(e.measure,e.minOperator,e.minValue)" type="button" class="btn btn-danger rm">x</button>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-12 text-right">
-                        <div class="form-group"><button (click)="selector.reset()" type="button" class="btn btn-danger">Удачить все фильтры</button></div>
-                    </div>
-                </div>
-                <!--filters-->
-
             </div>
             <div class="modal-footer">
-                <button (click)="selector.apply()" [disabled]="selector.filter.isEmpty" type="button" class="btn btn-info" data-dismiss="modal">Применить фильтры</button>
+                <button (click)="selector.apply()" [disabled]="canApply" type="button" class="btn btn-info" data-dismiss="modal">Применить фильтры</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
             </div>
         </div>
