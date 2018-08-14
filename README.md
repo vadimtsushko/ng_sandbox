@@ -1,4 +1,4 @@
-# angular_tour_of_heroes
+# ng_sandbox
 
 A web app that uses [AngularDart](https://webdev.dartlang.org/angular) and
 [AngularDart Components](https://webdev.dartlang.org/components).

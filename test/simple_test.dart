@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
-import 'package:angular_tour_of_heroes/src/app_controller/dimension_selector.dart';
-import 'package:angular_tour_of_heroes/src/app_controller/filter_selector.dart';
+import 'package:ng_sandbox/src/app_controller/dimension_selector.dart';
+import 'package:ng_sandbox/src/app_controller/filter_selector.dart';
 import 'package:model/model.dart';
 
 main() {

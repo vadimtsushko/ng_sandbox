@@ -1,6 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
-import 'package:angular_tour_of_heroes/src/routes/routes.dart';
+import 'package:ng_sandbox/src/routes/routes.dart';
 import 'dart:async';
 import 'dart:html';
 

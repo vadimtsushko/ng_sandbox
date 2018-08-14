@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:angular_forms/angular_forms.dart';
 import 'dart:html';
 
-import 'package:angular_tour_of_heroes/src/app_controller/dimension_selector.dart';
+import 'package:ng_sandbox/src/app_controller/dimension_selector.dart';
 
 import 'package:dnd/dnd.dart';
 

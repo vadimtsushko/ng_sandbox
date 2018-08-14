@@ -1,33 +1,32 @@
-name: angular_tour_of_heroes
+name: ng_sandbox
 description: A web app that uses AngularDart Components
 # version: 1.0.0
 # homepage: https://www.example.com
 # author: Valeriy Makarov <email@example.com>
 
 environment:
-  sdk: '>=2.0.0-dev.55.0 <2.0.0'
+  sdk: '>=2.0.0-dev.55.0 <3.0.0'
 
 dependencies:
-  angular: ^5.0.0-beta+3
-  angular_forms: ^2.0.0-alpha
-  angular_router: ^2.0.0-alpha
+  angular: ^5.0.0
+  angular_forms: ^2.0.0
+  angular_router: ^2.0.0-alfa+19
 #  assortment: ^0.1.0
-  dnd: ^1.2.0
+  dnd:
+    git: https://github.com/vadimtsushko/dart-dnd.git
   tuple: ^1.0.2
   model:
     path: ../iv_server_project_root/model
-#    path: '../model'
-#    git: https://bitbucket.org/inqlik_bi/model
-#  http: ^0.11.0
-#  stream_transform: ^0.0.6
   bootstrap:
-    git: "git://github.com/vadimtsushko/bootstrap_for_pub"
+    git:
+      url: "git://github.com/vadimtsushko/bootstrap_for_pub"
+      ref: dart2
 
 dependency_overrides:
+  built_value: ^6.0.0
+  code_builder: 3.1.2
   html: ^0.13.3
 dev_dependencies:
-  angular_test: ^2.0.0-beta+3
   build_runner: ^0.10.0
-#  build_test: ^0.10.2
   build_web_compilers: ^0.4.1
-  test: ^0.12.38
+  test: ^1.0.0
