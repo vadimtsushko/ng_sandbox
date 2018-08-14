@@ -23,7 +23,16 @@ class FilterSelector {
   final applyStreamController = new StreamController<MeasureFilterEvent>();
 
   double minModalVal = 0.0;
-  double maxModalVal = 10000.0;
+  double maxModalVal = 0.0;
+
+  String _maxOperator;
+
+  String get maxOperator => _maxOperator;
+
+  set maxOperator(String value) {
+    _maxOperator = value;
+    setBtnStatus();
+  }
 
   String _minOperator;
 
@@ -108,6 +117,7 @@ class FilterSelector {
     bool res = true;
 
     if (measure == '' ||
+        maxOperator == '' ||
         minOperator == '' ||
         dimension == '' ||
         minValue == null) {
@@ -154,6 +164,7 @@ class FilterSelector {
 
   void reset() {
     dimension = dimensions.first.id;
+    maxOperator = '';
     minOperator = '';
     measure = '';
     minValue = null;
@@ -167,6 +178,7 @@ class FilterSelector {
     filter.add(new MeasureFilterItem((b) => b
       ..measure = measure
       ..measureTitle = selectedMeasure.measureTitle
+      ..maxOperator = maxOperator
       ..minOperator = minOperator
       ..minValue = minValue
       ..maxOperator = null

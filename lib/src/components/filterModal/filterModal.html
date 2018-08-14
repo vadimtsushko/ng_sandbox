@@ -55,7 +55,7 @@
                     </div>
                     <!--operators-->
                     <div class="col-sm-2">
-                        <select  class="form-control">
+                        <select  [(ngModel)]="selector.maxOperator" *ngIf="selector.operators != null" class="form-control">
                             <option *ngFor="let el of selector.operators">{{el}}</option>
                         </select>
                     </div>
