@@ -15,7 +15,9 @@ dependencies:
   dnd:
     git: https://github.com/vadimtsushko/dart-dnd.git
   model:
-    path: ../iv_server_project_root/model
+    git:
+      url: "https://bitbucket.org/inqlik_bi/model"
+#    path: ../iv_server_project_root/model
   bootstrap:
     git:
       url: "git://github.com/vadimtsushko/bootstrap_for_pub"
