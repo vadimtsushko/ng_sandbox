@@ -80,7 +80,23 @@ input:valid + span:after {
     /*margin-top: 25px;*/
 /*}*/
 
-.minbr{
-    padding: 0px;
-    margin: 0;
-    height: 5px;}
+.modal-dialog{
+    /*width: 710px;*/
+}
+
+.flexContainer div, .flexContainer{
+    display: flex;
+}
+.flexContainer{
+    justify-content: space-between;
+    padding: 0.5em;
+}
+.flexContainer input{
+    min-width: 100px;
+}
+@media (max-width: 600px) {
+    .flexContainer{
+        flex-direction: column;
+    }
+
+}
