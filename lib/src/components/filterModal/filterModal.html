@@ -31,7 +31,7 @@
                     </div>
                     <!--title-->
                     <!--measures-->
-                    <div class="col-sm-3">
+                    <div class="col-sm-5">
                         <!--<select (change)="canAdd()" (ngModelChange)="aaa()" [(ngModel)]="measures" *ngIf="selector.measures != null" class="form-control" id="column">-->
                         <select [(ngModel)]="selector.measure"  *ngIf="selector.measures != null" class="form-control" id="column">
                             <option *ngFor="let measure of selector.measures" value="{{measure.measure}}">{{measure.measureTitle}}</option>
@@ -39,30 +39,44 @@
                     </div>
                     <!--measures-->
                     <!--operators-->
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <select [(ngModel)]="selector.minOperator" *ngIf="selector.operators != null" class="form-control" id="operators">
                             <option *ngFor="let el of selector.operators">{{el}}</option>
                         </select>
                     </div>
                     <!--operators-->
                     <!--value-->
-                    <div class="col-sm-2">
-                        <input [(ngModel)]="selector.minValue" type="number" class="form-control" placeholder="от {{selector.minModalVal}}" id="value">
+                    <div class="col-sm-3">
+                        <!--<label for="eyes">Number of eyes:</label>-->
+                        <!--<input type="number" id="eyes" name="eyes"-->
+                               <!--placeholder="Min: 10, max: 100"-->
+                               <!--min="10" max="100" />-->
+                        <!--<span class="validity"></span>-->
+
+                        <label for="minModalVal">от {{selector.minModalVal.toInt()}} до {{selector.maxModalVal.toInt()}}</label>
+                        <input [(ngModel)]="selector.minValue" type="number" class="form-control"  min="{{selector.minModalVal.toInt()}}" max="{{selector.maxModalVal.toInt()}}" placeholder="значение 1" id="minModalVal">
+                        <span class="validity"></span>
                     </div>
                     <!--value-->
-                    <div class="col-sm-1 text-center">
+
+                    <div class="col-sm-12"><br></div>
+
+                    <div class="col-sm-5 text-center">
                         и
                     </div>
                     <!--operators-->
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
+
                         <select  [(ngModel)]="selector.maxOperator" *ngIf="selector.operators != null" class="form-control">
                             <option *ngFor="let el of selector.operators">{{el}}</option>
                         </select>
                     </div>
                     <!--operators-->
                     <!--value-->
-                    <div class="col-sm-2">
-                        <input type="number" class="form-control" placeholder="до {{selector.maxModalVal}}">
+                    <div class="col-sm-3">
+                        <label for="maxModalVal">от {{selector.minModalVal.toInt()}} до {{selector.maxModalVal.toInt()}}</label>
+                        <input type="number" class="form-control" placeholder="значение 2" id="maxModalVal" min="{{selector.minModalVal}}" max="{{selector.maxModalVal}}">
+                        <span class="validity"></span>
                     </div>
                     <!--value-->
 
