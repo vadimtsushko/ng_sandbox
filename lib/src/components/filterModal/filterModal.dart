@@ -16,9 +16,6 @@ import 'package:ng_sandbox/src/app_controller/event_bus.dart';
 )
 class FilterModalComponent implements AfterViewInit {
 
-  bool canApply = true;
-
-
   ElementRef elementRef;
   EventBus   eventBus;
   FilterSelector selector = new FilterSelector();

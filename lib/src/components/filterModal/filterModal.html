@@ -47,14 +47,8 @@
                     <!--operators-->
                     <!--value-->
                     <div class="col-sm-3">
-                        <!--<label for="eyes">Number of eyes:</label>-->
-                        <!--<input type="number" id="eyes" name="eyes"-->
-                               <!--placeholder="Min: 10, max: 100"-->
-                               <!--min="10" max="100" />-->
-                        <!--<span class="validity"></span>-->
-
                         <label for="minModalVal">от {{selector.minModalVal.toInt()}} до {{selector.maxModalVal.toInt()}}</label>
-                        <input [(ngModel)]="selector.minValue" type="number" class="form-control"  min="{{selector.minModalVal.toInt()}}" max="{{selector.maxModalVal.toInt()}}" placeholder="значение 1" id="minModalVal">
+                        <input [(ngModel)]="selector.minValue" type="number" class="form-control"  min="{{selector.minModalVal.toInt() + 1}}" max="{{selector.maxModalVal.toInt()}}" placeholder="значение 1" id="minModalVal">
                         <span class="validity"></span>
                     </div>
                     <!--value-->
@@ -66,7 +60,6 @@
                     </div>
                     <!--operators-->
                     <div class="col-sm-4">
-
                         <select  [(ngModel)]="selector.maxOperator" *ngIf="selector.operators != null" class="form-control">
                             <option *ngFor="let el of selector.operators">{{el}}</option>
                         </select>
@@ -75,25 +68,16 @@
                     <!--value-->
                     <div class="col-sm-3">
                         <label for="maxModalVal">от {{selector.minModalVal.toInt()}} до {{selector.maxModalVal.toInt()}}</label>
-                        <input type="number" class="form-control" placeholder="значение 2" id="maxModalVal" min="{{selector.minModalVal}}" max="{{selector.maxModalVal}}">
+                        <input [(ngModel)]="selector.maxValue"  type="number" class="form-control"  min="{{selector.minModalVal.toInt() + 1}}" max="{{selector.maxModalVal.toInt()}}" placeholder="значение 2" id="maxModalVal">
                         <span class="validity"></span>
                     </div>
                     <!--value-->
-
-                    <!--addFMC-->
-                    <!--<div class="col-md-12 text-right">-->
-                        <!--<br>-->
-                        <!--<button [disabled]="selector.btnStatus" (click)="selector.add()" type="button" class="btn btn-success" id="addFilter">-->
-                            <!--Добавить фильтр-->
-                        <!--</button>-->
-                    <!--</div>-->
-                    <!--addFMC-->
                 </div>
                 <!--add filter-->
 
             </div>
             <div class="modal-footer">
-                <button (click)="selector.apply()" [disabled]="canApply" type="button" class="btn btn-info" data-dismiss="modal">Применить фильтры</button>
+                <button (click)="selector.apply()" [disabled]="selector.btnCanApplyDisabled" type="button" class="btn btn-info" data-dismiss="modal">Применить фильтры</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
             </div>
         </div>

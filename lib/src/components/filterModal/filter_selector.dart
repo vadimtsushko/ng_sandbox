@@ -22,6 +22,8 @@ enum ActionType { add, remove, reset, apply }
 class FilterSelector {
   final applyStreamController = new StreamController<MeasureFilterEvent>();
 
+  bool btnCanApplyDisabled = true;
+
   double minModalVal = 0.0;
   double maxModalVal = 0.0;
 
@@ -61,6 +63,15 @@ class FilterSelector {
     setBtnStatus();
   }
 
+  num _maxValue;
+
+  num get maxValue => _maxValue;
+
+  set maxValue(num value) {
+    _maxValue = value;
+    setBtnStatus();
+  }
+
   num _minValue;
 
   num get minValue => _minValue;
@@ -91,6 +102,8 @@ class FilterSelector {
   }
 
   apply() {
+    print(111);
+    add();
     applyStreamController.add(new MeasureFilterEvent((b) => b
       ..dimension = dimension
       ..filterItems.addAll(filter)));
@@ -101,7 +114,29 @@ class FilterSelector {
   }
 
   void setBtnStatus() {
-    btnStatus = !checkCanAdd();
+    bool status = true;
+    if (minValue != null &&
+        minValue >= minModalVal &&
+        minValue <= maxModalVal) {
+      if (minOperator != null && minOperator != '')
+        status = true;
+      else
+        status = false;
+    } else
+      status = false;
+
+    if (maxValue != null &&
+        maxValue >= minModalVal &&
+        maxValue <= maxModalVal) {
+      if (maxOperator != null && maxOperator != '')
+        status = true;
+      else
+        status = false;
+    } else if (maxValue != null) {
+      status = false;
+    }
+
+    btnCanApplyDisabled = !status;
   }
 
   void setMinAndMaxVal(String value) {
@@ -181,7 +216,9 @@ class FilterSelector {
       ..maxOperator = maxOperator
       ..minOperator = minOperator
       ..minValue = minValue
+      ..maxValue = maxValue
       ..maxOperator = null
+      ..minOperator = null
       ..maxValue = null));
     setBtnStatus();
   }
