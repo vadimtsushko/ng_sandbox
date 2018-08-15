@@ -92,6 +92,10 @@ class FilterSelector {
   List<MeasureFilterItem> filter = [];
   List<String> operators = ['<', '>', '<=', '>=', '=='];
 
+  List<String> operatorsMax = ['<=', '<'];
+  List<String> operatorsMin = ['>=', '>'];
+
+
   num get filterLength => filter.length;
 
   bool btnStatus = false;
@@ -221,5 +225,9 @@ class FilterSelector {
       ..minOperator = null
       ..maxValue = null));
     setBtnStatus();
+  }
+
+  getDataFromModal(){
+    print('XXXXXXXXXXXXXXXXXXXXXXX');
   }
 }

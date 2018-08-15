@@ -43,4 +43,7 @@ class FilterModalComponent implements AfterViewInit {
     ButtonElement buttonElement = element.querySelector('#filterModalOpen');
     buttonElement.click();
   }
+
+
+
 }

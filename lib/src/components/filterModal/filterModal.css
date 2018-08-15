@@ -76,3 +76,11 @@ input:valid + span:after {
     display: block;
     height: 20px;
 }
+/*.modalBox div{*/
+    /*margin-top: 25px;*/
+/*}*/
+
+.minbr{
+    padding: 0px;
+    margin: 0;
+    height: 5px;}
