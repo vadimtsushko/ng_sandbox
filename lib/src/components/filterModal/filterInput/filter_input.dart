@@ -20,24 +20,40 @@ import '../filter_selector.dart';
 
 class FilterInputComponent {
 
-  double _maxValue;
 
-  set maxValue(double value) {
-    _maxValue = value;
-    updateFilterItem();
-  }
 
-  double get maxValue => _maxValue;
 
   double _minValue;
-
-  set minValue(double value) {
+  String minValueStatus;
+  set minValue(num value) {
       _minValue = value;
       updateFilterItem();
+      minValueStatus = inputValidator(measure.minValue, measure.maxValue, value);
+  }
+
+  String inputValidator(double minV, double maxV, num val){
+
+    print("!${val}!");
+    if(val == null)
+      return '';
+    else if(val < maxV && val > minV)
+      return 'green';
+    else
+      return 'red';
   }
 
   double get minValue => _minValue;
 
+  double _maxValue;
+  String maxValueStatus;
+  set maxValue(double value) {
+    _maxValue = value;
+    updateFilterItem();
+    maxValueStatus = inputValidator(measure.minValue, measure.maxValue, value);
+
+  }
+
+  double get maxValue => _maxValue;
 
   String _operatorsMin;
 

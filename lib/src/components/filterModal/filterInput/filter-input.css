@@ -13,6 +13,15 @@
     min-width: 130px;
     max-width: 130px;
 }
+
+input.red {
+    background: rgba(255, 0, 0, 0.25);
+    border-color: rgba(255, 0, 0, 1);
+}
+input.green {
+    background: rgba(0, 128, 0, 0.25);
+    border-color: rgba(0, 128, 0, 1);
+}
 @media (max-width: 600px) {
     .flexContainer{
         flex-direction: column;
