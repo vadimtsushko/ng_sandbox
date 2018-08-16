@@ -113,7 +113,7 @@ class FilterSelector {
     if (resetMeasures) {
       var measuresBackup = List<MeasureForFilter>.from(measures);
       measures.clear();
-      Future.delayed (Duration(milliseconds: 3), () {
+      Future.delayed (Duration(microseconds: 1), () {
         measures = measuresBackup;
       });
     }
