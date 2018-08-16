@@ -41,23 +41,23 @@ class FilterInputComponent {
 
   double get maxValue => _maxValue;
 
-  String _operatorsMin = '>=';
+  String _minOperator = '>=';
 
-  set operatorsMin(String value) {
-    _operatorsMin = value;
+  set minOperator(String value) {
+    _minOperator = value;
     updateFilterItem();
   }
 
-  String get operatorsMin => _operatorsMin;
+  String get minOperator => _minOperator;
 
-  String _operatorsMax = '<=';
+  String _maxOperator = '<=';
 
-  set operatorsMax(String value) {
-    _operatorsMax = value;
+  set maxOperator(String value) {
+    _maxOperator = value;
     updateFilterItem();
   }
 
-  String get operatorsMax => _operatorsMax;
+  String get maxOperator => _maxOperator;
 
   FilterSelector _selector;
 
@@ -83,15 +83,12 @@ class FilterInputComponent {
     bool isErr = (_minValueStatus + _maxValueStatus).contains('red');
 
 
-    print("!${minValue}!");
-    print("?${maxValue}?");
-
     selector.updateFilterItem(new MeasureFilterItem((b) => b
       ..measure = this.measure.measure
       ..measureTitle = measure.measureTitle
-      ..maxOperator = operatorsMax
-      ..minOperator = operatorsMin
-      ..minValue = null
+      ..maxOperator = maxOperator
+      ..minOperator = minOperator
+      ..minValue = minValue
       ..maxValue = maxValue
     ), isErr: isErr);
   }

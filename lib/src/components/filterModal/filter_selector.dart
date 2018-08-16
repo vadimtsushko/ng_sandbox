@@ -80,25 +80,23 @@ class FilterSelector {
   List<MeasureForFilter> measures;
 
   List<IvMasterDimension> dimensions;
-  List<MeasureFilterItem> filter = [];
+
 
   List<String> operatorsMax = ['<=', '<'];
   List<String> operatorsMin = ['>=', '>'];
 
   var updateItems = <String, MeasureFilterItem>{};
-
+  List<MeasureFilterItem> filter = [];
+  
   init(List<MeasureForFilter> _measures, List<IvMasterDimension> _dimensions) {
     measures = _measures;
     dimensions = _dimensions;
   }
 
   apply() {
-    print('apply');
-    updateItems.forEach((i, el){
-//    applyStreamController.add(new MeasureFilterEvent((b) => b
-//      ..dimension = dimension
-//      ..filterItems.addAll(filter)));
-    });
+    applyStreamController.add(new MeasureFilterEvent((b) => b
+      ..dimension = dimension
+      ..filterItems.addAll(filter)));
   }
 
   close() {
@@ -129,17 +127,22 @@ class FilterSelector {
 
   updateFilterItem(MeasureFilterItem item, {bool isErr = false}){
     print(item);
-//    if(item != null && isErr == false){
-//      if (item.minValue != null || item.maxValue != null)
-//        updateItems[item.measureTitle] = item;
-//      else
-//        updateItems.remove(item.measureTitle);
-//      if (updateItems.length > 0)
-//        btnCanApplyDisabled = false;
-//      else
-//        btnCanApplyDisabled = true;
-//    } else
-//      btnCanApplyDisabled = true;
+    if(item != null && isErr == false){
+      if (item.minValue != null || item.maxValue != null)
+        updateItems[item.measureTitle] = item;
+      else
+        updateItems.remove(item.measureTitle);
+      if (updateItems.length > 0)
+        btnCanApplyDisabled = false;
+      else
+        btnCanApplyDisabled = true;
+    } else
+      btnCanApplyDisabled = true;
+
+    filter = [];
+    updateItems.forEach((i, el){
+      filter.add(el);
+    });
   }
 
   String inputValidator(double minV, double maxV, num val){

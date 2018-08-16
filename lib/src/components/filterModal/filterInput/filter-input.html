@@ -3,7 +3,7 @@
     <div class="titleModalRow">{{measure.measureTitle}}</div>
     <div>
         <!--<select (change)="selector.getDataFromModal()" *ngIf="operatorsMin != null"-->
-        <select [(ngModel)]="operatorsMin"
+        <select [(ngModel)]="minOperator"
                 *ngIf="selector.operatorsMin != null"
                 class="form-control" id="operators">
             <option *ngFor="let el of selector.operatorsMin">{{el}}</option>
@@ -22,7 +22,7 @@
 
     </div>
     <div>
-        <select [(ngModel)]="operatorsMax"
+        <select [(ngModel)]="maxOperator"
                 *ngIf="selector.operatorsMax != null" class="form-control">
             <option *ngFor="let el of selector.operatorsMax">{{el}}</option>
         </select>
