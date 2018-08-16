@@ -26,7 +26,6 @@ class FilterModalComponent implements AfterViewInit {
   @Input()
   set measures(value) {
     selector.measures = value;
-    print(1);
   }
   @Input()
   set dimensions(value) => selector.dimensions = value;

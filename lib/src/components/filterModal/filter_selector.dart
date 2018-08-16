@@ -227,7 +227,20 @@ class FilterSelector {
     setBtnStatus();
   }
 
-  getDataFromModal(){
-    print('XXXXXXXXXXXXXXXXXXXXXXX');
+  var updateItems = <String, MeasureFilterItem>{};
+
+  updateFilterItem(MeasureFilterItem item){
+    if(item != null){
+      if (item.minValue != null || item.maxValue != null)
+        updateItems[item.measureTitle] = item;
+      else
+        updateItems.remove(item.measureTitle);
+      if (updateItems.length > 0)
+        btnCanApplyDisabled = false;
+      else
+        btnCanApplyDisabled = true;
+    } else
+      btnCanApplyDisabled = true;
   }
+
 }
