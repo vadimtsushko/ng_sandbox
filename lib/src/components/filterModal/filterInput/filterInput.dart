@@ -20,22 +20,29 @@ import 'package:ng_sandbox/src/app_controller/event_bus.dart';
 
 class FilterInput {
 
+
   double maxValue;
+//  set measure(MeasureForFilter value) {
+//    measureLoc = value;
+//  }
+
   double minValue;
   String operatorsMin;
   String operatorsMax;
 
-  FilterSelector selectorLoc;
+  FilterSelector _selector;
   @Input()
   set selector(FilterSelector value) {
-    selectorLoc = value;
+    _selector = value;
   }
+  FilterSelector get selector => _selector;
 
-  MeasureForFilter measureLoc;
+  MeasureForFilter _measure;
   @Input()
   set measure(MeasureForFilter value) {
-    measureLoc = value;
+    _measure = value;
   }
+  MeasureForFilter get measure => _measure;
 
   getDataFromModal(){
     print('XXXXXXXXXXXXXXXXXXXXXXX');

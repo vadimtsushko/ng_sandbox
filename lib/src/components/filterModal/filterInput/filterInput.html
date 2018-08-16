@@ -1,31 +1,32 @@
 <div class="flexContainer">
-    <div class="titleModalRow">{{measureLoc.measureTitle}}</div>
+    <div class="titleModalRow">{{measure.measureTitle}}</div>
     <div>
         <!--<select (change)="selector.getDataFromModal()" *ngIf="operatorsMin != null"-->
         <select [(ngModel)]="operatorsMin"
-                *ngIf="selectorLoc.operatorsMin != null"
+                *ngIf="selector.operatorsMin != null"
                 class="form-control" id="operators">
-            <option *ngFor="let el of selectorLoc.operatorsMin">{{el}}</option>
+            <option *ngFor="let el of selector.operatorsMin">{{el}}</option>
         </select>
     </div>
+
     <div>
         <input [(ngModel)]="minValue"
                type="number"
                class="form-control"
-               placeholder="{{measureLoc.minValue.toStringAsFixed(2)}}"
+               placeholder="{{measure.minValue.toStringAsFixed(2)}}"
                id="minModalVal">
     </div>
     <div>
         <select [(ngModel)]="operatorsMax"
-                *ngIf="selectorLoc.operatorsMax != null" class="form-control">
-            <option *ngFor="let el of selectorLoc.operatorsMax">{{el}}</option>
+                *ngIf="selector.operatorsMax != null" class="form-control">
+            <option *ngFor="let el of selector.operatorsMax">{{el}}</option>
         </select>
     </div>
     <div>
         <input [(ngModel)]="maxValue"
                type="number"
                class="form-control"
-               placeholder="{{measureLoc.maxValue.toStringAsFixed(2)}}"
+               placeholder="{{measure.maxValue.toStringAsFixed(2)}}"
                id="maxModalVal">
     </div>
 </div>
