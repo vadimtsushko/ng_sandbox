@@ -10,7 +10,7 @@
     width: 160px;
 }
 .flexContainer input{
-    min-width: 100px;
+    min-width: 130px;
     max-width: 130px;
 }
 @media (max-width: 600px) {

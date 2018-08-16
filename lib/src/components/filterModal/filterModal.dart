@@ -9,12 +9,16 @@ import './filterInput/filterInput.dart';
 import 'filter_selector.dart';
 import 'package:ng_sandbox/src/app_controller/event_bus.dart';
 
+
 @Component(
-  selector: 'my-filterModal',
+  selector: 'filter-modal',
   templateUrl: 'filterModal.html',
   styleUrls: ['filterModal.css'],
-  directives: [coreDirectives, routerDirectives, formDirectives, FilterInput],
+  directives: [coreDirectives, routerDirectives, formDirectives, FilterInputComponent],
 )
+
+
+
 class FilterModalComponent implements AfterViewInit {
 
   ElementRef elementRef;

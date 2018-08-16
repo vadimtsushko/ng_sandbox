@@ -33,7 +33,6 @@ class FilterSelector {
 
   set maxOperator(String value) {
     _maxOperator = value;
-    setBtnStatus();
   }
 
   String _minOperator;
@@ -42,7 +41,6 @@ class FilterSelector {
 
   set minOperator(String value) {
     _minOperator = value;
-    setBtnStatus();
   }
 
   String _measure;
@@ -51,7 +49,6 @@ class FilterSelector {
 
   set measure(String value) {
     _measure = value;
-    setMinAndMaxVal(value);
   }
 
   String _dimension;
@@ -60,7 +57,6 @@ class FilterSelector {
 
   set dimension(String value) {
     _dimension = value;
-    setBtnStatus();
   }
 
   num _maxValue;
@@ -69,7 +65,6 @@ class FilterSelector {
 
   set maxValue(num value) {
     _maxValue = value;
-    setBtnStatus();
   }
 
   num _minValue;
@@ -78,7 +73,6 @@ class FilterSelector {
 
   set minValue(num value) {
     _minValue = value;
-    setBtnStatus();
   }
 
   bool canAdd = false;
@@ -86,17 +80,12 @@ class FilterSelector {
   List<MeasureForFilter> measures;
 
   List<IvMasterDimension> dimensions;
-
-  List<String> headers;
-  List<List<int>> dataOut;
   List<MeasureFilterItem> filter = [];
-  List<String> operators = ['<', '>', '<=', '>=', '=='];
 
   List<String> operatorsMax = ['<=', '<'];
   List<String> operatorsMin = ['>=', '>'];
 
-
-  num get filterLength => filter.length;
+  var updateItems = <String, MeasureFilterItem>{};
 
   bool btnStatus = false;
 
@@ -106,109 +95,20 @@ class FilterSelector {
   }
 
   apply() {
-    print(111);
-    add();
-    applyStreamController.add(new MeasureFilterEvent((b) => b
-      ..dimension = dimension
-      ..filterItems.addAll(filter)));
+    updateItems.forEach((i, el){
+//    applyStreamController.add(new MeasureFilterEvent((b) => b
+//      ..dimension = dimension
+//      ..filterItems.addAll(filter)));
+    });
   }
 
   close() {
     applyStreamController.close();
   }
 
-  void setBtnStatus() {
-    bool status = true;
-    if (minValue != null &&
-        minValue >= minModalVal &&
-        minValue <= maxModalVal) {
-      if (minOperator != null && minOperator != '')
-        status = true;
-      else
-        status = false;
-    } else
-      status = false;
-
-    if (maxValue != null &&
-        maxValue >= minModalVal &&
-        maxValue <= maxModalVal) {
-      if (maxOperator != null && maxOperator != '')
-        status = true;
-      else
-        status = false;
-    } else if (maxValue != null) {
-      status = false;
-    }
-
-    btnCanApplyDisabled = !status;
-  }
-
-  void setMinAndMaxVal(String value) {
-    measures.forEach((el) {
-      if (el.measure == value) {
-        this.minModalVal = el.minValue;
-        this.maxModalVal = el.maxValue;
-      }
-    });
-  }
-
-  bool checkCanAdd() {
-    bool res = true;
-
-    if (measure == '' ||
-        maxOperator == '' ||
-        minOperator == '' ||
-        dimension == '' ||
-        minValue == null) {
-      res = false;
-    } else {
-      for (int i = 0; i < filter.length; i++) {
-        if (filter[i].measure == measure && filter[i].minOperator == minValue) {
-          res = false;
-        }
-      }
-    }
-    return res;
-  }
-
-  bool isCanAdd(num valData, String operator, int filterData) {
-    var res = false;
-    if (operator == '<') {
-      res = valData < filterData;
-    } else if (operator == '>') {
-      res = valData > filterData;
-    } else if (operator == '<=') {
-      res = valData <= filterData;
-    } else if (operator == '>=') {
-      res = valData >= filterData;
-    } else if (operator == '==') {
-      res = (valData == filterData);
-    } else {
-      throw new NonExistentOperator();
-    }
-    return res;
-  }
-
-  void rm(String m, String o, num v) {
-    print('${m} - ${o} ');
-    for (int i = 0; i < filter.length; i++) {
-      if (m == filter[i].measure &&
-          o == filter[i].minOperator &&
-          v == filter[i].minValue) {
-        filter.removeAt(i);
-      }
-    }
-    setBtnStatus();
-  }
 
   void reset() {
-    dimension = dimensions.first.id;
-    maxOperator = '';
-    minOperator = '';
-    measure = '';
-    minValue = null;
-    filter = [];
-    setBtnStatus();
+     updateItems.clear();
   }
 
   void add() {
@@ -224,10 +124,7 @@ class FilterSelector {
       ..maxOperator = null
       ..minOperator = null
       ..maxValue = null));
-    setBtnStatus();
   }
-
-  var updateItems = <String, MeasureFilterItem>{};
 
   updateFilterItem(MeasureFilterItem item){
     if(item != null){
