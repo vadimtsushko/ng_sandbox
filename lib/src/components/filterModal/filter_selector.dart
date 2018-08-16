@@ -128,17 +128,18 @@ class FilterSelector {
   }
 
   updateFilterItem(MeasureFilterItem item, {bool isErr = false}){
-    if(item != null && isErr == false){
-      if (item.minValue != null || item.maxValue != null)
-        updateItems[item.measureTitle] = item;
-      else
-        updateItems.remove(item.measureTitle);
-      if (updateItems.length > 0)
-        btnCanApplyDisabled = false;
-      else
-        btnCanApplyDisabled = true;
-    } else
-      btnCanApplyDisabled = true;
+    print(item);
+//    if(item != null && isErr == false){
+//      if (item.minValue != null || item.maxValue != null)
+//        updateItems[item.measureTitle] = item;
+//      else
+//        updateItems.remove(item.measureTitle);
+//      if (updateItems.length > 0)
+//        btnCanApplyDisabled = false;
+//      else
+//        btnCanApplyDisabled = true;
+//    } else
+//      btnCanApplyDisabled = true;
   }
 
   String inputValidator(double minV, double maxV, num val){

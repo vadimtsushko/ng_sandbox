@@ -26,6 +26,7 @@ class FilterInputComponent {
       _minValue = value;
       minValueStatus = selector.inputValidator(measure.minValue, measure.maxValue, value);
       updateFilterItem();
+
   }
 
   double get minValue => _minValue;
@@ -40,7 +41,7 @@ class FilterInputComponent {
 
   double get maxValue => _maxValue;
 
-  String _operatorsMin;
+  String _operatorsMin = '>=';
 
   set operatorsMin(String value) {
     _operatorsMin = value;
@@ -49,7 +50,7 @@ class FilterInputComponent {
 
   String get operatorsMin => _operatorsMin;
 
-  String _operatorsMax;
+  String _operatorsMax = '<=';
 
   set operatorsMax(String value) {
     _operatorsMax = value;
@@ -81,12 +82,16 @@ class FilterInputComponent {
     String _maxValueStatus = maxValueStatus == null ? '' : maxValueStatus;
     bool isErr = (_minValueStatus + _maxValueStatus).contains('red');
 
+
+    print("!${minValue}!");
+    print("?${maxValue}?");
+
     selector.updateFilterItem(new MeasureFilterItem((b) => b
       ..measure = this.measure.measure
       ..measureTitle = measure.measureTitle
       ..maxOperator = operatorsMax
       ..minOperator = operatorsMin
-      ..minValue = minValue
+      ..minValue = null
       ..maxValue = maxValue
     ), isErr: isErr);
   }
