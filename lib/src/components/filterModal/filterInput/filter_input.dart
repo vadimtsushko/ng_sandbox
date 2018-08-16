@@ -92,4 +92,9 @@ class FilterInputComponent {
       ..maxValue = maxValue
     ), isErr: isErr);
   }
+
+  streamEventProcessing(String e){
+    print('2 in filter input');
+    print(e);
+  }
 }

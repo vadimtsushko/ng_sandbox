@@ -2,10 +2,10 @@
 
     <div class="titleModalRow">{{measure.measureTitle}}</div>
     <div>
-        <!--<select (change)="selector.getDataFromModal()" *ngIf="operatorsMin != null"-->
         <select [(ngModel)]="minOperator"
                 *ngIf="selector.operatorsMin != null"
-                class="form-control" id="operators">
+                class="form-control"
+                id="operators">
             <option *ngFor="let el of selector.operatorsMin">{{el}}</option>
         </select>
     </div>
@@ -19,11 +19,11 @@
                max="{{measure.maxValue.toStringAsFixed(2)}}"
                placeholder="{{measure.minValue.toStringAsFixed(2)}}"
                id="minModalVal">
-
     </div>
     <div>
         <select [(ngModel)]="maxOperator"
-                *ngIf="selector.operatorsMax != null" class="form-control">
+                *ngIf="selector.operatorsMax != null"
+                class="form-control">
             <option *ngFor="let el of selector.operatorsMax">{{el}}</option>
         </select>
     </div>

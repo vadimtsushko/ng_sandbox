@@ -46,6 +46,16 @@ class FilterModalComponent implements AfterViewInit {
     buttonElement.click();
   }
 
+  void reset(){
+    print('1 in filter modal');
+    streamEventProcessing('clear');
+  }
 
+  @Output()
+  Stream get streamEventProcessing_e => _innerListController_streamEventProcessing.stream;
+  final _innerListController_streamEventProcessing = StreamController();
+  void streamEventProcessing(String e){
+    _innerListController_streamEventProcessing.add(e);
+  }
 
 }
