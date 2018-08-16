@@ -111,6 +111,7 @@ class FilterSelector {
   void reset() {
     dimension = dimensions.first.id;
     updateItems.clear();
+    btnCanApplyDisabled = true;
   }
 
   void add() {
