@@ -32,7 +32,7 @@ class FilterInputComponent {
 
   double _maxValue;
   String maxValueStatus;
-  set maxValue(double value) {
+  set maxValue(num value) {
     _maxValue = value;
     maxValueStatus = selector.inputValidator(measure.minValue, measure.maxValue, value);
     updateFilterItem();
