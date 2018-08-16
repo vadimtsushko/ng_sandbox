@@ -27,7 +27,7 @@ class FilterInputComponent {
     updateFilterItem();
   }
 
-  get maxValue => _maxValue;
+  double get maxValue => _maxValue;
 
   double _minValue;
 
