@@ -1,0 +1,27 @@
+
+.flexContainer div, .flexContainer{
+    display: flex;
+}
+.flexContainer{
+    justify-content: space-between;
+    padding: 0.5em;
+}
+.flexContainer .titleModalRow{
+    width: 160px;
+}
+.flexContainer input{
+    min-width: 100px;
+    max-width: 130px;
+}
+@media (max-width: 600px) {
+    .flexContainer{
+        flex-direction: column;
+    }
+    .flexContainer input{
+        min-width: auto;
+        max-width: 100%;
+    }
+    .flexContainer .titleModalRow{
+        width: 100%;
+    }
+}

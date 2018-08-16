@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:model/model.dart';
 import 'dart:async';
 
+import './filterInput/filterInput.dart';
 import 'filter_selector.dart';
 import 'package:ng_sandbox/src/app_controller/event_bus.dart';
 
@@ -12,7 +13,7 @@ import 'package:ng_sandbox/src/app_controller/event_bus.dart';
   selector: 'my-filterModal',
   templateUrl: 'filterModal.html',
   styleUrls: ['filterModal.css'],
-  directives: [coreDirectives, routerDirectives, formDirectives],
+  directives: [coreDirectives, routerDirectives, formDirectives, FilterInput],
 )
 class FilterModalComponent implements AfterViewInit {
 
