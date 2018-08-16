@@ -95,6 +95,7 @@ class FilterSelector {
   }
 
   apply() {
+    print('apply');
     updateItems.forEach((i, el){
 //    applyStreamController.add(new MeasureFilterEvent((b) => b
 //      ..dimension = dimension

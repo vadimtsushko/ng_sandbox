@@ -3,13 +3,13 @@ import 'package:angular_router/angular_router.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:ng_sandbox/src/components/filterModal/filter_selector.dart';
 import 'package:model/model.dart';
-import '../filterModal.dart';
+import '../filter_modal.dart';
 import '../filter_selector.dart';
 
 @Component(
   selector: 'filter-input',
-  templateUrl: 'filterInput.html',
-  styleUrls: ['filterInput.css'],
+  templateUrl: 'filter-input.html',
+  styleUrls: ['filter-input.css'],
   directives: [
     coreDirectives,
     routerDirectives,
@@ -17,6 +17,7 @@ import '../filter_selector.dart';
     FilterModalComponent
   ],
 )
+
 class FilterInputComponent {
 
   double _maxValue;

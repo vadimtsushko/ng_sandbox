@@ -3,7 +3,7 @@ import 'package:angular_router/angular_router.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:model/model.dart';
 
-import 'package:ng_sandbox/src/components/filterModal/filterModal.dart';
+import 'package:ng_sandbox/src/components/filterModal/filter_modal.dart';
 import 'package:ng_sandbox/src/app_controller/event_bus.dart';
 import 'filter_test_data.dart';
 
