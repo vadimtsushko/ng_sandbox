@@ -15,9 +15,9 @@
                value="{{minValue}}"
                type="number"
                class="form-control {{minValueStatus}}"
-               min="{{measure.minValue.toStringAsFixed(2)}}"
-               max="{{measure.maxValue.toStringAsFixed(2)}}"
-               placeholder="{{measure.minValue.toStringAsFixed(2)}}"
+               min="{{dataMinValue}}"
+               max="{{dataMaxValue}}"
+               placeholder="{{dataMinValue}}"
                id="minModalVal">
     </div>
     <div>
@@ -30,10 +30,10 @@
     <div>
         <input [(ngModel)]="maxValue"
                type="number"
-               min="{{measure.minValue.toStringAsFixed(2)}}"
-               max="{{measure.maxValue.toStringAsFixed(2)}}"
+               min="{{dataMinValue}}"
+               max="{{dataMaxValue}}"
                class="form-control {{maxValueStatus}}"
-               placeholder="{{measure.maxValue.toStringAsFixed(2)}}"
+               placeholder="{{dataMaxValue}}"
                id="maxModalVal">
     </div>
 </div>

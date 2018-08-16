@@ -16,7 +16,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="modalBox" *ngFor="let measure of selector.measures">
-                        <filter-input (streamEventProcessing_e)="streamEventProcessing($event);" [measure]="measure" [selector]="selector"></filter-input>
+                        <filter-input  [measure]="measure" [selector]="selector"></filter-input>
                     </div>
                 </div>
             </div>
@@ -26,6 +26,7 @@
                         class="btn btn-info" >Применить фильтры
                 </button>
                 <button type="button" class="btn btn-danger" (click)="reset()">Очистить</button>
+
                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть окно</button>
             </div>
         </div>

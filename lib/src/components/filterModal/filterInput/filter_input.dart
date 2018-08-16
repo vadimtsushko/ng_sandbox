@@ -23,6 +23,7 @@ class FilterInputComponent {
   double _minValue;
   String minValueStatus;
   set minValue(num value) {
+    print('Set minValue $value ${_measure.measureTitle}');
       _minValue = value;
       minValueStatus = selector.inputValidator(measure.minValue, measure.maxValue, value);
       updateFilterItem();
@@ -59,6 +60,7 @@ class FilterInputComponent {
 
   String get maxOperator => _maxOperator;
 
+
   FilterSelector _selector;
 
   @Input()
@@ -68,11 +70,17 @@ class FilterInputComponent {
 
   FilterSelector get selector => _selector;
 
+  String dataMinValue;
+
+  String dataMaxValue;
+
   MeasureForFilter _measure;
 
   @Input()
   set measure(MeasureForFilter value) {
     _measure = value;
+    dataMinValue = measure.minValue.toStringAsFixed(2);
+    dataMaxValue = measure.maxValue.toStringAsFixed(2);
   }
 
   MeasureForFilter get measure => _measure;
@@ -93,8 +101,4 @@ class FilterInputComponent {
     ), isErr: isErr);
   }
 
-  streamEventProcessing(String e){
-    print('2 in filter input');
-    print(e);
-  }
 }

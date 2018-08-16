@@ -1,6 +1,7 @@
 import 'package:model/model.dart';
 import 'dart:async';
 
+
 class NonExistentOperator implements Exception {
   final String msg;
 
@@ -104,10 +105,18 @@ class FilterSelector {
   }
 
 
-  void reset() {
+  void reset({bool resetMeasures = false}) {
+    print('Selector reset');
     dimension = dimensions.first.id;
     updateItems.clear();
     btnCanApplyDisabled = true;
+    if (resetMeasures) {
+      var measuresBackup = List<MeasureForFilter>.from(measures);
+      measures.clear();
+      Future.delayed (Duration(milliseconds: 3), () {
+        measures = measuresBackup;
+      });
+    }
   }
 
   void add() {

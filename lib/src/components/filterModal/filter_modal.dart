@@ -47,8 +47,7 @@ class FilterModalComponent implements AfterViewInit {
   }
 
   void reset(){
-    print('1 in filter modal');
-    streamEventProcessing('clear');
+    selector.reset(resetMeasures: true);
   }
 
   @Output()
