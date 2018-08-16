@@ -109,7 +109,8 @@ class FilterSelector {
 
 
   void reset() {
-     updateItems.clear();
+    dimension = dimensions.first.id;
+    updateItems.clear();
   }
 
   void add() {
