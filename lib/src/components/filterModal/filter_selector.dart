@@ -87,8 +87,6 @@ class FilterSelector {
 
   var updateItems = <String, MeasureFilterItem>{};
 
-  bool btnStatus = false;
-
   init(List<MeasureForFilter> _measures, List<IvMasterDimension> _dimensions) {
     measures = _measures;
     dimensions = _dimensions;
@@ -129,8 +127,8 @@ class FilterSelector {
       ..maxValue = null));
   }
 
-  updateFilterItem(MeasureFilterItem item){
-    if(item != null){
+  updateFilterItem(MeasureFilterItem item, {bool isErr = false}){
+    if(item != null && isErr == false){
       if (item.minValue != null || item.maxValue != null)
         updateItems[item.measureTitle] = item;
       else
@@ -141,6 +139,15 @@ class FilterSelector {
         btnCanApplyDisabled = true;
     } else
       btnCanApplyDisabled = true;
+  }
+
+  String inputValidator(double minV, double maxV, num val){
+    if(val == null)
+      return '';
+    else if(val <= maxV && val >= minV)
+      return 'green';
+    else
+      return 'red';
   }
 
 }

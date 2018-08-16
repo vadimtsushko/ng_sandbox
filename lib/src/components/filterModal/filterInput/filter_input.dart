@@ -20,26 +20,12 @@ import '../filter_selector.dart';
 
 class FilterInputComponent {
 
-
-
-
   double _minValue;
   String minValueStatus;
   set minValue(num value) {
       _minValue = value;
+      minValueStatus = selector.inputValidator(measure.minValue, measure.maxValue, value);
       updateFilterItem();
-      minValueStatus = inputValidator(measure.minValue, measure.maxValue, value);
-  }
-
-  String inputValidator(double minV, double maxV, num val){
-
-    print("!${val}!");
-    if(val == null)
-      return '';
-    else if(val < maxV && val > minV)
-      return 'green';
-    else
-      return 'red';
   }
 
   double get minValue => _minValue;
@@ -48,9 +34,8 @@ class FilterInputComponent {
   String maxValueStatus;
   set maxValue(double value) {
     _maxValue = value;
+    maxValueStatus = selector.inputValidator(measure.minValue, measure.maxValue, value);
     updateFilterItem();
-    maxValueStatus = inputValidator(measure.minValue, measure.maxValue, value);
-
   }
 
   double get maxValue => _maxValue;
@@ -92,13 +77,17 @@ class FilterInputComponent {
   MeasureForFilter get measure => _measure;
 
   updateFilterItem() {
+    String _minValueStatus = minValueStatus == null ? '' : minValueStatus;
+    String _maxValueStatus = maxValueStatus == null ? '' : maxValueStatus;
+    bool isErr = (_minValueStatus + _maxValueStatus).contains('red');
+
     selector.updateFilterItem(new MeasureFilterItem((b) => b
       ..measure = this.measure.measure
       ..measureTitle = measure.measureTitle
-      ..maxOperator = operatorsMax.toString()
-      ..minOperator = operatorsMin.toString()
+      ..maxOperator = operatorsMax
+      ..minOperator = operatorsMin
       ..minValue = minValue
       ..maxValue = maxValue
-    ));
+    ), isErr: isErr);
   }
 }
