@@ -5,6 +5,7 @@ import 'package:ng_sandbox/src/components/filterModal/filter_selector.dart';
 import 'package:model/model.dart';
 import '../filter_modal.dart';
 import '../filter_selector.dart';
+import 'dart:async';
 
 @Component(
   selector: 'filter-input',
@@ -18,8 +19,8 @@ import '../filter_selector.dart';
   ],
 )
 
-class FilterInputComponent {
-
+class FilterInputComponent implements OnInit, OnDestroy {
+  StreamSubscription resetSubscription;
   double _minValue;
   String minValueStatus;
   set minValue(num value) {
@@ -84,6 +85,20 @@ class FilterInputComponent {
   }
 
   MeasureForFilter get measure => _measure;
+
+  ngOnInit() {
+    resetSubscription = selector.resetStreamController.stream.listen(onReset);
+  }
+
+
+  ngOnDestroy() {
+    resetSubscription.cancel();
+  }
+
+  onReset(_) {
+    minValue = null;
+    maxValue = null;
+  }
 
   updateFilterItem() {
     String _minValueStatus = minValueStatus == null ? '' : minValueStatus;

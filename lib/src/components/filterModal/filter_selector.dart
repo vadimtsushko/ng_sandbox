@@ -22,6 +22,7 @@ enum ActionType { add, remove, reset, apply }
 
 class FilterSelector {
   final applyStreamController = new StreamController<MeasureFilterEvent>();
+  final resetStreamController = new StreamController<Null>.broadcast(sync: true);
 
   bool btnCanApplyDisabled = true;
 
@@ -110,13 +111,14 @@ class FilterSelector {
     dimension = dimensions.first.id;
     updateItems.clear();
     btnCanApplyDisabled = true;
-    if (resetMeasures) {
-      var measuresBackup = List<MeasureForFilter>.from(measures);
-      measures.clear();
-      Future.delayed (Duration(microseconds: 1), () {
-        measures = measuresBackup;
-      });
-    }
+    resetStreamController.add(null);
+//    if (resetMeasures) {
+//      var measuresBackup = List<MeasureForFilter>.from(measures);
+//      measures.clear();
+//      Future.delayed (Duration(microseconds: 1), () {
+//        measures = measuresBackup;
+//      });
+//    }
   }
 
   void add() {
