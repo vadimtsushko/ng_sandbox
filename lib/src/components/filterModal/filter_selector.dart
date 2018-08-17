@@ -106,7 +106,7 @@ class FilterSelector {
   }
 
 
-  void reset({bool resetMeasures = false}) {
+  void reset() {
     print('Selector reset');
     dimension = dimensions.first.id;
     updateItems.clear();

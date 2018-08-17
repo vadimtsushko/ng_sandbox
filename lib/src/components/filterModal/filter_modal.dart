@@ -46,9 +46,6 @@ class FilterModalComponent implements AfterViewInit {
     buttonElement.click();
   }
 
-  void reset(){
-    selector.reset(resetMeasures: true);
-  }
 
   @Output()
   Stream get streamEventProcessing_e => _innerListController_streamEventProcessing.stream;
