@@ -6,11 +6,13 @@ import 'package:ng_sandbox/src/routes/route_paths.dart' as paths;
 import '../components/dashboard/dashboard.template.dart' as dashboard_template;
 import '../components/builder/builder.template.dart' as builder_template;
 import '../components/filter/filter.template.dart' as filter_template;
+import '../components/loading/loading.template.dart' as loading_template;
 //import 'hero_component.template.dart' as hct;
 
 @Injectable()
 class Routes {
   RoutePath get builder => paths.builder ;
+//  RoutePath get loading => paths.loading ;
   RoutePath get dashboard => paths.dashboard;
   final List<RouteDefinition> all = [
     RouteDefinition(
@@ -22,10 +24,16 @@ class Routes {
       component: builder_template.BuilderComponentNgFactory,
     ),
     RouteDefinition(
+      path: paths.loading.path,
+      component: loading_template.LoadingComponentNgFactory,
+    ),
+    RouteDefinition(
       path: paths.filter.path,
       component: filter_template.FilterComponentNgFactory,
     ),
+
     RouteDefinition.redirect(path: '', redirectTo: paths.dashboard.toUrl()),
+
   ];
 
 }
