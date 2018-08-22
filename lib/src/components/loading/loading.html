@@ -7,7 +7,7 @@
             <!--<button (click)="showDialog()">Open filter</button>-->
             <h3> Loading </h3>
         </div>
-        <div class="col-md-11"
+        <div class="col-md-12"
              *ngIf="isProgressRun">
             <div class="progress">
                 <div class="progress-bar progress-bar-striped active" role="progressbar"
@@ -16,8 +16,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-1 text-center"
-             *ngIf="isProgressRun">
+        <div class="col-md-12 text-center"
+             *ngIf="isProgressRun && part < 3">
             <button (click)="cancel()">Cancel</button>
         </div>
         <div class="col-md-12">

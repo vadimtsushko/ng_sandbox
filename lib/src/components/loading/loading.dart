@@ -15,7 +15,7 @@ import 'package:http/browser_client.dart';
   styleUrls: ['loading.css'],
   directives: [coreDirectives,  routerDirectives],
 )
-class LoadingComponent implements OnInit {
+class LoadingComponent {
 
   int progress = 0;
   int part = 0;
@@ -23,33 +23,26 @@ class LoadingComponent implements OnInit {
 
   String result = '';
 
-  LoadingComponent();
-
-
-  Future<void> ngOnInit() async {
-  }
-
-
-
   download() {
     isProgressRun = true;
     progressPlus();
 
   }
+
   cancel(){
     isProgressRun = false;
     progress = 0;
     part = 0;
   }
+
   progressPlus({int p = 1}) async {
    if(isProgressRun){
+     part = p;
      var client = new BrowserClient();
      var url = 'http://localhost:4040/?part=${p}';
      var response =
      await client.post(url);
-
      result += response.body;
-
      p += 1;
      if(p < 4){
        progressPlus(p: p);
@@ -62,10 +55,6 @@ class LoadingComponent implements OnInit {
          ..setAttribute("download", "file.txt")
          ..click();
      }
-
    }
-
-
-
   }
 }
