@@ -2,8 +2,12 @@ import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'dart:async';
 import 'dart:io';
-import 'dart:html';
-import 'dart:math' show Random;
+import 'dart:html' as html;
+
+import 'dart:async';
+import 'package:http/browser_client.dart';
+
+
 
 @Component(
   selector: 'my-loading',
@@ -14,33 +18,54 @@ import 'dart:math' show Random;
 class LoadingComponent implements OnInit {
 
   int progress = 0;
+  int part = 0;
   bool isProgressRun = false;
 
+  String result = '';
+
   LoadingComponent();
+
 
   Future<void> ngOnInit() async {
   }
 
-  download(){
+
+
+  download() {
     isProgressRun = true;
-    new Timer( const Duration(milliseconds: 500), () => progressPlus());
+    progressPlus();
+
   }
   cancel(){
-    progress = 0;
     isProgressRun = false;
+    progress = 0;
+    part = 0;
   }
-  progressPlus(){
+  progressPlus({int p = 1}) async {
+   if(isProgressRun){
+     var client = new BrowserClient();
+     var url = 'http://localhost:4040/?part=${p}';
+     var response =
+     await client.post(url);
 
-    if(progress < 100 && isProgressRun){
-      progress += 10;
-      new Timer( const Duration(milliseconds: 500), () => progressPlus());
-    } else if(progress == 100 && isProgressRun){
-      String encodedFileContents = Uri.encodeComponent("Hello World!");
+     result += response.body;
 
-      new AnchorElement(href: "data:text/plain;charset=utf-8,$encodedFileContents")
-        ..setAttribute("download", "file.txt")
-        ..click();
-    }
+     p += 1;
+     if(p < 4){
+       progressPlus(p: p);
+       progress = p  * 30;
+       if(p > 2)
+         progress =100;
+     } else {
+       String encodedFileContents = Uri.encodeComponent("Hello World!");
+       new html.AnchorElement(href: "data:text/plain;charset=utf-8,$encodedFileContents")
+         ..setAttribute("download", "file.txt")
+         ..click();
+     }
+
+   }
+
+
 
   }
 }

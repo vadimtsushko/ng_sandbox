@@ -11,6 +11,8 @@ dependencies:
   angular: ^5.0.0
   angular_forms: ^2.0.0
   angular_router: ^2.0.0-alfa+19
+  http: ^0.11.3+17
+#  http: ^0.11.3+17
 #  assortment: ^0.1.0
   dnd:
     git: https://github.com/vadimtsushko/dart-dnd.git
