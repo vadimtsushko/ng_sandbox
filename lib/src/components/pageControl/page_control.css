@@ -1,0 +1,115 @@
+.content {
+    margin-top: 6em;
+}
+
+.page_control{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    background: #6c6b6a;
+    overflow: hidden;
+}
+.page_control li{
+    display: flex;
+    cursor: pointer;
+    color: #bdbcbc;
+    padding: 0.4em;
+    border-radius: 0;
+    font-size: 1.3em;
+    transition: 0.3s;
+    min-width: 2.5em;
+    text-align: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
+.page_control .filter{
+    width: 100%;
+    /*background: green;*/
+    padding: 0;
+    justify-content: start;
+}
+
+.page_control .filter ul{
+    display: inline-flex;
+    /*background: red;*/
+    padding: 0;
+    margin: 0;
+}
+
+.page_control .filter ul:first-child{
+    border-right: 1px solid rgba(64, 63, 62, 0.4);
+}
+.page_control .filter li{
+    border-left: 1px solid rgba(64, 63, 62, 0.4);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.2em 0.3em;
+    width: 7em;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.page_control .filter  .title{
+    width: 100%;
+}
+
+.page_control .filter  .title .main_title{
+    font-size: 0.6em;
+    font-weight: bold;
+    line-height: 1;
+    text-align: left;
+}
+.page_control .filter  .title .sub_title{
+    font-size: 0.6em;
+    line-height: 1;
+    text-align: left;
+}
+
+.page_control .filter .close{
+    opacity: 1;
+    background: #bdbcbc;
+    border-radius: 50%;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    line-height: 1;
+    font-size: 0.5em;
+    padding: 4px;
+    color: #6c6b6a;
+    transition: 0.3s;
+    overflow: hidden;
+    text-align: center;
+}
+.page_control .filter .close:hover{
+    background: white;
+}
+
+.page_control .filter .close i{
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.page_control .btn:hover, .page_control .filter li:hover{
+    background: rgba(64, 63, 62, 0.3);
+    box-shadow: inset 0px 0px 7px 3px rgba(0, 0, 0, 0.15);
+}
+
+.page_control .filter .indicator{
+    background: #a9a9a9;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+}
+.page_control .filter .indicator .indicator-grey{
+    height: 2px;
+    background: #d2d2d2;
+}
+.page_control .filter .indicator .indicator-green{
+    height: 2px;
+    background: #55c24e;
+}
