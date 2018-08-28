@@ -57,10 +57,14 @@
                         </li>
                     </ul>
                 </li>
-                <li class="btn"><i class="glyphicon glyphicon-search"></i></li>
+                <li class="btn {{isSearchActive ? 'active' : ''}}"  (click)="searchClickHandler()"><i class="glyphicon glyphicon-search"></i></li>
                 <li class="btn"><i class="glyphicon glyphicon-filter"></i></li>
                 <li class="btn"><i class="glyphicon glyphicon-bookmark"></i></li>
                 <li class="btn"><i class="glyphicon glyphicon-link"></i></li>
+                <li class="search" *ngIf="isSearchActive">
+                    <i class="glyphicon glyphicon-search"></i>
+                    <input placeholder="Поиск данных" type="text">
+                </li>
             </ul>
 
         </div>

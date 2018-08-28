@@ -13,9 +13,10 @@ import 'package:ng_sandbox/src/components/dimensions/dimensions.dart';
 
 
 class PageControlComponent {
-  List<String> outerList;
-  int intV = 0;
+  bool isSearchActive  = false;
+  void searchClickHandler () => isSearchActive = !isSearchActive;
   PageControlComponent();
 
 }
+
 

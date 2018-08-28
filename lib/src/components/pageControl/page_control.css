@@ -8,7 +8,8 @@
     padding: 0;
     margin: 0;
     background: #6c6b6a;
-    overflow: hidden;
+    /*overflow: hidden;*/
+    position: relative;
 }
 .page_control li{
     display: flex;
@@ -22,6 +23,9 @@
     text-align: center;
     justify-content: center;
     overflow: hidden;
+}
+.page_control .btn:active{
+    color: white;
 }
 
 
@@ -61,11 +65,13 @@
     font-weight: bold;
     line-height: 1;
     text-align: left;
+    color: white;
 }
 .page_control .filter  .title .sub_title{
     font-size: 0.6em;
     line-height: 1;
     text-align: left;
+    color: white;
 }
 
 .page_control .filter .close{
@@ -112,4 +118,32 @@
 .page_control .filter .indicator .indicator-green{
     height: 2px;
     background: #55c24e;
+}
+
+.page_control .search{
+    position: absolute;
+    width: 100%;
+    bottom: -100%;
+    background: white;
+    display: flex;
+    top: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    height: 3em;
+    /*display: none;*/
+}
+.page_control .search i{
+    width: 50px;
+    margin-right: 1em;
+    margin-top: 0.5em;
+    cursor: auto;
+}
+.page_control .search input{
+    width: 100%;
+    border: 0;
+    outline: none !important;
+}
+
+.page_control .btn.active {
+    background: white;
+    color: #6c6b6a;
 }
