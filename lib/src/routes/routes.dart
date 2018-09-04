@@ -7,7 +7,8 @@ import '../components/dashboard/dashboard.template.dart' as dashboard_template;
 import '../components/builder/builder.template.dart' as builder_template;
 import '../components/filter/filter.template.dart' as filter_template;
 import '../components/loading/loading.template.dart' as loading_template;
-import '../components/pageControl/page_control.template.dart' as page_control;
+import '../components/ag_grid/ag_grid.template.dart' as ag_grid_template;
+import '../components/pageControl/page_control.template.dart' as page_control_template;
 //import 'hero_component.template.dart' as hct;
 
 @Injectable()
@@ -34,7 +35,11 @@ class Routes {
     ),
     RouteDefinition(
       path: paths.pageControl.path,
-      component: page_control.PageControlComponentNgFactory,
+      component: page_control_template.PageControlComponentNgFactory,
+    ),
+    RouteDefinition(
+      path: paths.ag_grid.path,
+      component: ag_grid_template.AgGridComponentNgFactory,
     ),
     RouteDefinition.redirect(path: '', redirectTo: paths.dashboard.toUrl()),
 
