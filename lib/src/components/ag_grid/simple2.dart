@@ -137,8 +137,8 @@ GridOptions gridOptions;
 var startDateColDef;
 void main() {
   DateFilterFactory filterFactory = new DateFilterFactory();
-//  initialiseAgGridWithWebComponents();
-//  setupDartInterface();
+  initialiseAgGridWithWebComponents();
+  setupDartInterface();
   var priceColumn = new ColumnDef(
       headerName: 'Price',
       field: 'price',
@@ -149,29 +149,6 @@ void main() {
   var columnDefs = [
     new ColumnDef(
         headerName: 'Make', field: 'make', filter: 'text', editable: true, width: 150, filterParams: new FilterParams(newRowsAction: 'keep')),
-    new ColumnDef(
-        headerName: 'Model', field: 'model', filter: 'text', editable: true, width: 150),
-    priceColumn,
-    new ColumnDef(
-        headerName: 'Make date',
-        field: 'makeDate',
-        editable: true,
-        width: 150,
-        filter: allowInterop(filterFactory.filter),
-//        cellRenderer: allowInterop(DateFilterFactory.dateCellRenderer),
-//        valueGetter: allowInterop(DateFilterFactory.dateValueGetter),
-//        cellEditor: allowInterop(getDartInterface().dateCellEditorFactory)
- ),
-    new ColumnDef(
-        headerName: 'Top seller',
-        field: 'topSeller',
-        editable: true,
-        cellStyle: cellStyleBoolean,
-        filter: 'text',
-        width: 60,
-//        cellEditor: allowInterop(getDartInterface().checkBoxEditorFactory),
-//        cellRenderer: allowInterop(booleanCellRenderer)
- )
   ];
 
   gridOptions = new GridOptions(
@@ -184,12 +161,11 @@ void main() {
       localeText: russianLocale(),
       enableColResize: true,
       rowModelType: 'infinite',
-//      onBeforeFilterChanged: allowInterop(beforeFilterChanged),
-//      onAfterFilterChanged: allowInterop(afterFilterChanged),
-//      onFilterModified: allowInterop(filterModified),
-//      onBeforeSortChanged: allowInterop(beforeSortChanged),
-//      onAfterSortChanged: allowInterop(afterSortChanged)
- );
+      onBeforeFilterChanged: allowInterop(beforeFilterChanged),
+      onAfterFilterChanged: allowInterop(afterFilterChanged),
+      onFilterModified: allowInterop(filterModified),
+      onBeforeSortChanged: allowInterop(beforeSortChanged),
+      onAfterSortChanged: allowInterop(afterSortChanged));
   new Grid(gridDiv, gridOptions);
   Datasource datasource = new Datasource(getRows: allowInterop(getRows));
   gridOptions.api.setDatasource(datasource);
