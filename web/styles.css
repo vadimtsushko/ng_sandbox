@@ -71,3 +71,37 @@ span.ag-icon.ag-icon-checkbox-checked:after{
   font-size: 1.5rem;
   color: white;
 }
+button.btn{
+  outline: none !important;
+  /*border: 0;*/
+  border-radius: 25%;
+  border: 2px solid white;
+}
+button.btn:hover{
+  border: 2px solid #595959;
+}
+button.btn.btn-success{
+  background: #52CC52;
+}
+button.btn.btn-danger{
+  background: #E64E4E;
+}
+button.btn.no-style{
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.ag-controls-block{
+  background: red;
+  display: flex;
+  position: relative;
+}
+.ag-controls-modal{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: orange;
+  width: 100%;
+  z-index: 9;
+}
