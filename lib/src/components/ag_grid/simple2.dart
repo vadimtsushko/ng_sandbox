@@ -10,69 +10,34 @@ import 'dart:async';
 
 var cellStyleBoolean = new JsObject.jsify({'text-align': 'center'});
 var rowData = [
-  new CarItem(
-      make: 'Hyundai111',
-//      model: 'Solaris',
-//      price: 625000,
-//      topSeller: '1',
-//      makeDate: new DateTime(2015, 1, 1)
-  ),
-  new CarItem(
-      make: 'Hyundai',
-//      model: 'Sonata',
-//      price: 1245000,
-//      topSeller: '1',
-//      makeDate: new DateTime(2017, 2, 2)
-  ),
-  new CarItem(
-      make: 'Hyundai',
-//      model: 'Creta',
-//      price: 799000,
-//      topSeller: '1',
-//      makeDate: new DateTime(2014, 3, 3)
-  ),
-  new CarItem(
-      make: 'Hyundai',
-//      model: 'Elantra',
-//      price: 957000,
-//      topSeller: '1',
-//      makeDate: new DateTime(2012, 4, 4)
-  ),
+  new CarItem(make: '1'),
+  new CarItem(make: '2'),
+  new CarItem(make: '3'),
+  new CarItem(make: '4'),
 ];
 
 GridOptions gridOptions;
 //var startDateColDef;
+
+
+
 void mainssss() {
-  DateFilterFactory filterFactory = new DateFilterFactory();
   initialiseAgGridWithWebComponents();
   setupDartInterface();
-  var priceColumn = new ColumnDef(
-      headerName: 'Price',
-      field: 'athlete',
-//      editable: true,
-      checkboxSelection: true,
-      headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly:true,
-
-      width: 100,
-
-
-
-  );
-
-  window.console.log(priceColumn);
+  FloatingFilterComponentParams sss =  new FloatingFilterComponentParams();
+  sss.suppressFilterButton = true;
 
   var gridDiv = querySelector('#myGrid');
   var columnDefs = [
     new ColumnDef(
-//        headerName: 'Price', field: 'make', filter: 'text',
-
       headerName: "Price",
       field: "make",
       width: 150,
       checkboxSelection: true,
       headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly:true,
+      floatingFilterComponentParams: sss,
+
 
     ),
   ];
@@ -80,12 +45,17 @@ void mainssss() {
   gridOptions = new GridOptions(
 
     columnDefs: columnDefs,
+//    suppressRowClickSelection: true,
+//    enableRangeSelection: true,
+//    enableCellChangeFlash: true,
+
     suppressRowClickSelection: true,
     enableRangeSelection: true,
     enableCellChangeFlash: true,
     rowSelection: 'multiple',
     rowData: null,
     headerHeight: 0,
+    floatingFilter: true,
 
 //      columnDefs: columnDefs,
 //      rowSelection: 'multiple',
