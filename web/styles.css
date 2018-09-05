@@ -34,3 +34,40 @@ body, input[text], button {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.ag-cell {
+  background: #ddd;
+  padding: 1px 10px;
+  border: 1px solid white;
+}
+
+span.ag-selection-checkbox {
+  float: right;
+  margin-right: 10px;
+}
+
+.ag-row-selected .ag-cell{
+  background: #52CC52 !important;
+}
+.ag-row-selected .ag-cell-value{
+  color: white !important;
+}
+
+.ag-layout-normal *{
+  outline: none !important;
+}
+span.ag-icon.ag-icon-checkbox-checked, span.ag-icon.ag-icon-checkbox-unchecked{
+  /*background: red;*/
+  border: 0;
+  position: relative;
+  background: transparent;
+}
+span.ag-icon.ag-icon-checkbox-checked:after{
+  content: '✔';
+  position: absolute;
+  left: 0;
+  top: -3px;
+  font-size: 1.5rem;
+  color: white;
+}
