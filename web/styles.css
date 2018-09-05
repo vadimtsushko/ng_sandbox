@@ -76,6 +76,7 @@ button.btn{
   /*border: 0;*/
   border-radius: 25%;
   border: 2px solid white;
+  box-shadow: none !important;
 }
 button.btn:hover{
   border: 2px solid #595959;
@@ -92,16 +93,78 @@ button.btn.no-style{
   box-shadow: none;
 }
 
-.ag-controls-block{
-  background: red;
+.ag-controls{
+  border: 1px solid #595959;
+  width: 240px;
+  padding: 0px;
+  padding-top: 4px;
+}
+.ag-layout-normal .ag-body-viewport{
+  overflow-x: hidden !important;
+}
+
+.ag-controls .grid-block{
+  padding: 0;
+}
+.ag-controls-block-top{
   display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  padding: 0 !important;
+}
+.ag-controls-block-top .dots{
+  font-weight: bold;
+  font-size: 17px;
   position: relative;
+}
+.ag-controls-block-top .dots.active {
+  color: white;
+  background: #595959;
+  border: 2px solid #595959;
+  line-height: 1.2;
+}
+.ag-controls-block-bottom{
+  display: flex;
+  border-top: 1px solid #595959;
+  margin-top: 5px;
+  padding: 5px 0;
+}
+.ag-controls-block-bottom .icon{
+  width: 25px;
+  text-align: center;
+  padding-top: 4px;
+}
+.ag-controls-block-bottom .input{
+  width: 100%;
+}
+.ag-controls-block-bottom input{
+  width: 100%;
+  border: 0;
+  padding-left: 5px;
+  outline: none !important;
 }
 .ag-controls-modal{
   position: absolute;
-  top: 100%;
+  top: calc(100% + 6px);
   left: 0;
-  background: orange;
+  background: white;
   width: 100%;
   z-index: 9;
+  list-style: none;
+  padding: 0;
+}
+.ag-controls-modal li {
+  padding: 7px;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #595959;
+  cursor: pointer;
+}
+.ag-controls-modal li:hover{
+  background: #595959;
+  color: white;
+}
+.ag-controls-modal li i{
+  margin-right: 5px;
+  font-size: 1.2rem !important;
+
 }
