@@ -3,6 +3,7 @@ import 'package:angular_router/angular_router.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'dart:async';
 import 'package:ag_grid/ag_grid.dart';
+import "package:js/js.dart";
 
 import './test.dart' as test;
 import 'dart:html' as html;
@@ -41,8 +42,8 @@ class AgGridComponent implements AfterViewInit{
           field: "athlete",
           width: 150,
         checkboxSelection: true,
-        headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly:true,
+//        headerCheckboxSelection: true,
+//        headerCheckboxSelectionFilteredOnly:true,
       ),
     ];
 
@@ -54,18 +55,25 @@ class AgGridComponent implements AfterViewInit{
 
     gridOptions = new GridOptions(
       columnDefs: columnDefs,
-      rowModelType: 'enterprise',
-      rowSelection: 'multiple',
+//      rowModelType: 'enterprise',
+      rowModelType: 'infinite',
+//      rowModelType: 'clientSide',
+//      rowModelType: 'viewport',
+//      rowModelType: 'serverSide',
       headerHeight: 0,
     );
 
     new Grid(gridDiv, gridOptions);
 
     var dataServer = new MockServer();
-    dataServer.setData(allOfTheData);
+//    dataServer.setData(allOfTheData);
 
     gridOptions.api.sizeColumnsToFit();
-    gridOptions.api.setEnterpriseDatasource(dataServer.getDatasource());
+//    gridOptions.api.setEnterpriseDatasource(dataServer.getDatasource());
+    gridOptions.api.setDatasource(dataServer.getDatasource());
+//    print( dataServer.getDatasource().getRows());
+
+//    Datasource datasource = new Datasource(getRows: allowInterop(dataServer.getDatasource()));
   }
 
   ngAfterViewInit()  {
