@@ -1,0 +1,63 @@
+<div class="container-fluid content">
+    <div class="row">
+        <div class="col-md-12">
+            <h3> AgGridComponent </h3>
+        </div>
+
+        <div class="ag-controls">
+            <div class="col-md-12 ag-controls-block-top">
+                <div class="block-controls" *ngIf="block" (click)="block = !block">
+                    <i class="glyphicon glyphicon-lock"></i>Щелкните, чтобы разблокировать
+                </div>
+                <div class="col-md-6 text-right">
+                    <button class="btn no-style dots  {{show ? 'active' : ''}} " (click)="show = !show">...</button>
+                    <button class="btn no-style" (click)="block = !block"><i class="glyphicon glyphicon-lock"></i></button>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button class="btn btn-success">
+                        <i class="glyphicon glyphicon-ok"></i>
+                    </button>
+                    <button class="btn btn-danger">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                </div>
+                <ul *ngIf="show" class="ag-controls-modal">
+                    <li>
+                        <i class="fa fa-eraser" aria-hidden="true"></i>
+                        Очистить выбор
+                    </li>
+                    <li>
+                        <i class="fa fa-list-ul" aria-hidden="true"></i>
+                        Выбрат все
+                    </li>
+                    <li>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Выбрать возможные
+                    </li>
+                    <li>
+                        <i class="fa fa-compass" aria-hidden="true"></i>
+                        Выбрать альтернативные
+                    </li>
+                    <li>
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        Выбрать исключенные
+                    </li>
+                </ul>
+            </div>
+            <span class="ag-controls-block-bottom">
+                <span class="icon">
+                    <i class="glyphicon glyphicon-search"></i>
+                </span>
+                <span class="input"><input type="text"></span>
+            </span>
+
+
+            <div class="col-md-12 grid-block">
+                <div id="myGrid" style="height: 400px; width: 100%"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

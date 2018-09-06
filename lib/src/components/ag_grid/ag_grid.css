@@ -1,0 +1,116 @@
+
+.content {
+    margin-top: 6em;
+}
+*{
+    /*background: red;*/
+}
+
+
+button.btn{
+    outline: none !important;
+    /*border: 0;*/
+    border-radius: 25%;
+    border: 2px solid white;
+    box-shadow: none !important;
+}
+button.btn:hover{
+    border: 2px solid #595959;
+}
+button.btn.btn-success{
+    background: #52CC52;
+}
+button.btn.btn-danger{
+    background: #E64E4E;
+}
+button.btn.no-style{
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+.ag-controls{
+    border: 1px solid #595959;
+    width: 240px;
+    padding: 0px;
+    padding-top: 4px;
+}
+.ag-controls .grid-block{
+    padding: 0;
+}
+.ag-controls-block-top .dots.active {
+    color: white;
+    background: #595959;
+    border: 2px solid #595959;
+    line-height: 1.2;
+}
+.ag-controls-block-bottom{
+    display: flex;
+    border-top: 1px solid #595959;
+    margin-top: 5px;
+    padding: 5px 0;
+}
+.ag-controls-block-bottom .icon{
+    width: 25px;
+    text-align: center;
+    padding-top: 4px;
+}
+
+.ag-controls-block-bottom .input{
+    width: 100%;
+}
+.ag-controls-block-bottom input{
+    width: 100%;
+    border: 0;
+    padding-left: 5px;
+    outline: none !important;
+}
+.ag-controls-modal{
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    background: white;
+    width: 100%;
+    z-index: 9;
+    list-style: none;
+    padding: 0;
+}
+.ag-controls-modal li {
+    padding: 7px;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #595959;
+    cursor: pointer;
+}
+.ag-controls-modal li:hover{
+    background: #595959;
+    color: white;
+}
+.ag-controls-modal li i{
+    margin-right: 5px;
+    font-size: 1.2rem !important;
+
+}
+.ag-controls-block-top .dots{
+    font-weight: bold;
+    font-size: 17px;
+    position: relative;
+}
+.block-controls{
+    background: #595959;
+    color: white;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -4px;
+    z-index: 99;
+    height: calc(100% + 10px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 13px;
+    cursor: pointer;
+}
+.block-controls i {
+    width: 50px;
+    text-align: center;
+}
