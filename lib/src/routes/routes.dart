@@ -9,6 +9,7 @@ import '../components/filter/filter.template.dart' as filter_template;
 import '../components/loading/loading.template.dart' as loading_template;
 import '../components/ag_grid/ag_grid.template.dart' as ag_grid_template;
 import '../components/pageControl/page_control.template.dart' as page_control_template;
+import '../components/dimensions/dimensions.template.dart' as dimensions_template;
 //import 'hero_component.template.dart' as hct;
 
 @Injectable()
@@ -17,6 +18,10 @@ class Routes {
 //  RoutePath get loading => paths.loading ;
   RoutePath get dashboard => paths.dashboard;
   final List<RouteDefinition> all = [
+    RouteDefinition(
+      path: paths.dimensions.path,
+      component: dimensions_template.DimensionsComponentNgFactory,
+    ),
     RouteDefinition(
       path: paths.dashboard.path,
       component: dashboard_template.DashboardComponentNgFactory,

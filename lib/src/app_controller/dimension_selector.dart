@@ -101,7 +101,9 @@ class DimensionSelector {
   }
 
   init({List<String> list = testDims}) {
+
     availableDims = List.from(list);
+    print(availableDims);
   }
 }
 
